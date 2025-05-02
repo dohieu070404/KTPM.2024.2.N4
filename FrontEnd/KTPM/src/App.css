@@ -1,0 +1,53 @@
+.nav-box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #77aee6;
+
+}
+
+.horizontal-menu {
+  display: flex;          /* Xếp các <li> theo hàng ngang */
+  list-style: none;       /* Bỏ dấu chấm trước các mục */
+  padding: 0;             /* Xóa khoảng cách mặc định */
+  margin: 0;
+  gap: 20px;              /* Khoảng cách giữa các mục */
+}
+
+.horizontal-menu li {
+  padding: 10px 15px;
+
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn{
+  margin: 5px;
+}
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+font-size: 14px;
+}
