@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Header from './components/layouts/header'
 import './App.css'
+import ContentMain from './components/a/contentmai'
 const App = () => {
-  const [count, setCount] = useState(0)
 
   return (
     <>
 <Header/>
       <div className='nav-box'>
         <div>
+        
           <ul className='horizontal-menu'>
             <li>
               <a href="#" className='btn btn-white btn-animated'>khach san</a>
@@ -49,6 +50,7 @@ const App = () => {
           </ul>
         </div>
       </div>
+<ContentMain/>
     </>
   )
 }

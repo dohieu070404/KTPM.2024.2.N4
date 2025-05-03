@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
@@ -12,23 +16,26 @@ body {
     linear-gradient(to right bottom, 
    rgba(76, 216, 255, 0.8),
    rgba(30, 108, 217, 0.8)),
-   url('https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg');
+   url('/public/beach.jpg');
     
-  background-size: cover;
+    background-size: cover;
     background-position: top;
     position: relative;
 
 }
-
-.brand-box {
-    position: absolute;
-    top: 40px;
-    left: 40px;
+.header-icon{
+    display: flex;
+    justify-content: space-between; /* đẩy hai phần tử về 2 phía */
+    align-items: center;            /* căn giữa theo chiều dọc */
+    padding: 10px;
+    
+  
 }
 
-.brand { font-size: 20px; }
 
-.text-box {
+.header-brand { font-size: 20px; }
+
+.header-text-box {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -47,21 +54,16 @@ body {
 .heading-primary-main {
     display: block;
     font-size: 26px;
-    font-weight: 400;
-    letter-spacing: 5px;
+    font-weight: 600;
+    letter-spacing: 3px;
 }
 
-.heading-primary-sub {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 7.4px;
+
+.header-btn{
+    margin: 10px;
 }
-.btn{
-    margin: 5px;
-}
-.btn:link,
-.btn:visited {
+.header-btn:link,
+.header-btn:visited {
     text-transform: uppercase;
     text-decoration: none;
     padding: 10px 20px;
@@ -71,18 +73,18 @@ body {
     position: relative;
 }
 
-.btn:hover {
+.header-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.btn:active {
+.header-btn:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.header-btn-white {
     background-color: #fff;
-    color: #777;
+    color: #1e1d1d;
   font-size: 14px;
 }

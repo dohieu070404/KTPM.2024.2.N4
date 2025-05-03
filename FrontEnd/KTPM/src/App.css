@@ -1,29 +1,38 @@
 .nav-box{
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background-color: #77aee6;
+  border: solid 3px ;
 
 }
 
 .horizontal-menu {
   display: flex;          /* Xếp các <li> theo hàng ngang */
   list-style: none;       /* Bỏ dấu chấm trước các mục */
-  padding: 0;             /* Xóa khoảng cách mặc định */
+  padding: 10px;             /* Xóa khoảng cách mặc định */
   margin: 0;
   gap: 20px;              /* Khoảng cách giữa các mục */
 }
 
 .horizontal-menu li {
-  padding: 10px 15px;
-
-  border-radius: 5px;
+  
+  width: 150px;                /* Kích thước cố định */
+  height: 50px;
+  display: flex;               /* Để canh giữa nội dung */
+  align-items: center;         /* Canh giữa theo chiều dọc */
+  justify-content: center;     /* Canh giữa theo chiều ngang */
+  
+  border-radius: 3px;
   cursor: pointer;
+
+  color: white;
 }
+
 .btn{
   margin: 5px;
+  
 }
 .btn:link,
 .btn:visited {
@@ -39,6 +48,7 @@
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #bebdbd;
 }
 
 .btn:active {
@@ -48,6 +58,6 @@
 
 .btn-white {
   background-color: #fff;
-  color: #777;
+  color: #070000;
 font-size: 14px;
 }
