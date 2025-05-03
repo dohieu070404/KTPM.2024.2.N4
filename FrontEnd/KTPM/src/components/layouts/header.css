@@ -16,7 +16,7 @@ body {
     linear-gradient(to right bottom, 
    rgba(76, 216, 255, 0.8),
    rgba(30, 108, 217, 0.8)),
-   url('/public/beach.jpg');
+   url('/public/assets/beach.jpg');
     
     background-size: cover;
     background-position: top;
@@ -28,8 +28,20 @@ body {
     justify-content: space-between; /* đẩy hai phần tử về 2 phía */
     align-items: center;            /* căn giữa theo chiều dọc */
     padding: 10px;
-    
-  
+    cursor: pointer;
+}
+.header-icon-logopage img{
+    margin-left: 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 25px;
+}
+
+.header-icon-user img{
+    margin-right: 15px;
+    filter: brightness(0) invert(1);
+    width: 35px;
+    height: 35px;
 }
 
 
@@ -53,14 +65,18 @@ body {
 
 .heading-primary-main {
     display: block;
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 600;
     letter-spacing: 3px;
 }
 
-
+.header-bar-box{
+    margin-left: 60px;
+    margin-top: -15px;
+}
 .header-btn{
-    margin: 10px;
+    margin: -20px;
+    margin-left: 20px;
 }
 .header-btn:link,
 .header-btn:visited {
@@ -84,7 +100,8 @@ body {
 }
 
 .header-btn-white {
-    background-color: #fff;
-    color: #1e1d1d;
+   
+    color: #fffdfd;
+    font-weight: 600;
   font-size: 14px;
 }

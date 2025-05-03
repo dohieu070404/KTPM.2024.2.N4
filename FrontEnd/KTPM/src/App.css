@@ -5,6 +5,9 @@
   transform: translate(-50%, -50%);
   text-align: center;
   border: solid 3px ;
+  border-radius: 10px;
+  color: #8b8b8b;
+  background-color: rgb(239, 244, 248);
 
 }
 
@@ -57,7 +60,6 @@
 }
 
 .btn-white {
-  background-color: #fff;
   color: #070000;
 font-size: 14px;
 }

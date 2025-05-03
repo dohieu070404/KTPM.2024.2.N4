@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import Header from './components/layouts/header'
 import './App.css'
 import ContentMain from './components/a/contentmai'
+import Footer from './components/layouts/footer'
 const App = () => {
 
   return (
@@ -51,6 +52,7 @@ const App = () => {
         </div>
       </div>
 <ContentMain/>
+<Footer/>
     </>
   )
 }

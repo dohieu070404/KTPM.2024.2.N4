@@ -5,7 +5,7 @@ const ContentMain = () => {
     return( 
     <>
 <div id='folders'>
-  <figure style={{ backgroundImage: 'url(/cty.jpg)' }}>
+  <figure style={{ backgroundImage: 'url(/assets/cty.jpg)' }}>
     <figcaption>City-01</figcaption>
   </figure>
   <figure style={{ backgroundImage: 'url()' }}>
