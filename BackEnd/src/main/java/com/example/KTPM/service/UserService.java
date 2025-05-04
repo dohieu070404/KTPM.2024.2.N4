@@ -1,0 +1,87 @@
+package com.example.KTPM.service;
+
+import com.example.KTPM.dto.request.UserCreationRequest;
+import com.example.KTPM.dto.request.UserUpdateRequest;
+import com.example.KTPM.dto.response.UserRespone;
+import com.example.KTPM.entity.User;
+import com.example.KTPM.enums.Roles;
+import com.example.KTPM.exception.AppException;
+import com.example.KTPM.exception.ErrorCode;
+import com.example.KTPM.mapper.UserMapper;
+//import com.example.KTPM.repository.RoleRepository;
+import com.example.KTPM.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.HashSet;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserMapper userMapper;
+//    @Autowired
+//    private RoleRepository roleRepository;
+    public User createUser(UserCreationRequest request){
+        log.info("Service: Create user");
+        if(userRepository.existsByName(request.getName())){
+            throw new RuntimeException("ErrorCode UNKNOWN_EXCEPTION");
+//            throw new AppException(ErrorCode.USER_EXISTED);
+        }
+        User user=userMapper.toUser(request);
+        PasswordEncoder pwdEncoder=new BCryptPasswordEncoder(10);
+        user.setPassword(pwdEncoder.encode(request.getPassword()));
+        HashSet<String> roles=new HashSet<>();
+        roles.add(Roles.USER.name());
+        //user.setRoles(roles);
+        return userRepository.save(user);
+    }
+//    public UserRespone getMyInfor(){
+//        var context=SecurityContextHolder.getContext();
+//        String name=context.getAuthentication().getName();
+//        User user=userRepository.findByname(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+//        return userMapper.toUserRespone(user);
+//    }
+//    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+//    public List<UserRespone> getUsers() {
+//        return userRepository.findAll().stream().map(userMapper::toUserRespone).toList();
+//    }
+//    @PostAuthorize("returnObject.username==authentication.name||hasAuthority('SCOPE_ADMIN')")
+//    public UserRespone getUser(String id) {
+//        return userMapper.toUserRespone(userRepository.findById(id)
+//                .orElseThrow(()->new RuntimeException("User not found")));
+//    }
+    public UserRespone updateUser(Integer id, UserUpdateRequest request){
+        User tmp=userRepository.findById(id).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        if(tmp.getIsDelete()){
+            throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        }
+        PasswordEncoder pwdEncoder=new BCryptPasswordEncoder(10);
+        userMapper.updateUser(tmp,request);
+        tmp.setPassword(pwdEncoder.encode(request.getPassword()));
+//        var role=roleRepository.findAllById(request.getRoles());
+//        tmp.setRoles(new HashSet<>(role));
+        return userMapper.toUserRespone(userRepository.save(tmp));
+    }
+    public void deleteUser(Integer id){
+        User user=userRepository.findById(id)
+                .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        if(user.getIsDelete()){
+            throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        }
+        user.setDeletedAt(Instant.now());
+        user.setIsDelete(true);
+        userRepository.save(user);
+//        userRepository.deleteById(id);
+    }
+}
