@@ -1,10 +1,11 @@
 import './header.css'
-import { CustomDropdown } from '../a/customdropdown';
+import { CustomDropdown } from '../designs/customdropdown';
 
 const Header = () => {
     return(
 <>
 <div className='header'>
+<div>
 	<div className='header-icon'>
 	<a href='http://localhost:3000/' className='header-icon-logopage'><img src="/assets/logopage.jpg" alt="" /></a>
 
@@ -16,10 +17,21 @@ const Header = () => {
 		
 	</div>
 	<div className='header-bar-box'>
-	<a href="#" className='header-btn header-btn-white header-btn-animated'>Khách sạn </a>
+		<ul>
+		<li>
+		<a href="#" className='header-btn header-btn-white header-btn-animated'>Khách sạn </a>
+		</li>
+		<li>
         <a href="#" className='header-btn header-btn-white header-btn-animated'>Vé máy bay</a>
+		</li>
+		<li>
         <a href="#" className='header-btn header-btn-white header-btn-animated'>vé xe khách</a>
+		</li>
+		<li>
         <a href="#" className='header-btn header-btn-white header-btn-animated'>Đặt Tour </a>
+		</li>
+		</ul>
+	</div>
 	</div>
 	<div className='header-text-box'>
 		<h1 className ='heading-primary'>

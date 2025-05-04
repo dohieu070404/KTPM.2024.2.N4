@@ -1,20 +1,24 @@
 .nav-box{
   position: absolute;
-  top: 65%;
-  left: 50%;
+  padding: 20px;
+  top: 55%;
+  left: 50%; /*can box chinh giua man hinh  */
   transform: translate(-50%, -50%);
   text-align: center;
-  border: solid 3px ;
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   color: #8b8b8b;
-  background-color: rgb(239, 244, 248);
+  background-color: rgb(247, 247, 248);
 
 }
-
+.div-with-border{
+  /* border-bottom: 0.5px solid #4f4e4e; */
+  box-shadow: 0 0.3px 0 rgba(79, 78, 78, 0.6); /* lam mong duong ke honw nho hieu ung do bong*/
+}
 .horizontal-menu {
   display: flex;          /* Xếp các <li> theo hàng ngang */
   list-style: none;       /* Bỏ dấu chấm trước các mục */
-  padding: 10px;             /* Xóa khoảng cách mặc định */
+  padding: 15px;             /* Xóa khoảng cách mặc định */
   margin: 0;
   gap: 20px;              /* Khoảng cách giữa các mục */
 }
@@ -32,9 +36,12 @@
 
   color: white;
 }
-
+.costum-for-conect-icon-with-text{
+  padding: 10px;
+}
 .btn{
   margin: 5px;
+  white-space: nowrap;
   
 }
 .btn:link,

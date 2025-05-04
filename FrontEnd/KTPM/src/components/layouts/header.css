@@ -27,14 +27,18 @@ body {
     display: flex;
     justify-content: space-between; /* đẩy hai phần tử về 2 phía */
     align-items: center;            /* căn giữa theo chiều dọc */
-    padding: 10px;
-    cursor: pointer;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0;
+    
 }
 .header-icon-logopage img{
     margin-left: 5px;
     width: 60px;
     height: 60px;
     border-radius: 25px;
+    cursor: pointer;
 }
 
 .header-icon-user img{
@@ -42,6 +46,7 @@ body {
     filter: brightness(0) invert(1);
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 
@@ -70,9 +75,12 @@ body {
     letter-spacing: 3px;
 }
 
-.header-bar-box{
-    margin-left: 60px;
-    margin-top: -15px;
+.header-bar-box ul{
+    padding-right: 130px;
+    margin-top: -40px;
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
 }
 .header-btn{
     margin: -20px;
