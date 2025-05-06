@@ -1,6 +1,6 @@
 .nav-box{
   position: absolute;
-  padding: 25px;
+  padding: 5px;
   top: 55%;
   left: 50%; /*can box chinh giua man hinh  */
   transform: translate(-50%, -50%);
