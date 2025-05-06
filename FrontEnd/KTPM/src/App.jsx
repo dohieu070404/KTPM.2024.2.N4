@@ -25,11 +25,11 @@ const App = () => {
               <a href="#" className='btn btn-white btn-animated' > <span className='icon-airplane-ticket'></span><span>Vé máy bay</span></a>
             </li>
             <li>
-              <a href="#" className='btn btn-white btn-animated'>ve xe khach</a>
+              <a href="#" className='btn btn-white btn-animated'><span className='icon-travel'></span>+<span id='icon-hotel-bed'></span>+<span className='icon-airplane-ticket'></span> Combo</a>
             </li>
             
             <li>
-              <a href="#" className='btn btn-white btn-animated'>khac</a>
+              <a href="#" className='btn btn-white btn-animated'>Dịch vụ khac <span className='mdi-menu-up'></span></a>
             </li>
           </ul>
         </div>
@@ -57,6 +57,16 @@ const App = () => {
 <TabWrap
   groupName="tabGroup1"
   tabs={[
+    {
+      label: "Short",
+      title: "Short Section",
+      content: ["Nội dung ngắn ở đây..."]
+    },
+    {
+      label: "Short",
+      title: "Short Section",
+      content: ["Nội dung ngắn ở đây..."]
+    },
     {
       label: "Short",
       title: "Short Section",

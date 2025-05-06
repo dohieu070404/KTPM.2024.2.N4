@@ -11,7 +11,7 @@ const Header = () => {
 
 		<a href='#' className='header-icon-user'><CustomDropdown
         // label="Dropdown button" 
-		label={<img src="/public/assets/user.png" />}
+		label={<img src="/assets/user.png" />}
         items={['login', 'register']}
       /></a>
 		
