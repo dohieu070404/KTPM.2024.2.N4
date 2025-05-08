@@ -1,0 +1,38 @@
+# Thiết lập line ending thống nhất
+* text=auto
+
+# Đảm bảo shell scripts dùng LF (tránh lỗi trên Unix)
+*.sh text eol=lf
+
+# Đảm bảo batch scripts dùng CRLF cho Windows
+*.bat text eol=crlf
+
+# Đảm bảo code dùng LF, phổ biến cho dev
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.py text eol=lf
+*.java text eol=lf
+*.php text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.vue text eol=lf
+
+# Với file cấu hình
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+
+# Với markdown/docs
+*.md text eol=lf
+
+# Giữ binary file không bị chuyển đổi
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary

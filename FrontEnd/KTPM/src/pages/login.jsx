@@ -9,7 +9,7 @@ const LoginPage = () => {
   <main class="form-signin">
     <h1 class="h3">Login</h1>
 
-    <form action="">
+    <form method='POST' action="{{ url_for('login') }}">
       <div class="form-floating">
         <label for="email">Email address</label>
         <input type="email" id="email" placeholder="name@example.com" required />
