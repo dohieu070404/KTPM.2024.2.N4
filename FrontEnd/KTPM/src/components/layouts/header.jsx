@@ -1,19 +1,20 @@
 import './header.css'
 import { CustomDropdown } from '../designs/customdropdown';
+import HeaderBar from './headerbar';
 
 const Header = () => {
     return(
 <>
 <div className='header'>
-<div>
+{/* <div>
 	<div className='header-icon'>
-	<a href='http://localhost:3000/' className='header-icon-logopage'><img src="/assets/logopage.jpg" alt="" /></a>
+	<div href='http://localhost:3000/' className='header-icon-logopage'><img src="/assets/logopage.jpg" alt="" /></div>
 
-		<a href='#' className='header-icon-user'><CustomDropdown
+		<div href='#' className='header-icon-user'><CustomDropdown
         // label="Dropdown button" 
 		label={<img src="/assets/user.png" />}
         items={['login', 'register']}
-      /></a>
+      /></div>
 		
 	</div>
 	<div className='header-bar-box'>
@@ -32,7 +33,9 @@ const Header = () => {
 		</li>
 		</ul>
 	</div>
-	</div>
+	</div> */} {/* chuyen thanh component */}
+
+	<HeaderBar/>
 	<div className='header-text-box'>
 		<h1 className ='heading-primary'>
 			<span className='heading-primary-main'>Chạm tay vào thế giới đặt vé ngay hôm nay</span>
