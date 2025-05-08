@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     element: <RegisterPage/>
   },
   {
-    path: "/hompage",
+    path: "/home",
     element: <HomePage/>
   },
 ]);
