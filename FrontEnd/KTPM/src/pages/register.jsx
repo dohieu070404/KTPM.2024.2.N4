@@ -41,7 +41,7 @@ const RegisterPage = () => {
 
       if (result.code === 1000) {
         alert("Đăng ký thành công!");
-        // window.location.href = "/login";
+        window.location.href = "/login";
       } else {
         alert("Đăng ký thất bại: " + result.message);
       }

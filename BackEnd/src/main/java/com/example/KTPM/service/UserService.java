@@ -41,8 +41,8 @@ public class UserService {
 //            throw new AppException(ErrorCode.USER_EXISTED);
         }
         User user=userMapper.toUser(request);
-        PasswordEncoder pwdEncoder=new BCryptPasswordEncoder(10);
-        user.setPassword(pwdEncoder.encode(request.getPassword()));
+        PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         HashSet<Role> roles=new HashSet<>();
         roleRepository.findById(Roles.USER.name()).ifPresent(roles::add);
         user.setRole(roles);
@@ -65,9 +65,9 @@ public class UserService {
 //    }
 public UserRespone updateUser(Integer id,UserUpdateRequest request){
     User tmp=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
-    PasswordEncoder pwdEncoder=new BCryptPasswordEncoder(10);
+    PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
     userMapper.updateUser(tmp,request);
-    tmp.setPassword(pwdEncoder.encode(request.getPassword()));
+    tmp.setPassword(passwordEncoder.encode(request.getPassword()));
     var role=roleRepository.findAllById(request.getRoles());
     tmp.setRole(new HashSet<>(role));
     return userMapper.toUserRespone(userRepository.save(tmp));
