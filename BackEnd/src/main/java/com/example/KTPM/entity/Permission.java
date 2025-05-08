@@ -1,7 +1,6 @@
 package com.example.KTPM.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,17 +14,12 @@ import java.time.Instant;
 @Table(name = "permission")
 public class Permission {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id", nullable = false)
-    private Integer id;
-
     @Size(max = 100)
-    @NotNull
     @Column(name = "Name", nullable = false, length = 100)
     private String name;
 
     @Lob
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
 
     @ColumnDefault("1")
@@ -34,10 +28,9 @@ public class Permission {
 
     @ColumnDefault("0")
     @Column(name = "Is_Deleted")
-    private Boolean isDeleted;
+    private Boolean isDelete=false;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "Created_At")
+    @Column(name = "Created_At", updatable = false, insertable = false)
     private Instant createdAt;
 
     @Column(name = "Create_User_ID")

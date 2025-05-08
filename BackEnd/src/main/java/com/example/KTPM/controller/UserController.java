@@ -10,7 +10,10 @@ import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @Builder
@@ -19,8 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserService userService;
-    @PostMapping//dat ten api
-//    public ApiRespone<User> createUser(@RequestBody UserCreationRequest request){
+    @PostMapping//dat ten ap
     public ApiRespone<User> createUser(@RequestBody @Valid UserCreationRequest request){
         log.info("Controller: Create user");
         ApiRespone<User> apiRespone=new ApiRespone<>();
@@ -28,20 +30,20 @@ public class UserController {
         apiRespone.setResult(userService.createUser(request));
         return apiRespone;
     }
-//    @GetMapping
-//    public ApiRespone<List<UserRespone>> getAllUsers(){
-//        //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
-//         var securityContext = SecurityContextHolder.getContext().getAuthentication();
-//        return ApiRespone.<List<UserRespone>>builder()
-//                .result(userService.getUsers())
-//                .build();
-//    }
-//    @GetMapping("/{myInfo}")
-//    ApiRespone<UserRespone> getMyInfo(){
-//        return ApiRespone.<UserRespone>builder()
-//                .result(userService.getMyInfor())
-//                .build();
-//    }
+    @GetMapping
+    public ApiRespone<List<UserRespone>> getAllUsers(){
+        //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
+         var securityContext = SecurityContextHolder.getContext().getAuthentication();
+        return ApiRespone.<List<UserRespone>>builder()
+                .result(userService.getUsers())
+                .build();
+    }
+    @GetMapping("/{myInfo}")
+    ApiRespone<UserRespone> getMyInfo(){
+        return ApiRespone.<UserRespone>builder()
+                .result(userService.getMyInfor())
+                .build();
+    }
     @PutMapping("/{userId}")
     UserRespone updateUser(@PathVariable Integer userId, @RequestBody UserUpdateRequest request){
         return userService.updateUser(userId,request);

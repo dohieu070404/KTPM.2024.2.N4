@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 //@Getter
 //@Setter
 @Data//tu dong tao getter setter va ...
@@ -43,6 +45,7 @@ public class UserCreationRequest {
     private Boolean isActive;
 
     private Boolean isDeleted;
+    private Set<String> roles;
 /*
     public String getUsername() {
         return username;

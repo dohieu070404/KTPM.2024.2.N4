@@ -16,5 +16,5 @@ public class UserRespone {
     private Integer id; // Đồng bộ với kiểu dữ liệu của User entity
     private String name; // Thay `username` thành `name` nếu cần
 //    private Set<RoleRespone> roles; // Bổ sung nếu cần
-//    private Set<RoleRespone> roles;
+    private Set<RoleRespone> roles;
 }

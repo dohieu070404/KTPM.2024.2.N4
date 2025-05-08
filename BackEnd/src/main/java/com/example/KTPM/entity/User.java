@@ -1,16 +1,18 @@
 package com.example.KTPM.entity;
 
-import com.example.KTPM.Validator.DobConstraint;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
 import java.time.LocalDate;
-
+import java.util.Set;
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -26,25 +28,21 @@ public class User {
     @Column(name = "Name", nullable = false, length = 100)
     private String name;
 
-//    @ColumnDefault("'other'")
     @Lob
-    @Column(name = "Gender")
+    @Column(name = "gender")
     private String gender;
 
     @NotNull
     @Lob
-    @Column(name = "Password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Size(max = 20)
     @Column(name = "Phone", length = 20)
     private String phone;
 
-    @Column(name = "Dob")
-    private LocalDate dob;
-//    @ColumnDefault("'active'")
     @Lob
-    @Column(name = "Status")
+    @Column(name = "status")
     private String status;
 
     @Size(max = 100)
@@ -54,15 +52,15 @@ public class User {
 
     @ColumnDefault("0")
     @Column(name = "Email_confirmed")
-    private Boolean emailConfirmed=false;
+    private Boolean emailConfirmed;
 
     @Lob
-    @Column(name = "Image_URL")
+    @Column(name = "image_url")
     private String imageUrl;
 
     @ColumnDefault("1")
     @Column(name = "Is_Active")
-    private Boolean isActive=true;
+    private Boolean isActive;
 
     @ColumnDefault("0")
     @Column(name = "Is_Deleted")
@@ -70,7 +68,6 @@ public class User {
 
     @Column(name = "Created_At", updatable = false, insertable = false)
     private Instant createdAt;
-
 
     @Column(name = "Deleted_At")
     private Instant deletedAt;
@@ -84,4 +81,11 @@ public class User {
     @Column(name = "Edit_User_ID")
     private Integer editUserId;
 
+    @Column(name = "create_user_id")
+    private Integer createUserId;
+
+    @Column(name = "dob")
+    private LocalDate dob;
+    @ManyToMany
+    private Set<Role> role;
 }

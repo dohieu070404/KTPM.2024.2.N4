@@ -1,19 +1,11 @@
 package com.example.KTPM.dto.request;
 
-//import com.example.KTPM.Validator.DobConstraint;
-import com.example.KTPM.Validator.DobConstraint;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Set;
 
 //@Getter
 //@Setter
@@ -21,32 +13,17 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdateRequest {
-//    @Size(max = 100)
-//    private String name;
-    private String gender;
-
-    private String password;
-
-    @Size(max = 20)
-    private String phone;
-
-    private LocalDate dob;
-    //    @ColumnDefault("'active'")
-
-    private String status;
-
-    @Size(max = 100)
-    private String email;
-
-    private Boolean emailConfirmed;
-
-    private String imageUrl;
-
+public class PermissionRequest {
+    private String name;
+    private String description;
     private Boolean isActive;
-
     private Boolean isDeleted;
-    private Set<String> roles;
+    private Instant createdAt;
+    private Integer createUserId;
+    private Instant deletedAt;
+    private Integer deleteUserId;
+    private Instant editedAt;
+    private Integer editUserId;
 /*
     public String getPassword() {
         return password;
