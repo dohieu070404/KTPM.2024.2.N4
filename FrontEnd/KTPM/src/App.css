@@ -5,6 +5,7 @@
   left: 50%; /*can box chinh giua man hinh  */
   transform: translate(-50%, -50%);
   text-align: center;
+  
   box-shadow: 0 5px 13px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   color: #8b8b8b;
@@ -23,6 +24,8 @@
   padding: 5px;             /* Xóa khoảng cách mặc định */
   margin: 0;
   gap: 20px;              /* Khoảng cách giữa các mục */
+font-family: sans-serif;
+font-weight: bold;
 }
 
 .horizontal-menu li {
@@ -67,6 +70,6 @@
 }
 
 .btn-white {
-  color: #070000;
+  color: #4a4949;
 font-size: 14px;
 }

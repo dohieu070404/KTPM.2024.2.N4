@@ -1,0 +1,89 @@
+.admin-das-header{
+    display: flex;
+ margin-left: 60px;
+  gap: 300px;
+  padding: 20px;
+}
+
+.admin-das-content{
+    display: flex;
+ margin-left: 10px;
+  gap: 30px;
+  padding: 20px;
+}
+.wrapper {
+  font-family: 'Lato', sans-serif;
+  color: #fff;
+  background: #5BB9B8;
+  padding: 30px;
+}
+
+h1, p {
+  text-align: center;
+}
+
+.provider-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.provider-row {
+  background: #2C3845;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 6px;
+}
+
+.provider-name, .provider-email, .provider-action {
+  flex: 1;
+  text-align: center;
+}
+
+.select-button {
+  background: #4c9594;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.provider-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.provider-detail {
+  display: none; /* Toggle this class to 'display: block' when needed */
+  background: #BD2A4E;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+.detail-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.detail-item {
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 6px;
+}
+
+.close-button {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+}
