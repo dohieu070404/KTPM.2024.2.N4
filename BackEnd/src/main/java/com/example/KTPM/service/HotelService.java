@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -40,9 +43,23 @@ public class HotelService {
 //        HashSet<Role> roles=new HashSet<>();
 //        roleRepository.findById(Roles.USER.name()).ifPresent(roles::add);
 //        user.setRole(roles);
-
         return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
     }
+    public List<HotelRespone> getFilterByRating() {
+        return hotelRepository.findAllByRating().stream().map(hotelMapper::toHotelRespone).toList();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 //    public UserRespone getMyInfor(){
 //        var context=SecurityContextHolder.getContext();
 //        String name=context.getAuthentication().getName();
