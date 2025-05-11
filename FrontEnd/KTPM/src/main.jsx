@@ -8,6 +8,8 @@ import App from './App.jsx'
 import LoginPage from './pages/login.jsx';
 import HomePage from './pages/home.jsx';
 import RegisterPage from './pages/register.jsx';
+import AdminPage from './pages/admin/adminpage.jsx';
+import CustomerPage from './pages/customer/customerpage.jsx';
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -32,6 +34,15 @@ const router = createBrowserRouter([
     path: "/home",
     element: <HomePage/>
   },
+  {
+    path: "/adminpage",
+    element: <AdminPage/>
+  },
+  {
+    path: "/CustomerPage",
+    element: <CustomerPage/>
+  },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

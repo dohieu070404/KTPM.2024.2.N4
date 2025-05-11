@@ -1,0 +1,76 @@
+.admin-page-container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  --sidebar-width: 280px;
+  --header-height: 80px;
+  --border-radius: 18px;
+}
+
+.admin-sidebar {
+  width: 280px;
+  background: #374560;
+  border-right: 1px solid #e6e9f4;
+  padding: 35px 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-logo {
+  padding: 0 30px 35px;
+}
+
+.admin-logo svg {
+  height: 40px;
+  width: auto;
+}
+
+.admin-nav-menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 15px;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  color: #b8c1ce;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  border-left: 3px solid transparent;
+}
+
+.admin-nav-item:hover,
+.admin-nav-item.admin-active {
+  background-color: #edf0fb;
+  color: #4270f4;
+}
+
+.admin-nav-item.admin-active {
+  font-weight: 600;
+  border-left-color: #4270f4;
+}
+
+.admin-nav-item i {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.admin-page-content-box {
+  margin-left: var(--sidebar-width);
+}
