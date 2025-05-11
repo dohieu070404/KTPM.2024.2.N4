@@ -1,17 +1,19 @@
 package com.example.KTPM.mapper;
 import com.example.KTPM.dto.request.HotelRequest;
+import com.example.KTPM.dto.request.RoomRequest;
 import com.example.KTPM.dto.response.HotelRespone;
+import com.example.KTPM.dto.response.RoomRespone;
 import com.example.KTPM.entity.Hotel;
+import com.example.KTPM.entity.RoomType;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel="spring")
-public interface HotelMapper {
+public interface RoomMapper {
 //    @Mapping(target = "createat", source = "dob")
-    Hotel toHotel(HotelRequest request);
+    RoomType toRoomType(RoomRequest request);
 //    @Mapping(source = "role", target = "roles")
-    HotelRespone toHotelRespone(Hotel hotel);
+    RoomRespone toRoomRespone(RoomType room);
 //    @Mapping(target = "role", ignore = true)
-    void updateHotel(@MappingTarget Hotel hotel, HotelRequest request);
+    void updateRoom(@MappingTarget RoomType room, RoomRequest request);
 }

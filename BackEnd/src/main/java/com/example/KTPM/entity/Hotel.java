@@ -69,8 +69,7 @@ public class Hotel {
     @Column(name = "Is_Active")
     private Boolean isActive;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "Created_At")
+    @Column(name = "Created_At", updatable = false, insertable = false)
     private Instant createdAt;
 
     @Column(name = "Edited_At")

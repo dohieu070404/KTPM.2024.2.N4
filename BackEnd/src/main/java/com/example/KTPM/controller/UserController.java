@@ -22,6 +22,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    //tạo user
     @PostMapping//dat ten ap
     public ApiRespone<User> createUser(@RequestBody @Valid UserCreationRequest request){
         log.info("Controller: Create user");
@@ -30,6 +31,7 @@ public class UserController {
         apiRespone.setResult(userService.createUser(request));
         return apiRespone;
     }
+    //admin lấy thông tin của all user
     @GetMapping
     public ApiRespone<List<UserRespone>> getAllUsers(){
         //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
@@ -38,16 +40,20 @@ public class UserController {
                 .result(userService.getUsers())
                 .build();
     }
+    //lấy thông tin của user hiện tại
     @GetMapping("/{myInfo}")
     ApiRespone<UserRespone> getMyInfo(){
         return ApiRespone.<UserRespone>builder()
                 .result(userService.getMyInfor())
                 .build();
     }
+    //cập nhật user
     @PutMapping("/{userId}")
     UserRespone updateUser(@PathVariable Integer userId, @RequestBody UserUpdateRequest request){
         return userService.updateUser(userId,request);
     }
+
+    //xóa user
     @DeleteMapping("/{userId}")
     String deleteUser(@PathVariable Integer userId){
         userService.deleteUser(userId);

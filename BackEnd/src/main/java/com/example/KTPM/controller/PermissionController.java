@@ -20,6 +20,7 @@ import java.util.List;
 public class PermissionController {
     @Autowired
     private PermissionService permissionService;
+    //tạo permission
     @PostMapping//dat ten api
     public ApiRespone<PermissionRespone> createPermission(@RequestBody @Valid PermissionRequest request){
         return ApiRespone.<PermissionRespone>builder()
@@ -27,6 +28,8 @@ public class PermissionController {
                 .result(permissionService.create(request))
                 .build();
     }
+
+    //lấy tất cả permission
     @GetMapping
     public ApiRespone<List<PermissionRespone>> getAll() {
         //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
@@ -35,6 +38,8 @@ public class PermissionController {
                 .result(permissionService.getAllPermissions())
                 .build();
     }
+
+    //xóa permission
     @DeleteMapping("/{permission}")
     ApiRespone<Void> delete(@PathVariable String permission) {
         permissionService.deletePermission(permission);
