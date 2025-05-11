@@ -15,6 +15,7 @@ public enum ErrorCode {
     PERMISSION_EXISTED(1008,"Permission already existed",HttpStatus.BAD_REQUEST),//400
     INVALID_Dob(1009," Your age must be at least {min}",HttpStatus.BAD_REQUEST),
     ROLE_NOT_EXISTED(1010,"Role not existed",HttpStatus.NOT_FOUND),
+    HOTEL_EXISTED(1011,"Hotel existed",HttpStatus.BAD_REQUEST),
     //403 xử lý được bằng GlobalExceptionHandler
     //401 thì GlobalExceptionHandler không xử lý được vì 401 xảy ra ở tầng filter trước khi vào service nên phải xử lý trong SecurityConfig
     ;
