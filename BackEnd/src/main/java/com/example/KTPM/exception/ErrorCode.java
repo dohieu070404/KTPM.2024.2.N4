@@ -16,6 +16,8 @@ public enum ErrorCode {
     INVALID_Dob(1009," Your age must be at least {min}",HttpStatus.BAD_REQUEST),
     ROLE_NOT_EXISTED(1010,"Role not existed",HttpStatus.NOT_FOUND),
     HOTEL_EXISTED(1011,"Hotel existed",HttpStatus.BAD_REQUEST),
+    ROOM_EXISTED(1012,"Room existed",HttpStatus.BAD_REQUEST),
+    HOTEL_NOT_EXISTED(1013,"Hotel not existed",HttpStatus.NOT_FOUND),
     //403 xử lý được bằng GlobalExceptionHandler
     //401 thì GlobalExceptionHandler không xử lý được vì 401 xảy ra ở tầng filter trước khi vào service nên phải xử lý trong SecurityConfig
     ;

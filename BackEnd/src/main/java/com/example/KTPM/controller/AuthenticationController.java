@@ -19,6 +19,7 @@ import java.text.ParseException;
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
+    //đăng nhập
     @PostMapping("/log-in")
     ApiRespone<AuthenticationRespone> authenticate(@RequestBody AuthenticationRequest authRequest){
         AuthenticationRespone result=authenticationService.authenticate(authRequest);
@@ -26,6 +27,7 @@ public class AuthenticationController {
                 .result(result)
                 .build();
     }
+    //đăng xuất
     @PostMapping("/log-out")
     ApiRespone<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException {
         authenticationService.logOut(request);
@@ -39,6 +41,7 @@ public class AuthenticationController {
 //                .result(newToken)
 //                .build();
 //    }
+    //kiểm tra token hợp lệ
     @PostMapping("/introspect")
     ApiRespone<IntrospectRespone> introspect(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
         IntrospectRespone result=authenticationService.introspect(request);

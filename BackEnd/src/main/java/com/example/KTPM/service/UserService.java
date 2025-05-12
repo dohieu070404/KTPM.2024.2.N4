@@ -82,4 +82,5 @@ public UserRespone updateUser(Integer id,UserUpdateRequest request){
         user.setIsDelete(true);
         userRepository.save(user);
     }
+
 }

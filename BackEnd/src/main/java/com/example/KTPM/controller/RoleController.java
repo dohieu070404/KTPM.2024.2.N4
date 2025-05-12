@@ -19,6 +19,7 @@ import java.util.List;
 public class RoleController {
     @Autowired
     private RoleService roleService;
+    //tạo role
     @PostMapping//dat ten api
     public ApiRespone<RoleRespone> createRole(@RequestBody @Valid  RoleRequest request){
         return ApiRespone.<RoleRespone>builder()
@@ -26,6 +27,7 @@ public class RoleController {
                 .result(roleService.create(request))
                 .build();
     }
+    //lấy all role của user hiện tại
     @GetMapping
     public ApiRespone<List<RoleRespone>> getAll() {
         //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
@@ -34,6 +36,7 @@ public class RoleController {
                 .result(roleService.getAllRoles())
                 .build();
     }
+    //cập nhật role
     @PutMapping("/{roleId}")
     RoleRespone updateRole(@PathVariable String roleId, @RequestBody RoleRequest request){
         return roleService.updateRole(roleId,request);
