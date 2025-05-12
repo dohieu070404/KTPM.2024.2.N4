@@ -14,8 +14,12 @@ import java.util.Optional;
 
 @Repository
 public interface RoomRepository extends JpaRepository<RoomType,Integer> {
-    boolean existsByName(String s);
+    boolean existsByName(String s); 
     Optional<RoomType> findByName(String name);
+
+    // Sắp xếp theo giá giảm dần
+    @Query(value = "SELECT * FROM room_type ORDER BY Price DESC", nativeQuery = true)
+    List<RoomType> findAllOrderByPriceDesc();
 
 //    @Query(value = "SELECT * FROM room_type WHERE Hotels_Id =:hotelId;",nativeQuery = true)
 //    List<RoomType> findAllByHotelId(@Param("hotelId") Integer hotelId);

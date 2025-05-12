@@ -21,25 +21,50 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
     //tạo room
-    @PostMapping("/{hotel_id}")//dat ten api
-    public ApiRespone<RoomRespone> createRoom(@PathVariable Integer hotel_id, @RequestBody @Valid RoomRequest request){
+    @PostMapping("/{hotelId}")//dat ten api
+    public ApiRespone<RoomRespone> createRoom(@PathVariable Integer hotelId, @RequestBody @Valid RoomRequest request){
         return ApiRespone.<RoomRespone>builder()
                 .code(1000)
-                .result(roomService.createRoom(hotel_id,request))
+                .result(roomService.createRoom(hotelId,request))
                 .build();
     }
+
     //lấy all room của hotel
-    @GetMapping("/{hotel_id}")
-    public ApiRespone<List<RoomRespone>> getHotelRoom(@PathVariable Integer hotel_id) {
+    @GetMapping("/{hotelId}")
+    public ApiRespone<List<RoomRespone>> getHotelRoom(@PathVariable Integer hotelId) {
         var securityContext = SecurityContextHolder.getContext().getAuthentication();
         return ApiRespone.<List<RoomRespone>>builder()
-                .result(roomService.getHotelRoom(hotel_id))
+                .code(1000)
+                .result(roomService.getHotelRoom(hotelId))
                 .build();
     }
 
+    @PutMapping("/{hotelId}/{roomId}")
+    public ApiRespone<RoomRespone> updateRoom(
+            @PathVariable Integer hotelId,
+            @PathVariable Integer roomId,
+            @RequestBody @Valid RoomRequest request) {
 
+        return ApiRespone.<RoomRespone>builder()
+                .code(1000)
+                .result(roomService.updateRoom(hotelId, roomId, request))
+                .build();
+    }
 
+    @DeleteMapping("/{hotelId}/{roomId}")
+    public ApiRespone<Void> delete(@PathVariable Integer hotelId, @PathVariable Integer roomId) {
+            roomService.deleteRoom(hotelId, roomId);
+            return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 
+    @GetMapping("/filter/price")
+    public ApiRespone<List<RoomRespone>> getRoomsSortedByPrice() {
+        return ApiRespone.<List<RoomRespone>>builder()
+                .result(roomService.getRoomsSortedByPrice())
+                .build();
+    }
 
 
 
@@ -61,13 +86,6 @@ public class RoomController {
 //                .result(roleService.getAllRoles())
 //                .build();
 //    }
-//    @PutMapping("/{roleId}")
-//    RoleRespone updateRole(@PathVariable String roleId, @RequestBody RoleRequest request){
-//        return roleService.updateRole(roleId,request);
-//    }
-//    @DeleteMapping("/{role}")
-//    ApiRespone<Void> delete(@PathVariable Integer role) {
-//        roleService.deleteRole(role);
-//        return ApiRespone.<Void>builder().build();
-//    }
+
+    
 }

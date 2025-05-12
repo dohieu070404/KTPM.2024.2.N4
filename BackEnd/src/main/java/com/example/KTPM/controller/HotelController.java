@@ -51,12 +51,6 @@ public class HotelController {
 
 
 
-
-
-
-
-
-
 //    @GetMapping
 //    public ApiRespone<List<RoleRespone>> getAll() {
 //        //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
@@ -65,13 +59,23 @@ public class HotelController {
 //                .result(roleService.getAllRoles())
 //                .build();
 //    }
-//    @PutMapping("/{roleId}")
-//    RoleRespone updateRole(@PathVariable String roleId, @RequestBody RoleRequest request){
-//        return roleService.updateRole(roleId,request);
-//    }
-//    @DeleteMapping("/{role}")
-//    ApiRespone<Void> delete(@PathVariable Integer role) {
-//        roleService.deleteRole(role);
-//        return ApiRespone.<Void>builder().build();
-//    }
+
+    // update hotel
+    @PutMapping("/{id}")
+    public ApiRespone<HotelRespone> updateHotel(
+            @PathVariable Integer id,
+            @RequestBody @Valid HotelRequest request) {
+        return ApiRespone.<HotelRespone>builder()
+                .result(hotelService.updateHotel(id, request))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiRespone<Void> deleteHotel(@PathVariable Integer id) {
+        hotelService.deleteHotel(id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
+
 }

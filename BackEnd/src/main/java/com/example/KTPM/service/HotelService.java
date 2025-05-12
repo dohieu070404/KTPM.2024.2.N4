@@ -49,9 +49,11 @@ public class HotelService {
         hotel.setCreateUserId(id);
         return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
     }
+
     public List<HotelRespone> getFilterByRating() {
         return hotelRepository.findAllByRating().stream().map(hotelMapper::toHotelRespone).toList();
     }
+
     public List<HotelRespone> getMyHotel(){
         var context=SecurityContextHolder.getContext();
         String name=context.getAuthentication().getName();
@@ -60,12 +62,36 @@ public class HotelService {
         return hotelRepository.findAllByUserId(id).stream().map(hotelMapper::toHotelRespone).toList();
     }
 
+    public HotelRespone updateHotel(Integer id, HotelRequest request) {
+        var context=SecurityContextHolder.getContext();
+        String name=context.getAuthentication().getName();
+        User user=userRepository.findByName(name)
+                        .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        Integer userId=user.getId();
+        Hotel hotel = hotelRepository.findById(id)
+                        .orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED));
+        
+        if (!hotel.getCreateUserId().equals(userId)) {
+            throw new AppException(ErrorCode.UNAUTHORIZED); // lỗi 403
+        }
 
+        hotelMapper.updateHotel(hotel, request);
+        return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
+    }
 
+    public void deleteHotel(Integer id) {
+        var context=SecurityContextHolder.getContext();
+        String username=context.getAuthentication().getName();
+        User user=userRepository.findByName(username)
+                        .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED));
 
-
-
-
+        // Chỉ cho phép xóa nếu là người tạo
+        if (!hotel.getCreateUserId().equals(user.getId())) {
+            throw new AppException(ErrorCode.UNAUTHORIZED);
+        }
+        hotelRepository.delete(hotel);
+    }
 
 
 
