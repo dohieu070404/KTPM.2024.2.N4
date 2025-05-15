@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -74,5 +75,11 @@ public class Hotel {
 
     @Column(name = "Edited_At")
     private Instant editedAt;
-
+    @ManyToMany
+    @JoinTable(
+            name = "hotels_hotel_amenities", // tên bảng trung gian
+            joinColumns = @JoinColumn(name = "Hotels_Id"), // tên cột đại diện cho hotel
+            inverseJoinColumns = @JoinColumn(name = "Hotel_Amenities_Name") // tên cột đại diện cho amenity
+    )
+    private Set<HotelAmenity> hotelAmenities;
 }
