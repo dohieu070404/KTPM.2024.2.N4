@@ -95,8 +95,6 @@ public class HotelService {
 
 
 
-
-
 //    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
 //    public List<UserRespone> getUsers() {
 //        return userRepository.findAll().stream().map(userMapper::toUserRespone).toList();
