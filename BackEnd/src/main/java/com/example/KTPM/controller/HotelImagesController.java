@@ -39,9 +39,26 @@ public class HotelImagesController {
                 .build();
     }
 
+    //cập nhật hotel image
+    @PutMapping("/update/{image_id}")
+        public ApiRespone<HotelImagesRespone> updateHotelImage(
+                @PathVariable Integer image_id,
+                @RequestBody @Valid HotelImagesRequest request
+        ) {
+            return ApiRespone.<HotelImagesRespone>builder()
+                    .code(1000)
+                    .result(hotelImagesService.updateHotelImage(image_id, request))
+                    .build();
+        }
 
-
-
+    //xóa hotel image
+    @DeleteMapping("/delete/{image_id}")
+    public ApiRespone<Void> deleteHotelImage(@PathVariable Integer image_id) {
+        hotelImagesService.deleteHotelImage(image_id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 
 
 
@@ -58,13 +75,5 @@ public class HotelImagesController {
 //                .result(roleService.getAllRoles())
 //                .build();
 //    }
-//    @PutMapping("/{roleId}")
-//    RoleRespone updateRole(@PathVariable String roleId, @RequestBody RoleRequest request){
-//        return roleService.updateRole(roleId,request);
-//    }
-//    @DeleteMapping("/{role}")
-//    ApiRespone<Void> delete(@PathVariable Integer role) {
-//        roleService.deleteRole(role);
-//        return ApiRespone.<Void>builder().build();
-//    }
+
 }

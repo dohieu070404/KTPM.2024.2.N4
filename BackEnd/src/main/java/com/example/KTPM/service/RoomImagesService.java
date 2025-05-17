@@ -41,6 +41,18 @@ public class RoomImagesService {
         return roomImagesRepository.findAllByRoomId(roomId).stream().map(roomImagesMapper::toRoomImagesRespone).toList();
     }
 
+    public RoomImagesRespone updateRoomImage(Integer id, RoomImagesRequest request) {
+        RoomImage image = roomImagesRepository.findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        roomImagesMapper.updateRoomImage(image, request);
+        return roomImagesMapper.toRoomImagesRespone(roomImagesRepository.save(image));
+    }
+
+    public void deleteRoomImage(Integer id) {
+        RoomImage image = roomImagesRepository.findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        roomImagesRepository.delete(image);
+    }
 
 
 
@@ -61,23 +73,5 @@ public class RoomImagesService {
 //        return userMapper.toUserRespone(userRepository.findById(id)
 //                .orElseThrow(()->new RuntimeException("User not found")));
 //    }
-//public UserRespone updateUser(Integer id,UserUpdateRequest request){
-//    User tmp=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
-//    PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
-//    userMapper.updateUser(tmp,request);
-//    tmp.setPassword(passwordEncoder.encode(request.getPassword()));
-//    var role=roleRepository.findAllById(request.getRoles());
-//    tmp.setRole(new HashSet<>(role));
-//    return userMapper.toUserRespone(userRepository.save(tmp));
-//}
-//    public void deleteUser(Integer id){
-//        User user=userRepository.findById(id)
-//                .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
-//        if(user.getIsDelete()){
-//            throw new AppException(ErrorCode.USER_NOT_EXISTED);
-//        }
-//        user.setDeletedAt(Instant.now());
-//        user.setIsDelete(true);
-//        userRepository.save(user);
-//    }
+
 }

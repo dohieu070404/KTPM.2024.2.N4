@@ -14,5 +14,8 @@ import org.mapstruct.MappingTarget;
 public interface HotelImagesMapper {
     HotelImage toHotelImage(HotelImagesRequest request);
     HotelImagesRespone toHotelImagesRespone(HotelImage hotelImage);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "hotels", ignore = true)
     void updateHotelImage(@MappingTarget HotelImage hotelImage, HotelImagesRequest request);
 }

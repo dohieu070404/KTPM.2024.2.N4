@@ -35,8 +35,23 @@ public class RoomImagesController {
                 .build();
     }
 
+    @PutMapping("/update/{image_id}")
+    public ApiRespone<RoomImagesRespone> updateRoomImage(
+            @PathVariable Integer image_id,
+            @RequestBody @Valid RoomImagesRequest request) {
+        return ApiRespone.<RoomImagesRespone>builder()
+                .code(1000)
+                .result(roomImagesService.updateRoomImage(image_id, request))
+                .build();
+    }
 
-
+    @DeleteMapping("/delete/{image_id}")
+    public ApiRespone<Void> deleteRoomImage(@PathVariable Integer image_id) {
+        roomImagesService.deleteRoomImage(image_id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 
 
 
@@ -53,14 +68,5 @@ public class RoomImagesController {
 //        return ApiRespone.<List<RoleRespone>>builder()
 //                .result(roleService.getAllRoles())
 //                .build();
-//    }
-//    @PutMapping("/{roleId}")
-//    RoleRespone updateRole(@PathVariable String roleId, @RequestBody RoleRequest request){
-//        return roleService.updateRole(roleId,request);
-//    }
-//    @DeleteMapping("/{role}")
-//    ApiRespone<Void> delete(@PathVariable Integer role) {
-//        roleService.deleteRole(role);
-//        return ApiRespone.<Void>builder().build();
 //    }
 }

@@ -41,9 +41,12 @@ public class HotelAmenityController {
     HotelAmenityRespone updateHotelAmenity(@PathVariable String hotelAmenityId, @RequestBody HotelAmenityRequest request){
         return hotelAmenityService.updateHotelAmenity(hotelAmenityId,request);
     }
-//    @DeleteMapping("/{hotelAmenity}")
-//    ApiRespone<Void> delete(@PathVariable Integer hotelAmenity) {
-//        hotelAmenityService.deleteHotelAmenity(hotelAmenity);
-//        return ApiRespone.<Void>builder().build();
-//    }
+
+    //xóa hotelAmenity
+    @DeleteMapping("/{hotelAmenityId}")
+    public ApiRespone<Void> deleteHotelAmenity(@PathVariable String hotelAmenityId) {
+        hotelAmenityService.deleteHotelAmenity(hotelAmenityId);
+        return ApiRespone.<Void>builder().build();
+    }
+
 }

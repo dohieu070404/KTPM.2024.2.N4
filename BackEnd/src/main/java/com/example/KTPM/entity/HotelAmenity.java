@@ -29,6 +29,10 @@ public class HotelAmenity {
     private String icon;
 
     @ColumnDefault("CURRENT_TIMESTAMP")
-    @Column(name = "Created_At")
+    @Column(name = "Created_At", insertable = false, updatable = false)
     private Instant createdAt;
+
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "Edited_At", insertable = false, updatable = false)
+    private Instant editedAt;
 }
