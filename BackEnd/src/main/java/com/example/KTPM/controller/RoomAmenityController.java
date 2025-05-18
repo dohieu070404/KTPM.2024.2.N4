@@ -40,4 +40,12 @@ public class RoomAmenityController {
         return roomAmenityService.updateRoomAmenity(roomAmenityId,request);
     }
 
+    //xóa roomAmenity
+    @DeleteMapping("/{roomAmenityId}")
+    public ApiRespone<Void> deleteRoomAmenity(@PathVariable String roomAmenityId) {
+        roomAmenityService.deleteRoomAmenity(roomAmenityId);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 }

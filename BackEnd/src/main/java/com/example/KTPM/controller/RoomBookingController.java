@@ -38,5 +38,19 @@ public class RoomBookingController {
                 .result(roomBookingService.updateBookingStatus(roomId, request))
                 .build();
     }
-    
+
+    @GetMapping("/my")
+    public ApiRespone<List<RoomBookingRespone>> getMyBookings() {
+        return ApiRespone.<List<RoomBookingRespone>>builder()
+                .code(1000)
+                .result(roomBookingService.getMyBookings())
+                .build();
+    }
+
+    @DeleteMapping("/{bookingId}")
+    public ApiRespone<Void> deleteRoomBooking(@PathVariable Integer bookingId) {
+        roomBookingService.deleteRoomBooking(bookingId);
+        return ApiRespone.<Void>builder().code(1000).build();
+    }
+
 }
