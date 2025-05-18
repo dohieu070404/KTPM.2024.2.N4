@@ -46,6 +46,7 @@ public class UserService {
         HashSet<Role> roles=new HashSet<>();
         roleRepository.findById(Roles.USER.name()).ifPresent(roles::add);
         user.setRole(roles);
+        user.setStatus("active");
         return userRepository.save(user);
     }
     public UserRespone getMyInfor(){

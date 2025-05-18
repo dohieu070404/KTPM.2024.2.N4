@@ -27,6 +27,7 @@ public class RoomRespone {
     private String name;
     private String description;
     private BigDecimal price;
+    private Integer availableRooms;
     private Integer maxAdults;
     private Integer maxChildren;
     private Boolean isActive;

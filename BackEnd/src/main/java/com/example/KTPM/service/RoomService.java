@@ -1,11 +1,9 @@
 package com.example.KTPM.service;
 
 import com.example.KTPM.dto.request.RoomRequest;
-import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
 import com.example.KTPM.entity.Hotel;
 import com.example.KTPM.entity.RoomType;
-import com.example.KTPM.entity.User;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 import com.example.KTPM.mapper.RoomMapper;
@@ -14,7 +12,6 @@ import com.example.KTPM.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

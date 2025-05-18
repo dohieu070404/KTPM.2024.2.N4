@@ -7,14 +7,12 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "hotel_amenities")
-public class HotelAmenity {
+@Table(name = "room_amenities")
+public class RoomAmenity {
     @Id
     @Size(max = 50)
     @Column(name = "Name", nullable = false, length = 50)
