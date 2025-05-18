@@ -1,5 +1,6 @@
 package com.example.KTPM.service;
 
+import com.example.KTPM.dto.request.BookingStatusRequest;
 import com.example.KTPM.dto.request.RoomBookingRequest;
 import com.example.KTPM.dto.response.RoomBookingRespone;
 import com.example.KTPM.entity.RoomBooking;
@@ -18,6 +19,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -46,6 +49,54 @@ public class RoomBookingService {
         roomRepository.updateAvailableRooms(room_id,request.getNumberOfRooms());
         roomBooking.setTotalPrice(price);
         roomBooking.setStatus("pending");
+        return roomBookingMapper.toRoomBookingRespone(roomBookingRepository.save(roomBooking));
+    }
+
+    public RoomBookingRespone updateBookingStatus(Integer bookingId, BookingStatusRequest newStatus) {
+        log.info("Service: Update RoomBooking status to {} for ID: {}", newStatus, bookingId);
+        log.info("New status received: {}", newStatus);
+        // Xác thực trạng thái mới
+        if (!Arrays.asList("pending", "confirmed", "cancelled", "completed").contains(newStatus.getStatus().toLowerCase())) {
+            throw new AppException(ErrorCode.STATUS_NOT_EXITS);
+        }
+
+        // Tìm booking dựa trên ID
+        RoomBooking roomBooking = roomBookingRepository.findById(bookingId)
+                .orElseThrow(() -> new AppException(ErrorCode.BOOKING_NOT_EXISTED));
+        String currentStatus = roomBooking.getStatus().toLowerCase();
+        // Lấy thông tin người dùng hiện tại
+        var context = SecurityContextHolder.getContext();
+        String userName = context.getAuthentication().getName();
+        User currentUser = userRepository.findByName(userName)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+        // Kiểm tra quyền
+        boolean isOwner = roomBooking.getUser().getId().equals(currentUser.getId());
+        if (!isOwner) {
+            throw new AppException(ErrorCode.USER_NOT_OWNER);
+        }
+        // Cập nhật trạng thái
+        roomBooking.setStatus(newStatus.getStatus());
+        roomBooking.setUpdatedAt(Instant.now());
+        // Xử lý logic cụ thể cho từng trạng thái
+        switch (newStatus.getStatus().toLowerCase()) {
+            case "cancelled":
+                // Trả lại số lượng phòng đã đặt (chỉ nếu đang từ pending hoặc confirmed)
+                if ("pending".equals(currentStatus) || "confirmed".equals(currentStatus)) {
+                    RoomType roomType = roomBooking.getRoomType();
+                    Integer roomsToReturn = roomBooking.getNumberOfRooms();
+                    roomRepository.updateAvailableRooms(roomType.getId(), -roomsToReturn);
+                }
+                break;
+
+            case "completed":
+            case "confirmed":
+            case "pending":
+                // Logic khác nếu cần
+                break;
+        }
+
+        // Lưu thay đổi và trả về kết quả
         return roomBookingMapper.toRoomBookingRespone(roomBookingRepository.save(roomBooking));
     }
 }

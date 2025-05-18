@@ -33,5 +33,4 @@ public interface RoomRepository extends JpaRepository<RoomType,Integer> {
     @Transactional
     @Query(value = "UPDATE room_type SET Available_Rooms = Available_Rooms - :quantity WHERE Id = :roomTypeId", nativeQuery = true)
     void updateAvailableRooms(@Param("roomTypeId") Integer roomTypeId, @Param("quantity") Integer quantity);
-
 }

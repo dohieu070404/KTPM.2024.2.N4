@@ -1,10 +1,9 @@
 package com.example.KTPM.controller;
 
-import com.example.KTPM.dto.request.ApiRespone;
-import com.example.KTPM.dto.request.RoomBookingRequest;
-import com.example.KTPM.dto.request.RoomRequest;
+import com.example.KTPM.dto.request.*;
 import com.example.KTPM.dto.response.RoomBookingRespone;
 import com.example.KTPM.dto.response.RoomRespone;
+import com.example.KTPM.dto.response.UserRespone;
 import com.example.KTPM.service.RoomBookingService;
 import com.example.KTPM.service.RoomService;
 import jakarta.validation.Valid;
@@ -31,6 +30,13 @@ public class RoomBookingController {
                 .result(roomBookingService.createRoomBooking(roomId,request))
                 .build();
     }
-
+    //cập nhật trạng thái booking
+    @PutMapping("/{roomId}")
+    public ApiRespone<RoomBookingRespone> updateBookingStatus(@PathVariable Integer roomId, @RequestBody BookingStatusRequest request) {
+        return ApiRespone.<RoomBookingRespone>builder()
+                .code(1000)
+                .result(roomBookingService.updateBookingStatus(roomId, request))
+                .build();
+    }
     
 }
