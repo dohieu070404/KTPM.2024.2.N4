@@ -40,43 +40,15 @@ public class HotelImagesService {
         return hotelImagesRepository.findAllByHotelId(hotelId).stream().map(hotelImagesMapper::toHotelImagesRespone).toList();
     }
 
+    public HotelImagesRespone updateHotelImage(Integer id, HotelImagesRequest request){
+        HotelImage tmp=hotelImagesRepository.findById(id)
+            .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        hotelImagesMapper.updateHotelImage(tmp, request);
+        return hotelImagesMapper.toHotelImagesRespone(hotelImagesRepository.save(tmp));
+    }
 
-
-
-
-
-
-
-
-
-
-
-//    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-//    public List<UserRespone> getUsers() {
-//        return userRepository.findAll().stream().map(userMapper::toUserRespone).toList();
-//    }
-//    @PostAuthorize("returnObject.username==authentication.name||hasAuthority('SCOPE_ADMIN')")
-//    public UserRespone getUser(String id) {
-//        return userMapper.toUserRespone(userRepository.findById(id)
-//                .orElseThrow(()->new RuntimeException("User not found")));
-//    }
-//public UserRespone updateUser(Integer id,UserUpdateRequest request){
-//    User tmp=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
-//    PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
-//    userMapper.updateUser(tmp,request);
-//    tmp.setPassword(passwordEncoder.encode(request.getPassword()));
-//    var role=roleRepository.findAllById(request.getRoles());
-//    tmp.setRole(new HashSet<>(role));
-//    return userMapper.toUserRespone(userRepository.save(tmp));
-//}
-//    public void deleteUser(Integer id){
-//        User user=userRepository.findById(id)
-//                .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
-//        if(user.getIsDelete()){
-//            throw new AppException(ErrorCode.USER_NOT_EXISTED);
-//        }
-//        user.setDeletedAt(Instant.now());
-//        user.setIsDelete(true);
-//        userRepository.save(user);
-//    }
+    public void deleteHotelImage(Integer id){
+        hotelImagesRepository.findById(id).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        hotelImagesRepository.deleteById(id);
+    }
 }
