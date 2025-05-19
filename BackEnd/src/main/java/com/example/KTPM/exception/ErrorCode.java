@@ -21,8 +21,13 @@ public enum ErrorCode {
     ROOM_NOT_EXISTED(1014, "Room not existed", HttpStatus.NOT_FOUND),
     BOOKING_NOT_EXISTED(1015, "Booking not existed", HttpStatus.NOT_FOUND),
     STATUS_NOT_EXITS(1016, "Status not existed", HttpStatus.NOT_FOUND),
-    USER_NOT_OWNER(1017, "User is not the owner of this room", HttpStatus.FORBIDDEN)
-
+    USER_NOT_OWNER(1017, "User is not the owner of this room", HttpStatus.FORBIDDEN),
+    COMPANY_EXISTED(1018, "Company not existed", HttpStatus.NOT_FOUND),
+    TRANSPORT_TYPE_EXISTED(1019, "Company existed", HttpStatus.NOT_FOUND),
+    TRANSPORT_EXISTED(1020, "Transport existed", HttpStatus.NOT_FOUND),
+    TRANSPORT_TYPE_NOT_EXISTED(1021, "Transport type not existed", HttpStatus.NOT_FOUND),
+    TRANSPORT_COMPANY_NOT_EXISTED(1022, "Transport company not existed", HttpStatus.NOT_FOUND),
+    TRANSPORT_NOT_EXISTED(1023, "Transport not existed", HttpStatus.NOT_FOUND),
     //403 xử lý được bằng GlobalExceptionHandler
     //401 thì GlobalExceptionHandler không xử lý được vì 401 xảy ra ở tầng filter trước khi vào service nên phải xử lý trong SecurityConfig
     ;
