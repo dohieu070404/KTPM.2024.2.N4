@@ -6,7 +6,7 @@ import AccountManagement from './admincontrol/AccountManagement';
 import CustomerManagement from './admincontrol/CustomerManagement';
 import UserManagement from './admincontrol/UserManagement';
 import AminHelpCenter from './admincontrol/AminHelpCenter';
-
+import '../../styles/icondesigns.css'
 
 // Các component đại diện cho từng tab
 // const Dashboard = () => <div>Dashboard Content</div>;
@@ -29,7 +29,10 @@ const AdminPage = () => {
   
     <div className="admin-page-container">
       <div className="admin-sidebar">
-        <div className="admin-logo">logo</div>
+        {/* <div className="admin-logo">logo</div> */}
+        <div  className='admin-logo'>
+      <img src="/assets/logopage.jpg" alt="" />
+      </div>
         <div className="admin-nav-menu">
           <a 
             href="#" 
@@ -81,7 +84,7 @@ const AdminPage = () => {
             <span>Xử lý khiếu nại</span>
           </a>
         </div>
-        <div>
+        <div className='Admin-page-control-logout'>
         <a>logout</a>
         </div>
       </div>

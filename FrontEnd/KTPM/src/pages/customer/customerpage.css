@@ -1,21 +1,18 @@
-* {
+.customer-page-container {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", "Segoe UI", sans-serif;
-}
-body {
-  background-color: #f5f7ff;
-  color: #262a39;
-  display: flex;
-  min-height: 100vh;
+  --sidebar-width: 280px;
+  --header-height: 80px;
+  --border-radius: 18px;
 }
 
-.sidebar {
+.customer-sidebar {
   width: 280px;
-  background: #ffffff;
+  background: #20363e;
   border-right: 1px solid #e6e9f4;
-  padding: 35px 0;
+  padding-bottom: 35px ;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -23,29 +20,34 @@ body {
   left: 0;
   bottom: 0;
   z-index: 100;
-  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.03);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  padding: 0 30px 35px;
-}
-.logo svg {
-  height: 40px;
-  width: auto;
+
+.customer-logo img{
+    margin-left: 35px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 25px;
+    cursor: pointer;
 }
 
-.nav-menu {
+
+
+.customer-nav-menu {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   padding: 0 15px;
 }
 
-.nav-item {
+.customer-nav-item {
   display: flex;
   align-items: center;
   padding: 14px 20px;
-  color: #6c7380;
+  color: #b8c1ce;
   text-decoration: none;
   font-weight: 500;
   font-size: 15px;
@@ -54,19 +56,45 @@ body {
   border-radius: 12px;
   border-left: 3px solid transparent;
 }
-.nav-item:hover,
-.nav-item.active {
+
+.customer-nav-item:hover,
+.customer-nav-item.customer-active {
   background-color: #edf0fb;
-  color: #4270f4;
+  color: #6e90ed;
 }
-.nav-item.active {
+
+.customer-nav-item.customer-active {
   font-weight: 600;
   border-left-color: #4270f4;
 }
-.nav-item i {
+
+.customer-nav-item i {
   margin-right: 15px;
   font-size: 18px;
   width: 24px;
   text-align: center;
 }
 
+.customer-page-content-box {
+  margin-left: var(--sidebar-width);
+}
+
+.Customer-page-control-logout{
+  display: block;
+  align-items: center;
+  
+  padding: 20px;
+  text-align: center;
+  color: #b8c1ce;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  border-left: 3px solid transparent;
+}
+.Customer-page-control-logout:hover {
+  background-color: #edf0fb;
+  color: #6e90ed;
+}

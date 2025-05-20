@@ -1,53 +1,106 @@
+import { useState } from 'react';
 import './customerpage.css';
 
+import CustomerSuport from './customercontrol/CustomerSuport';
+import CusHotelManagement from './customercontrol/CusHotelManagement';
+import RevenueManagement from './customercontrol/RevenueManagement';
+import RoomManagement from './customercontrol/RoomManagement';
+import '../../styles/icondesigns.css'
+import AdminDashboard from '../admin/admincontrol/adminDashboard';
+
+// Các component đại diện cho từng tab
+// const Dashboard = () => <div>Dashboard Content</div>;
+// const CusHotelManagementManagement = () => <div>Quản lý tài khoản Content</div>;
+// const CustomerManagement = () => <div>Quản lý khách hàng Content</div>;
+// const RevenueManagementManagement = () => <div>Quản lý người dùng Content</div>;
+// const Revenue = () => <div>Doanh Thu Content</div>;
+// const Complaints = () => <div>Xử lý khiếu nại Content</div>;
+// const CustomerSuport Center = () => <div>CustomerSuport  Center Content</div>;
+
 const CustomerPage = () => {
+  const [activeTab, setActiveTab] = useState("dashboard");
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
   return (
     <>
-    
-  <div>
-   
-    <div class="sidebar">
-      <div class="logo">
-        logo
+  
+    <div className="customer-page-container">
+      <div className="customer-sidebar">
+        {/* <div className="customer-logo">logo</div> */}
+        <div  className='customer-logo'>
+      <img src="/assets/logopage.jpg" alt="" />
       </div>
-      <div class="nav-menu">
-        <a href="#" class="nav-item active">
-          <i class="fas fa-home"></i>
-          <span>Home</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-user-circle"></i>
-          <span>Account</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-wallet"></i>
-          <span>Payments</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-sliders-h"></i>
-          <span>Preferences</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-comment-dots"></i>
-          <span>Inbox</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-chart-line"></i>
-          <span>Insights</span>
-        </a>
-        <a href="#" class="nav-item">
-          <i class="fas fa-life-ring"></i>
-          <span>Help Center</span>
-        </a>
+        <div className="customer-nav-menu">
+          <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "dashboard" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("dashboard")}
+          >
+            <i className="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+          <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "CusHotelManagement" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("CusHotelManagement")}
+          >
+            <i className="fas fa-RevenueManagement-circle"></i>
+            <span>Quản lý khách sạn </span>
+          </a>
+          <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "RoomManagement" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("RoomManagement")}
+          >
+            <i className="fas fa-wallet"></i>
+            <span>Quản lý Phòng </span>
+          </a>
+          {/* <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "RevenueManagement" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("RevenueManagement")}
+          >
+            <i className="fas fa-sliders-h"></i>
+            <span>Quản lý người dùng</span>
+          </a> */}
+          <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "revenue" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("revenue")}
+          >
+            <i className="fas fa-comment-dots"></i>
+            <span>Doanh Thu</span>
+          </a>
+          
+          <a 
+            href="#" 
+            className={`customer-nav-item ${activeTab === "CustomerSuport " ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("CustomerSuport ")}
+          >
+            <i className="fas fa-life-ring"></i>
+            <span>Xử lý khiếu nại</span>
+          </a>
+        </div>
+        <div className='Customer-page-control-logout'>
+        <a>Logout</a>
+        </div>
       </div>
-      
+      <div className="customer-page-content-box">
+        {/* Render nội dung tương ứng với activeTab */}
+        {activeTab === "dashboard" && <AdminDashboard/>}
+        {activeTab === "CusHotelManagement" && <CusHotelManagement/>}
+        {activeTab === "RoomManagement" && <RoomManagement />}
+        {activeTab === "RevenueManagement" && <RevenueManagement />}
+        
+        {activeTab === "CustomerSuport " && <CustomerSuport  />}
+      </div>
+     
     </div>
     
-   
-    </div>
- 
-      
-    </>
+</>
   );
 };
 
