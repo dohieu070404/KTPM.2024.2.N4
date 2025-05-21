@@ -9,6 +9,9 @@ import com.example.KTPM.service.TransportBookingService;
 import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +36,24 @@ public class TransportBookingController {
         return ApiRespone.<TransportBookingRespone>builder()
                 .code(1000)
                 .result(transportBookingService.updateBookingStatus(bookingId, request))
+                .build();
+    }
+
+    //lấy thông tin booking
+    @GetMapping("/{bookingId}")
+    public ApiRespone<List<TransportBookingRespone>> getMyBookings() {
+        return ApiRespone.<List<TransportBookingRespone>>builder()
+                .code(1000)
+                .result(transportBookingService.getMyBookings())
+                .build();
+    }
+
+    // xóa booking
+    @DeleteMapping("/{bookingId}")
+    public ApiRespone<String> deleteTransportBooking(@PathVariable Integer bookingId) {
+        transportBookingService.deleteTransportBooking(bookingId);
+        return ApiRespone.<String>builder()
+                .code(1000)
                 .build();
     }
     

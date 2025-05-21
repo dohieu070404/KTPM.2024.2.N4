@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -95,4 +96,28 @@ public class TransportBookingService {
         }
         return transportBookingMapper.toTransportBookingRespone(transportBookingRepository.save(transportBooking));
     }
+
+    public List<TransportBookingRespone> getMyBookings() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        List<TransportBooking> bookings = transportBookingRepository.findAllByUsername(username);
+        return bookings.stream().map(transportBookingMapper::toTransportBookingRespone).toList();
+    }
+
+    public void deleteTransportBooking(Integer id) {
+        TransportBooking booking = transportBookingRepository.findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.BOOKING_NOT_EXISTED));
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User currentUser = userRepository.findByName(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+        if (!booking.getUser().getId().equals(currentUser.getId())) {
+            throw new AppException(ErrorCode.USER_NOT_OWNER);
+        }
+
+        booking.setIsDeleted(true);
+        booking.setDeletedAt(Instant.now());
+        transportBookingRepository.save(booking);
+    }
+
 }

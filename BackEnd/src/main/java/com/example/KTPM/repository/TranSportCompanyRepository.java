@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface TranSportCompanyRepository extends JpaRepository<TransportCompany,Integer> {
     boolean existsByName(String s);
     Optional<User> findByName(String name);
+    
     @Query(value = "SELECT * FROM transport_company WHERE Create_User_Id = :userId;",nativeQuery = true)
     List<TransportCompany> findAllByUserId(@Param("userId") Integer userId);
 }
