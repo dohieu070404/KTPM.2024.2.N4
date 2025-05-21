@@ -8,10 +8,10 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel="spring")
 public interface HotelMapper {
-//    @Mapping(target = "createat", source = "dob")
+    @Mapping(target = "hotelAmenities",ignore = true)
     Hotel toHotel(HotelRequest request);
-//    @Mapping(source = "role", target = "roles")
+    @Mapping(source = "hotelAmenities", target = "hotelAmenities")
     HotelRespone toHotelRespone(Hotel hotel);
-//    @Mapping(target = "role", ignore = true)
+    @Mapping(target = "hotelAmenities", ignore = true)
     void updateHotel(@MappingTarget Hotel hotel, HotelRequest request);
 }

@@ -2,14 +2,11 @@ package com.example.KTPM.service;
 
 import com.example.KTPM.dto.request.HotelRequest;
 import com.example.KTPM.dto.response.HotelRespone;
-import com.example.KTPM.entity.Hotel;
-import com.example.KTPM.entity.Role;
-import com.example.KTPM.entity.RoomType;
-import com.example.KTPM.entity.User;
-import com.example.KTPM.enums.Roles;
+import com.example.KTPM.entity.*;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 import com.example.KTPM.mapper.HotelMapper;
+import com.example.KTPM.repository.HotelAmenityRepository;
 import com.example.KTPM.repository.HotelRepository;
 import com.example.KTPM.repository.RoomRepository;
 import com.example.KTPM.repository.UserRepository;
@@ -19,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 
@@ -35,6 +31,8 @@ public class HotelService {
     private HotelMapper hotelMapper;
     @Autowired
     private HotelRepository hotelRepository;
+    @Autowired
+    private HotelAmenityRepository hotelAmenityRepository;
 
     public HotelRespone createHotel(HotelRequest request){
         log.info("Service: Create hotel");
@@ -47,11 +45,15 @@ public class HotelService {
         User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         Integer id=user.getId();
         hotel.setCreateUserId(id);
+        var hotelAmenity=hotelAmenityRepository.findAllById(request.getHotelAmenities());
+        hotel.setHotelAmenities(new HashSet<>(hotelAmenity));
         return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
     }
+
     public List<HotelRespone> getFilterByRating() {
         return hotelRepository.findAllByRating().stream().map(hotelMapper::toHotelRespone).toList();
     }
+
     public List<HotelRespone> getMyHotel(){
         var context=SecurityContextHolder.getContext();
         String name=context.getAuthentication().getName();
@@ -59,13 +61,37 @@ public class HotelService {
         Integer id=user.getId();
         return hotelRepository.findAllByUserId(id).stream().map(hotelMapper::toHotelRespone).toList();
     }
+    //cập nhật thêm update hotel phần hotel amenity
+    public HotelRespone updateHotel(Integer id, HotelRequest request) {
+        var context=SecurityContextHolder.getContext();
+        String name=context.getAuthentication().getName();
+        User user=userRepository.findByName(name)
+                        .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        Integer userId=user.getId();
+        Hotel hotel = hotelRepository.findById(id)
+                        .orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED));
+        
+        if (!hotel.getCreateUserId().equals(userId)) {
+            throw new AppException(ErrorCode.UNAUTHORIZED); // lỗi 403
+        }
 
+        hotelMapper.updateHotel(hotel, request);
+        return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
+    }
 
+    public void deleteHotel(Integer id) {
+        var context=SecurityContextHolder.getContext();
+        String username=context.getAuthentication().getName();
+        User user=userRepository.findByName(username)
+                        .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        Hotel hotel = hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED));
 
-
-
-
-
+        // Chỉ cho phép xóa nếu là người tạo
+        if (!hotel.getCreateUserId().equals(user.getId())) {
+            throw new AppException(ErrorCode.UNAUTHORIZED);
+        }
+        hotelRepository.delete(hotel);
+    }
 
 
 

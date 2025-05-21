@@ -37,6 +37,11 @@ public class RoomType {
     private String description;
 
     @NotNull
+    @ColumnDefault("0")
+    @Column(name = "Available_Rooms", nullable = false)
+    private Integer availableRooms;
+
+    @NotNull
     @Column(name = "Price", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 

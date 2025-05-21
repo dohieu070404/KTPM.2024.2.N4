@@ -34,4 +34,5 @@ public class HotelRespone {
     private Boolean isActive;
     private Instant createdAt;
     private Instant editedAt;
+    private Set<HotelAmenityRespone> hotelAmenities;
 }

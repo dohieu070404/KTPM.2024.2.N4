@@ -12,25 +12,19 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.math.BigDecimal;
 import java.time.Instant;
-import java.time.LocalTime;
+import java.util.Set;
 
+//@Getter
+//@Setter
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomRespone {
-
+public class HotelImagesRespone {
     private Integer id;
 //    private Hotel hotels;
-    private String name;
-    private String description;
-    private BigDecimal price;
-    private Integer availableRooms;
-    private Integer maxAdults;
-    private Integer maxChildren;
-    private Boolean isActive;
+    private String imageUrl;
+    private Boolean isPrimary;
     private Instant createdAt;
-    private Instant updatedAt;
 }
