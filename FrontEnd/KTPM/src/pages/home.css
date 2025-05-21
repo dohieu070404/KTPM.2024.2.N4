@@ -1,0 +1,132 @@
+.header {
+    height: 50vh;
+    background-image: 
+    linear-gradient(to right bottom, 
+   rgba(76, 216, 255, 0.8),
+   rgba(30, 108, 217, 0.8)),
+   url('/public/assets/beach.jpg');
+    
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+}
+.header-icon{
+    display: flex;
+    justify-content: space-between; /* đẩy hai phần tử về 2 phía */
+    align-items: center;            /* căn giữa theo chiều dọc */
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0;
+    
+}
+.header-text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+
+    backface-visibility: hidden;
+    margin-bottom: 30px;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+.nav-box{
+  position: absolute;
+  padding: 5px;
+  top: 55%;
+  left: 50%; /*can box chinh giua man hinh  */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  color: #8b8b8b;
+  background-color: rgb(247, 247, 248);
+
+}
+.div-with-border{
+  border-bottom: 0.5px solid #4f4e4e;
+  /* lam mong duong ke honw nho hieu ung do bong*/
+/* 
+  box-shadow: 0 0.3px 0 rgba(79, 78, 78, 0.6);  */
+}
+.horizontal-menu {
+  display: flex;          /* Xếp các <li> theo hàng ngang */
+  list-style: none;       /* Bỏ dấu chấm trước các mục */
+  padding: 5px;             /* Xóa khoảng cách mặc định */
+  margin: 0;
+  gap: 20px;              /* Khoảng cách giữa các mục */
+font-family: sans-serif;
+font-weight: bold;
+}
+
+.horizontal-menu li {
+  
+  /* width: 150px;          
+  height: 50px; */
+  display: flex;               /* Để canh giữa nội dung */
+  align-items: center;         /* Canh giữa theo chiều dọc */
+  justify-content: center;     /* Canh giữa theo chiều ngang */
+  
+  border-radius: 3px;
+  cursor: pointer;
+
+  color: white;
+}
+
+.btn{
+  margin: 5px;
+  white-space: nowrap;
+  
+}
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #bebdbd;
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  color: #4a4949;
+font-size: 14px;
+}
+
+.App-homepage-box-item{
+  margin-bottom: 5px;
+}
+
+.CardContents-backgroud{
+  display: flex;
+  gap: 20px;          /* khoảng cách giữa các item */
+  padding: 0 165px; 
+  flex-wrap: wrap;
+  margin-top: 200px;
+
+}

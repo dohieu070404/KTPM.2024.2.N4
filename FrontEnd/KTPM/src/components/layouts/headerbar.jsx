@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {CustomDropdown} from "../designs/customdropdown"; 
 import "./headerbar.css";
 import '/src/styles/icondesigns.css'
+import { Link } from "react-router-dom";
 
 const HeaderBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -17,23 +18,25 @@ const HeaderBar = () => {
 
   return (
     <div className={`headerbar-icon ${scrolled ? "scrolled" : ""}`}>
-      <div href='http://localhost:3000/' className='headerbar-icon-logopage'>
+      <div  className='headerbar-icon-logopage'>
+      <Link to="/">
       <img src="/assets/logopage.jpg" alt="" />
+      </Link>
       </div>
 
       <div className='headerbar-item'>
 		<ul>
 		<li>
-		<a href="#" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Khách sạn </a>
+		<Link to="/HoltelPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Khách sạn </Link>
 		</li>
 		<li>
-        <a href="#" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Vé máy bay</a>
+        <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Vé máy bay</Link>
 		</li>
 		<li>
-        <a href="#" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>vé xe khách</a>
+        <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>vé xe khách</Link>
 		</li>
 		<li>
-        <a href="#" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Đặt Tour </a>
+        <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Đặt Tour </Link>
 		</li>
 		</ul>
 	</div>

@@ -1,0 +1,81 @@
+/* Guest selector */
+.GuestSelectorCombo-guest-selector {
+  position: relative;
+  width: 100%;
+}
+
+.GuestSelectorCombo-guest-display {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.GuestSelectorCombo-guest-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 10;
+  margin-top: 5px;
+}
+
+.GuestSelectorCombo-guest-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.GuestSelectorCombo-guest-option:last-child {
+  border-bottom: none;
+}
+
+.GuestSelectorCombo-guest-option h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.GuestSelectorCombo-guest-option p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Counter */
+.GuestSelectorCombo-counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.GuestSelectorCombo-counter-btn {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GuestSelectorCombo-counter-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.GuestSelectorCombo-counter-value {
+  min-width: 30px;
+  text-align: center;
+}

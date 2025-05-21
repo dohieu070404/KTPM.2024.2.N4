@@ -5,12 +5,13 @@ import { createBrowserRouter,
 }from "react-router-dom";
 
 import App from './App.jsx'
-import LoginPage from './pages/login.jsx';
+import LoginPage from './pages/user/login.jsx';
 import HomePage from './pages/home.jsx';
-import RegisterPage from './pages/register.jsx';
+import RegisterPage from './pages/user/register.jsx';
 import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -21,8 +22,24 @@ import HotelPage from './pages/user/hotelpage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>
-  },
+    element: <App/>,
+    errorElement:<ErrorPage/>,
+    children:[
+      {
+        index: true,
+        element: <HomePage/>
+      },
+      {
+    path: "/HoltelPage",
+    element: <HotelPage/>
+      },
+    //   {
+    // path: "/home",
+    // element: <HomePage/>
+    //   },
+    ]
+  }
+  ,
   {
     path: "/login",
     element: <LoginPage/>
@@ -31,10 +48,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterPage/>
   },
-  {
-    path: "/home",
-    element: <HomePage/>
-  },
+  
   {
     path: "/adminpage",
     element: <AdminPage/>
@@ -42,10 +56,7 @@ const router = createBrowserRouter([
   {
     path: "/CustomerPage",
     element: <CustomerPage/>
-  },{
-    path: "/HoltelPage",
-    element: <HotelPage/>
-  },
+  }
   
 ]);
 

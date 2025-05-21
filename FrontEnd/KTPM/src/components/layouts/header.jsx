@@ -5,7 +5,7 @@ import HeaderBar from './headerbar';
 const Header = () => {
     return(
 <>
-<div className='header'>
+{/* <div className='header'> */}
 {/* <div>
 	<div className='header-icon'>
 	<div href='http://localhost:3000/' className='header-icon-logopage'><img src="/assets/logopage.jpg" alt="" /></div>
@@ -36,15 +36,15 @@ const Header = () => {
 	</div> */} {/* chuyen thanh component */}
 
 	<HeaderBar/>
-	<div className='header-text-box'>
+	{/* <div className='header-text-box'>
 		<h1 className ='heading-primary'>
 			<span className='heading-primary-main'>Chạm tay vào thế giới đặt vé ngay hôm nay</span>
 			
 		</h1>
     
     
-	</div>
-    </div>
+	</div> */}
+    {/* </div> */}
 </>
     )
 }
