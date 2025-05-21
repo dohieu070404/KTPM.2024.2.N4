@@ -38,7 +38,26 @@ public class TranSportTypeService {
         tranSport.setIsActive(true);
         return tranSportTypeMapper.totranSportTypeRespone(tranSportTypeRepository.save(tranSport));
     }
+    
     public List<TranSportTypeRespone> getTranSportType() {
-        return tranSportTypeRepository.findAll().stream().map(tranSportTypeMapper::totranSportTypeRespone).toList();
+        return tranSportTypeRepository.findAll().stream()
+                .filter(TransportType::getIsActive)
+                .map(tranSportTypeMapper::totranSportTypeRespone)
+                .toList();
+    }
+    
+    public TranSportTypeRespone updateTranSportType(Integer id, TranSportTypeRequest request) {
+        TransportType tranSport = tranSportTypeRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.TRANSPORT_TYPE_NOT_EXISTED));
+        tranSportTypeMapper.updateTranSportType(tranSport, request);
+        tranSport.setUpdatedAt(java.time.Instant.now());
+        return tranSportTypeMapper.totranSportTypeRespone(tranSportTypeRepository.save(tranSport));
+    }
+    public void deleteTranSportType(Integer id) {
+        TransportType tranSport = tranSportTypeRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.TRANSPORT_TYPE_NOT_EXISTED));
+        tranSport.setIsActive(false);
+        tranSport.setUpdatedAt(java.time.Instant.now());
+        tranSportTypeRepository.save(tranSport);
     }
 }

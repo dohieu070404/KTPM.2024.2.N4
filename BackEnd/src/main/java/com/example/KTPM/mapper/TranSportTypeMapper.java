@@ -16,5 +16,7 @@ public interface TranSportTypeMapper {
     //    @Mapping(source = "role", target = "roles")
     TranSportTypeRespone totranSportTypeRespone(TransportType transportType);
     //    @Mapping(target = "role", ignore = true)
-    void updateRoom(@MappingTarget TransportType   transportType, RoomRequest request);
+    
+    void updateTranSportType(@MappingTarget TransportType transportType, TranSportTypeRequest request);
+
 }

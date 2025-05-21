@@ -30,6 +30,8 @@ public class TranSportService {
     private TranSportMapper tranSportMapper;
     @Autowired
     private TranSportRepository tranSportRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public TranSportRespone createTransport(Integer id,TranSportRequest request){
         log.info("Service: Create Transport");
@@ -83,5 +85,24 @@ public class TranSportService {
         return tranSportMapper.toTranSportRespone(tranSportRepository.save(transport));
     }
 
+    public void deleteTransport(Integer id) {
+        Transport transport = tranSportRepository.findById(id)
+                .orElseThrow(() -> new AppException(ErrorCode.TRANSPORT_NOT_EXISTED));
+
+        TransportCompany company = transport.getTransportCompany();
+        if (company == null) throw new AppException(ErrorCode.TRANSPORT_COMPANY_NOT_EXISTED);
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByName(username)
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        if (!company.getCreateUserId().equals(user.getId())) {
+            throw new AppException(ErrorCode.USER_NOT_OWNER);
+        }
+
+        transport.setIsActive(false);
+        transport.setUpdatedAt(java.time.Instant.now());
+
+        tranSportRepository.save(transport);
+    }
 
 }

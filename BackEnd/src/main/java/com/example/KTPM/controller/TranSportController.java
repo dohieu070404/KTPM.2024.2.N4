@@ -37,4 +37,22 @@ public class TranSportController {
                 .build();
     }
 
+    @PutMapping("/{id}")
+    public ApiRespone<TranSportRespone> updateTransport(
+            @PathVariable Integer id,
+            @RequestBody @Valid TranSportRequest request
+    ) {
+        return ApiRespone.<TranSportRespone>builder()
+                .code(1000)
+                .result(tranSportService.updateTransport(id, request))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiRespone<Void> deleteTransport(@PathVariable Integer id) {
+        tranSportService.deleteTransport(id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 }
