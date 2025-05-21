@@ -31,11 +31,11 @@ public class RoomBookingController {
                 .build();
     }
     //cập nhật trạng thái booking
-    @PutMapping("/{roomId}")
-    public ApiRespone<RoomBookingRespone> updateBookingStatus(@PathVariable Integer roomId, @RequestBody BookingStatusRequest request) {
+    @PutMapping("/{bookingId}")
+    public ApiRespone<RoomBookingRespone> updateBookingStatus(@PathVariable Integer bookingId, @RequestBody BookingStatusRequest request) {
         return ApiRespone.<RoomBookingRespone>builder()
                 .code(1000)
-                .result(roomBookingService.updateBookingStatus(roomId, request))
+                .result(roomBookingService.updateBookingStatus(bookingId, request))
                 .build();
     }
 
