@@ -113,3 +113,16 @@
     padding: 10px;
   }
   
+  .error-text {
+    color: red;
+    font-size: 1rem;
+    margin-top: 4px;
+    text-align: left;
+    margin-left: 2px;
+  }
+
+
+  .submit-error {
+    text-align: center;
+    margin-top: 10px;
+  }
