@@ -2,6 +2,7 @@ package com.example.KTPM.controller;
 
 import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoomRequest;
+import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
 import com.example.KTPM.service.RoomService;
 import jakarta.validation.Valid;
@@ -63,6 +64,12 @@ public class RoomController {
     public ApiRespone<List<RoomRespone>> getRoomsSortedByPrice() {
         return ApiRespone.<List<RoomRespone>>builder()
                 .result(roomService.getRoomsSortedByPrice())
+                .build();
+    }
+    @GetMapping("/{roomId}")
+    public ApiRespone<RoomRespone> getRoom(@PathVariable Integer roomId) {
+        return  ApiRespone.<RoomRespone>builder()
+                .result(roomService.getRoom(roomId))
                 .build();
     }
 
