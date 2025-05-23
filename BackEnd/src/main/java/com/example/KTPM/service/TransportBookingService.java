@@ -41,7 +41,7 @@ public class TransportBookingService {
         String name=context.getAuthentication().getName();
         User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         transportBooking.setUser(user);
-        Transport transport=transportRepository.findById(transport_id).orElseThrow(()->new AppException(ErrorCode.TRANSPORT_NOT_EXISTED));
+        Transport transport =transportRepository.findById(transport_id).orElseThrow(()->new AppException(ErrorCode.TRANSPORT_NOT_EXISTED));
         transportBooking.setTransport(transport);
         BigDecimal price=transportRepository.totalTransportPrice(transport_id,request.getNumberOfSeats());
         transportRepository.updateAvailableTransports(transport_id,request.getNumberOfSeats());

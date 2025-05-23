@@ -92,6 +92,9 @@ public class HotelService {
         }
         hotelRepository.delete(hotel);
     }
+    public HotelRespone getHotel(Integer id) {
+        return hotelMapper.toHotelRespone(hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED)));
+    }
 
 
 
