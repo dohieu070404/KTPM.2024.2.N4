@@ -12,6 +12,7 @@ import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+<<<<<<< HEAD
 import TourPage from './pages/user/Tourpage.jsx';
 import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
 import OrderPage from './pages/user/orderpage.jsx';
@@ -22,6 +23,10 @@ import HotelManagement from './pages/customer/customercontrolHV/Hotelmanagement.
 import RevenueManagement from './pages/customer/customercontrolHV/Revenuemanagement.jsx';
 import RoomManagement from './pages/customer/customercontrolHV/Roommanagement.jsx';
 
+=======
+import OrderPage from './pages/user/orderpage.jsx';
+import PaymentPage from './pages/user/payment.jsx';
+>>>>>>> 74f77a4 (HuyVuong)
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -75,7 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/CustomerPage",
     element: <CustomerPage/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 74f77a4 (HuyVuong)
   },
   {
     path: "/OrderPage",
@@ -84,6 +92,7 @@ const router = createBrowserRouter([
   {
     path: "/PaymentPage",
     element: <PaymentPage/>
+<<<<<<< HEAD
   },
   {
     path: "/CustomerDashboard",
@@ -105,6 +114,8 @@ const router = createBrowserRouter([
     path: "/RoomManagement",
     element: <RoomManagement/>
 
+=======
+>>>>>>> 74f77a4 (HuyVuong)
   }
   
 ]);
