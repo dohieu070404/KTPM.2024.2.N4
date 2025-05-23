@@ -35,4 +35,23 @@ public class TranSportTypeController {
                 .result(tranSportTypeService.getTranSportType())
                 .build();
     }
+
+    @PutMapping("/{id}")
+    public ApiRespone<TranSportTypeRespone> updateTranSportType(
+            @PathVariable Integer id,
+            @RequestBody @Valid TranSportTypeRequest request
+    ) {
+        return ApiRespone.<TranSportTypeRespone>builder()
+                .code(1000)
+                .result(tranSportTypeService.updateTranSportType(id, request))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiRespone<Void> deleteTranSportType(@PathVariable Integer id) {
+        tranSportTypeService.deleteTranSportType(id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
 }

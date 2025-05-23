@@ -26,4 +26,8 @@ public interface TranSportRepository extends JpaRepository<Transport,Integer> {
     @Transactional
     @Query(value = "UPDATE transport SET Available_Seats = Available_Seats - :quantity WHERE Id = :transportId", nativeQuery = true)
     void updateAvailableTransports(@Param("transportId") Integer transportId, @Param("quantity") Integer quantity);
+
+    @Query("SELECT t FROM Transport t WHERE t.transportCompany.id = :companyId AND t.isActive = true")
+    List<Transport> findAllByCompanyId(@Param("companyId") Integer companyId);
+
 }

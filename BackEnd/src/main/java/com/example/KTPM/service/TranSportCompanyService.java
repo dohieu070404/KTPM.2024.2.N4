@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 
@@ -52,4 +53,39 @@ public class TranSportCompanyService {
         Integer id = user.getId();
         return tranSportCompanyRepository.findAllByUserId(id).stream().map(tranSportCompanyMapper::toTranSportCompanyRespone).toList();
     }
+
+    public TranSportCompanyRespone updateTransportCompany(Integer id, TranSportCompanyRequest request) {
+        TransportCompany company = tranSportCompanyRepository.findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.TRANSPORT_COMPANY_NOT_EXISTED));
+
+        // Kiểm tra quyền sửa (chỉ người tạo được sửa)
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByName(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        if (!company.getCreateUserId().equals(user.getId())) {
+            throw new AppException(ErrorCode.USER_NOT_OWNER);
+        }
+
+        tranSportCompanyMapper.updateTranSportCompany(company, request);
+        company.setUpdatedAt(Instant.now());
+        return tranSportCompanyMapper.toTranSportCompanyRespone(tranSportCompanyRepository.save(company));
+    }
+
+    public void deleteTransportCompany(Integer id) {
+        TransportCompany company = tranSportCompanyRepository.findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.TRANSPORT_COMPANY_NOT_EXISTED));
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByName(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        if (!company.getCreateUserId().equals(user.getId())) {
+            throw new AppException(ErrorCode.USER_NOT_OWNER);
+        }
+
+        company.setIsActive(false);
+        company.setUpdatedAt(Instant.now());
+        tranSportCompanyRepository.save(company);
+    }
+
+
 }

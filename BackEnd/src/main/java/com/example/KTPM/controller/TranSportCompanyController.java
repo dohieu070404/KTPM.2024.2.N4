@@ -37,5 +37,20 @@ public class TranSportCompanyController {
                 .build();
     }
 
+    @PutMapping("/{companyId}")
+    public ApiRespone<TranSportCompanyRespone> updateTransportCompany(
+            @PathVariable Integer companyId,
+            @RequestBody @Valid TranSportCompanyRequest request) {
+        return ApiRespone.<TranSportCompanyRespone>builder()
+                .code(1000)
+                .result(tranSportCompanyService.updateTransportCompany(companyId, request))
+                .build();
+    }
+
+    @DeleteMapping("/{companyId}")
+    public ApiRespone<Void> deleteTransportCompany(@PathVariable Integer companyId) {
+        tranSportCompanyService.deleteTransportCompany(companyId);
+        return ApiRespone.<Void>builder().code(1000).build();
+    }
 
 }
