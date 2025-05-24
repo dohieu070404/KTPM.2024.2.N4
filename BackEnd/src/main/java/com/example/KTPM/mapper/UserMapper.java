@@ -9,10 +9,13 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel="spring")
 public interface UserMapper {
+    // Tạo User từ request
     @Mapping(target = "dob", source = "dob")
     User toUser(UserCreationRequest request);
-    @Mapping(source = "role", target = "roles")
+
+    // Map User entity → DTO trả về cho client
     UserRespone toUserRespone(User user);
-    @Mapping(target = "role", ignore = true)
+
+    // Cập nhật User từ request
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
 }

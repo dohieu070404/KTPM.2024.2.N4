@@ -2,6 +2,8 @@ package com.example.KTPM.dto.request;
 
 //import com.example.KTPM.Validator.DobConstraint;
 import com.example.KTPM.Validator.DobConstraint;
+import com.example.KTPM.enums.Roles;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -46,7 +48,7 @@ public class UserUpdateRequest {
     private Boolean isActive;
 
     private Boolean isDeleted;
-    private Set<String> roles;
+    private Roles role;
 /*
     public String getPassword() {
         return password;

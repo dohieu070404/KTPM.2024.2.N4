@@ -12,6 +12,7 @@ import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import CustomerRequestPage from './pages/customer/customerrequest.jsx';
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -56,7 +57,12 @@ const router = createBrowserRouter([
   {
     path: "/CustomerPage",
     element: <CustomerPage/>
+  },
+  {
+    path: "/customer-request",
+    element: <CustomerRequestPage />
   }
+
   
 ]);
 

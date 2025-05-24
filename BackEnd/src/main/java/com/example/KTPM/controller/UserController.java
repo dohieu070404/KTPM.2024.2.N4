@@ -10,7 +10,10 @@ import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,4 +62,12 @@ public class UserController {
         userService.deleteUser(userId);
         return "Deleted Successfully";
     }
+
+    // Yêu cầu trở thành CUSTOMER
+    @PatchMapping("/request-customer")
+    public ResponseEntity<?> requestBecomeCustomer(@AuthenticationPrincipal UserDetails userDetails) {
+        userService.upgradeToCustomer(userDetails.getUsername());
+        return ResponseEntity.ok("Request thành công. Bạn đã trở thành CUSTOMER.");
+    }
+
 }

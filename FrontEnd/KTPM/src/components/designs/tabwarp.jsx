@@ -5,7 +5,7 @@ const TabWrap = ({ groupName = "tabGroup", tabs = [] }) => {
   return (
     <div className="tab-wrap">
       {tabs.map((tab, index) => (
-        <React.Fragment key={index}>
+        <React.Fragment key={tab.key}>
           <input
             type="radio"
             id={`${groupName}${index}`}
@@ -17,8 +17,8 @@ const TabWrap = ({ groupName = "tabGroup", tabs = [] }) => {
         </React.Fragment>
       ))}
 
-      {tabs.map((tab, index) => (
-        <div key={index} className="tab__content">
+      {tabs.map((tab) => (
+        <div key={tab.key} className="tab__content">
           <h3>{tab.title}</h3>
           {tab.content.map((p, i) => (
             <p key={i}>{p}</p>

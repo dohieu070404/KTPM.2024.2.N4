@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import com.example.KTPM.enums.Roles;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Set;
@@ -86,6 +88,9 @@ public class User {
 
     @Column(name = "dob")
     private LocalDate dob;
-    @ManyToMany
-    private Set<Role> role;
+    // @ManyToMany
+    // private Set<Role> role;
+
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 }

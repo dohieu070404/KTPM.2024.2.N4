@@ -40,8 +40,22 @@ const LoginPage = () => {
       console.log("Kết quả từ backend:", result);
 
       if (result.code === 0 && result.result?.token) {
-        localStorage.setItem("token", rtokenn);
-        window.location.href = "/";
+        localStorage.setItem("token", result.result.token);
+        localStorage.setItem("role", result.result.role);
+
+        switch (result.result.role) {
+          case "ADMIN":
+            window.location.href = "/adminpage";
+            break;
+          case "CUSTOMER":
+            window.location.href = "/customerpage";
+            break;
+          case "USER":
+          default:
+            window.location.href = "/";
+            break;
+        }
+
       } else {
         setFormErrors({ submit: "Invalid username or password." });
       }

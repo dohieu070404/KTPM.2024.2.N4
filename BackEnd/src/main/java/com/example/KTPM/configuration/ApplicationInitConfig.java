@@ -30,7 +30,7 @@ public class ApplicationInitConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedMethods("*")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
@@ -48,10 +48,10 @@ public class ApplicationInitConfig {
                         .name("admin")
                         .password(pwdEncoder.encode("admin"))
                         .email("admin@admin.com")
-                        .role(roles)
+                        .role(Roles.ADMIN)
                         .build();
             userRepository.save(user);
-            log.warn("User admin has been added with default password:admin,please change it");
+            log.warn("User admin has been added with default password:admin, please change it");
             }
         };
 
