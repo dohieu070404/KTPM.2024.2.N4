@@ -9,8 +9,6 @@ public class CustomerRequest {
     @NotBlank
     private String name;
 
-    private String phone;
-
     @NotBlank
     @Email
     private String email;

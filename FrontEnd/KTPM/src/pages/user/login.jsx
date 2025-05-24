@@ -42,6 +42,8 @@ const LoginPage = () => {
       if (result.code === 0 && result.result?.token) {
         localStorage.setItem("token", result.result.token);
         localStorage.setItem("role", result.result.role);
+        localStorage.setItem("name", result.result.name);
+        localStorage.setItem("email", result.result.email); 
 
         switch (result.result.role) {
           case "ADMIN":

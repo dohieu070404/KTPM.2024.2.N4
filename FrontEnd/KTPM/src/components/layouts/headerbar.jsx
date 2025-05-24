@@ -34,9 +34,38 @@ const HeaderBar = () => {
     window.location.href = "/";
   };
 
-  const handleRequestCustomer = () => {
-    window.location.href = "/customer-request";
-  };
+  const handleRequestCustomer = async () => {
+  const token = localStorage.getItem("token");
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
+
+  if (!token || !name || !email) return alert("Thiếu thông tin người dùng");
+
+  try {
+    const response = await fetch("http://localhost:8080/customer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    });
+
+    const result = await response.json();
+    if (result.code === 1000) {
+      alert("Gửi yêu cầu thành công!");
+    } else {
+      alert("Gửi yêu cầu thất bại.");
+    }
+  } catch (error) {
+    console.error("Lỗi gửi yêu cầu:", error);
+    alert("Lỗi hệ thống.");
+  }
+};
+
 
   // Danh sách item hiển thị tuỳ trạng thái login
   const dropdownItems = userName
