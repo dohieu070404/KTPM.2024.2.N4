@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react'; 
 import './hotelpage.css';
 import GuestSelector from '../../components/designs/GuestSelector';
-import HeaderBar from '../../components/layouts/headerbar';
+
+import HotelCard from '../../components/designs/HotelCard';
+import ScrollToTop from '../../components/designs/ScrollToTop';
 
 const HotelPage = () => {
   const [priceRange, setPriceRange] = useState([0, 3500000]);
   const [sortBy, setSortBy] = useState('newest');
-
-  const hotels = [
-      {
-    name: 'Aquasun Hotel Phu Quoc',
-    address: 'Hẻm 124 Đường Trần Hưng Đạo,',
-    price: 812772,
-    taxInfo: 'Giá chưa bao gồm thuế và phí'
-  },
-  {
-    name: 'Star Hill Resort Phu Quoc',
-    address: '127 Đường Trần Hưng Đạo,',
-    price: 423667,
-    taxInfo: 'Giá chưa bao gồm thuế và phí'
-  },
-    // ...Thêm các khách sạn khác
-  ];
+  const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
 
   return (
     <>
-    <HeaderBar/>
+    
     <div className="HotelPage-hotel-search-container">
       {/* Phần header */}
       <div className="HotelPage-search-header">
@@ -76,6 +67,14 @@ const HotelPage = () => {
           </div>
       </div>
 
+       <div className='hotelpage-visited-search-kq'>
+        Dia diem: tim thay bao nhieu cho
+        </div>
+</div>
+
+     
+
+<div className='HotelPage-hotel-content-container'>
       <div className="HotelPage-main-content">
         {/* Phần bộ lọc */}
         <div className="HotelPage-filter-section">
@@ -97,7 +96,7 @@ const HotelPage = () => {
               />
               <div className="HotelPage-price-range">
                 <span>0 đ</span>
-                <span>3.500.000 đ</span>
+                <span>15.000.000 đ</span>
               </div>
             </div>
 
@@ -112,7 +111,7 @@ const HotelPage = () => {
         </div>
 
         {/* Danh sách khách sạn */}
-        <div className="HotelPage-hotel-list">
+        {/* <div className="HotelPage-hotel-list">
           {hotels.map((hotel, index) => (
             <div key={index} className="HotelPage-hotel-card">
               <h3>{hotel.name}</h3>
@@ -128,9 +127,32 @@ const HotelPage = () => {
               )}
             </div>
           ))}
-        </div>
+        </div> */}
+
+        <div className='Hotel-page-container-card'> 
+         {hotels.map((hotel) => (
+              <HotelCard
+                key={hotel.id}
+                imageSrc={hotel.imageUrl || "/assets/HaNoi.jpg"}
+                imageAlt={hotel.name}
+                title={hotel.name}
+                address={hotel.address}
+                rating={hotel.rating}
+                reviews={hotel.reviews}
+                price={`VND ${hotel.price?.toLocaleString() ?? 'Liên hệ'}`}
+                roomType={hotel.roomType}
+                bedDetails={hotel.bedDetails}
+                amenities={hotel.amenities}
+                roomsLeft={hotel.roomsLeft}
+                onViewRooms={() => console.log('Xem phòng', hotel.id)}
+              />
+            ))}
+          
       </div>
-    </div>
+
+      </div>
+</div>
+    <ScrollToTop />
     </>
   );
 };

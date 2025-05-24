@@ -45,6 +45,12 @@ public class HotelController {
                 .result(hotelService.getMyHotel())
                 .build();
     }
+    @GetMapping("/{hotelId}")
+    public ApiRespone<HotelRespone> getHotel(@PathVariable Integer hotelId) {
+        return  ApiRespone.<HotelRespone>builder()
+                .result(hotelService.getHotel(hotelId))
+                .build();
+    }
 
 
 

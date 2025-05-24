@@ -3,7 +3,22 @@
   margin: 130px auto;
   padding: 20px;
 }
+.HotelPage-hotel-content-container{
+  
+  margin-left: 200px;
+  
+}
+.hotelpage-visited-search-kq{
+  color: #000000;
+  margin: 50px;
+}
 
+.Hotel-page-container-card{
+   display: flex;
+  gap: 20px;          /* khoảng cách giữa các item */
+   
+  flex-wrap: wrap;
+}
 .HotelPage-search-header {
   text-align: center;
   margin-bottom: 30px;
@@ -28,7 +43,9 @@
 }
 
 .HotelPage-filter-section {
-    color: #000000;
+  /* position: sticky; */
+  max-height: 300px;
+  color: #000000;
   background: #accded;
   padding: 20px;
   border-radius: 8px;

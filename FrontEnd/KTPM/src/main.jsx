@@ -12,6 +12,8 @@ import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import TourPage from './pages/user/Tourpage.jsx';
+import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -33,6 +35,15 @@ const router = createBrowserRouter([
     path: "/HoltelPage",
     element: <HotelPage/>
       },
+      {
+    path: "/TourPage",
+    element: <TourPage/>
+      },
+       {
+    path: "/ComboSearchPage",
+    element: <ComboSearchPage/>
+      },
+      
     //   {
     // path: "/home",
     // element: <HomePage/>

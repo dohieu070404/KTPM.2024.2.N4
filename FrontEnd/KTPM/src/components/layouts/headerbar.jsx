@@ -33,10 +33,10 @@ const HeaderBar = () => {
         <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Vé máy bay</Link>
 		</li>
 		<li>
-        <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>vé xe khách</Link>
+        <Link to="/ComboSearchPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Combo siu rẻ </Link>
 		</li>
 		<li>
-        <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Đặt Tour </Link>
+        <Link to="/TourPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Đặt Tour </Link>
 		</li>
 		</ul>
 	</div>
@@ -46,7 +46,14 @@ const HeaderBar = () => {
           label={<span className="icon-user-account headerbar-icon-user-color" />}
           items={['login', 'register']}
         />
+
       </div>
+       {/* <div href='#' className='headerbar-icon-user '>
+        <CustomDropdown
+          label={<span className="icon-user-account headerbar-icon-user-color" />}
+          items={['logout ', 'Gửi Request ']}
+        />
+      </div> */}
     </div>
   );
 };

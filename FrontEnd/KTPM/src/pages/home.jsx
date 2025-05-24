@@ -15,8 +15,8 @@ const HomePage = () => {
      <div className='header'>
      <div className='header-text-box'>
 		<h1 className ='heading-primary'>
-			<span className='heading-primary-main'>Chạm tay vào thế giới đặt vé ngay hôm nay</span>
-			
+			<span className='heading-primary-main'>Chạm tay vào thế giới </span>
+			<span className='heading-primary-main'> đặt vé ngay hôm nay</span>
 		</h1>
     
     
