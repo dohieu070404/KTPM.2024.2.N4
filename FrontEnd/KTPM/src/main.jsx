@@ -14,6 +14,14 @@ import HotelPage from './pages/user/hotelpage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import TourPage from './pages/user/Tourpage.jsx';
 import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
+import OrderPage from './pages/user/orderpage.jsx';
+import PaymentPage from './pages/user/payment.jsx';
+import CustomerDashboard from './pages/customer/customercontrolHV/Customer.jsx';
+import CustomerSupport from './pages/customer/customercontrolHV/CustomerSP.jsx';
+import HotelManagement from './pages/customer/customercontrolHV/Hotelmanagement.jsx';
+import RevenueManagement from './pages/customer/customercontrolHV/Revenuemanagement.jsx';
+import RoomManagement from './pages/customer/customercontrolHV/Roommanagement.jsx';
+
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -67,6 +75,36 @@ const router = createBrowserRouter([
   {
     path: "/CustomerPage",
     element: <CustomerPage/>
+
+  },
+  {
+    path: "/OrderPage",
+    element: <OrderPage/>
+  },
+  {
+    path: "/PaymentPage",
+    element: <PaymentPage/>
+  },
+  {
+    path: "/CustomerDashboard",
+    element: <CustomerDashboard/>
+  },
+  {
+    path: "/HotelManagement",
+    element: <HotelManagement/>
+  },
+  {
+    path: "/CustomerSP",
+    element: <CustomerSupport/>
+  },
+  {
+    path: "/Revenuemanagement",
+    element: <RevenueManagement/>
+  },
+  {
+    path: "/RoomManagement",
+    element: <RoomManagement/>
+
   }
   
 ]);
