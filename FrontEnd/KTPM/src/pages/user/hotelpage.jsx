@@ -30,21 +30,42 @@ const HotelPage = () => {
     const fetchHotels = async () => {
       try {
         setLoading(true);
-        const queryParams = new URLSearchParams({
-          minPrice: filters.priceRange[0],
-          maxPrice: filters.priceRange[1],
-          sortBy: filters.sortBy,
-          rating: filters.rating || '',
-          location: filters.location
+        const queryParams = new URLSearchParams();
+        
+        queryParams.append('minPrice', filters.priceRange[0]);
+        queryParams.append('maxPrice', filters.priceRange[1]);
+        queryParams.append('sortBy', filters.sortBy);
+        queryParams.append('location', filters.location);
+
+        if (filters.rating != null) {
+          queryParams.append('rating', filters.rating);
+        }
+
+
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(`http://localhost:8080/bookingtravel/hotel?${queryParams.toString()}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
         });
 
-        const response = await fetch(`http://localhost:8080/bookingtravel/hotel${queryParams}`, { signal });
-        if (!response.ok) throw new Error('Không thể kết nối đến máy chủ');
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error("Bạn chưa đăng nhập hoặc phiên đăng nhập đã hết hạn.");
+          } else {
+            throw new Error("Không thể kết nối đến máy chủ.");
+          }
+        }
+
         const data = await response.json();
-        setHotels(data);
+        setHotels(data.result);
         setError(null);
       } catch (err) {
         if (err.name !== 'AbortError') {
+          console.error("Lỗi khi fetch hotel:", err);
           setError(err.message);
           setHotels([]);
         }
@@ -126,7 +147,7 @@ const HotelPage = () => {
                 <label>Trả phòng</label>
                 <input 
                   type="date" 
-                   className="HotelPage-tab-conent-date-input"
+                   className="HotelPage-tab-conent-date-input"  
                   name="checkOut"
                   value={filters.checkOut}
                   onChange={(e) => handleFilterChange('checkOut', e.target.value)}

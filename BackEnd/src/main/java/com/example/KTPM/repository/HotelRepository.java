@@ -18,4 +18,13 @@ public interface HotelRepository extends JpaRepository<Hotel,Integer> {
     List<Hotel> findAllByRating();
     @Query(value = "SELECT * FROM hotels WHERE Create_User_Id = :userId;",nativeQuery = true)
     List<Hotel> findAllByUserId(@Param("userId") Integer userId);
+
+    @Query(value = "SELECT * FROM hotels WHERE (Price BETWEEN :minPrice AND :maxPrice) " +
+                   "AND (Rating >= :rating OR :rating IS NULL) " +
+                   "AND (Location LIKE %:location% OR :location IS NULL) " +
+                   "ORDER BY CASE WHEN :sortBy = 'newest' THEN Created_At END DESC, " +
+                   "CASE WHEN :sortBy = 'oldest' THEN Created_At END ASC, " +
+                   "CASE WHEN :sortBy = 'price' THEN Price END ASC", nativeQuery = true)
+    // Method to filter hotels based on price, rating, location, and sort order
+    Optional<User> getFilteredHotels(Integer minPrice, Integer maxPrice, String sortBy, Integer rating, String location);
 }

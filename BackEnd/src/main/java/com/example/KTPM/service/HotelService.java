@@ -96,6 +96,13 @@ public class HotelService {
         return hotelMapper.toHotelRespone(hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED)));
     }
 
+    public List<HotelRespone> getFilteredHotels(Integer minPrice, Integer maxPrice, String sortBy, Integer rating, String location) {
+        return hotelRepository.findAll().stream()
+                .map(hotelMapper::toHotelRespone)
+                .toList();
+    }
+
+
 
 
 //    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
