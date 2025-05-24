@@ -13,6 +13,14 @@ import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 
+import TourPage from './pages/user/Tourpage.jsx';
+import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
+import OrderPage from './pages/user/orderpage.jsx';
+import PaymentPage from './pages/user/payment.jsx';
+
+
+
+
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
 //     <App />
@@ -33,6 +41,15 @@ const router = createBrowserRouter([
     path: "/HoltelPage",
     element: <HotelPage/>
       },
+      {
+    path: "/TourPage",
+    element: <TourPage/>
+      },
+       {
+    path: "/ComboSearchPage",
+    element: <ComboSearchPage/>
+      },
+      
     //   {
     // path: "/home",
     // element: <HomePage/>
@@ -56,9 +73,17 @@ const router = createBrowserRouter([
   {
     path: "/CustomerPage",
     element: <CustomerPage/>
-  }
+  },
+  {
+    path: "/OrderPage",
+    element: <OrderPage/>
+  },
+  {
+    path: "/PaymentPage",
+    element: <PaymentPage/>
 
-  
+  },
+   
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

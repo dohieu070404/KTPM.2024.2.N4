@@ -7,6 +7,7 @@ import RevenueManagement from './customercontrol/RevenueManagement';
 import RoomManagement from './customercontrol/RoomManagement';
 import '../../styles/icondesigns.css'
 import AdminDashboard from '../admin/admincontrol/adminDashboard';
+import CustomerDashboard from './customercontrol/CustomerDashboard';
 
 // Các component đại diện cho từng tab
 // const Dashboard = () => <div>Dashboard Content</div>;
@@ -68,8 +69,8 @@ const CustomerPage = () => {
           </a> */}
           <a 
             href="#" 
-            className={`customer-nav-item ${activeTab === "revenue" ? "customer-active" : ""}`}
-            onClick={() => handleTabClick("revenue")}
+            className={`customer-nav-item ${activeTab === "RevenueManagement" ? "customer-active" : ""}`}
+            onClick={() => handleTabClick("RevenueManagement")}
           >
             <i className="fas fa-comment-dots"></i>
             <span>Doanh Thu</span>
@@ -90,7 +91,7 @@ const CustomerPage = () => {
       </div>
       <div className="customer-page-content-box">
         {/* Render nội dung tương ứng với activeTab */}
-        {activeTab === "dashboard" && <AdminDashboard/>}
+        {activeTab === "dashboard" && <CustomerDashboard/>}
         {activeTab === "CusHotelManagement" && <CusHotelManagement/>}
         {activeTab === "RoomManagement" && <RoomManagement />}
         {activeTab === "RevenueManagement" && <RevenueManagement />}

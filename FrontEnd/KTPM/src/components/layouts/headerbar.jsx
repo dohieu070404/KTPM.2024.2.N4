@@ -87,28 +87,20 @@ const HeaderBar = () => {
         </Link>
       </div>
 
-      <div className="headerbar-item">
+      <div className='headerbar-item'>
         <ul>
-          <li>
-            <Link to="/HoltelPage" className="headerbar-btn headerbar-btn-white headerbar-btn-animated">
-              Khách sạn
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="headerbar-btn headerbar-btn-white headerbar-btn-animated">
-              Vé máy bay
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="headerbar-btn headerbar-btn-white headerbar-btn-animated">
-              Vé xe khách
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="headerbar-btn headerbar-btn-white headerbar-btn-animated">
-              Đặt Tour
-            </Link>
-          </li>
+        <li>
+        <Link to="/HoltelPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Khách sạn </Link>
+        </li>
+        <li>
+            <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Vé máy bay</Link>
+        </li>
+        <li>
+            <Link to="/ComboSearchPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Combo siu rẻ </Link>
+        </li>
+        <li>
+            <Link to="/TourPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Đặt Tour </Link>
+        </li>
         </ul>
       </div>
 
@@ -117,7 +109,14 @@ const HeaderBar = () => {
           label={<span className="icon-user-account headerbar-icon-user-color" />}
           items={dropdownItems}
         />
+
       </div>
+       {/* <div href='#' className='headerbar-icon-user '>
+        <CustomDropdown
+          label={<span className="icon-user-account headerbar-icon-user-color" />}
+          items={['logout ', 'Gửi Request ']}
+        />
+      </div> */}
     </div>
   );
 };

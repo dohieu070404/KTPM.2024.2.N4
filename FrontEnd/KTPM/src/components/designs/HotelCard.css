@@ -1,0 +1,159 @@
+/* HotelCard.css */
+.hotel-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.hotel-card-header {
+  margin-bottom: 16px;
+}
+
+.hotel-card-hotel-title {
+  font-size: 20px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+/* Thêm style cho phần hình ảnh */
+.hotel-card__image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.hotel-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.hotel-card__image:hover {
+  transform: scale(1.05);
+}
+
+.hotel-card__content {
+  padding: 20px;
+}
+/* Thêm style cho phần hình ảnh */
+
+.hotel-card-hotel-address {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.hotel-card-rating-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.hotel-card-rating-badge {
+  background-color: #4CAF50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.hotel-card-rating-text {
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+.hotel-card-reviews-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.hotel-card-room-details {
+  margin-bottom: 16px;
+}
+
+.hotel-card-room-type {
+  font-size: 18px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.hotel-card-bed-info {
+  color: #666;
+  margin: 0 0 12px 0;
+}
+
+.hotel-card-amenities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hotel-card-amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #444;
+  font-size: 14px;
+}
+
+.hotel-card-check-icon {
+  color: #4CAF50;
+}
+
+.hotel-card-rooms-left-alert {
+  color: #E91E63;
+  font-size: 14px;
+  margin: 12px 0;
+  font-weight: 500;
+}
+
+.hotel-card-price-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.hotel-card-stay-info {
+  color: #666;
+  font-size: 14px;
+}
+
+.hotel-card-price-container {
+  text-align: right;
+}
+
+.hotel-card-price {
+  font-size: 24px;
+  color: #2196F3;
+  font-weight: bold;
+  display: block;
+}
+
+.hotel-card-tax-info {
+  color: #666;
+  font-size: 12px;
+}
+
+.hotel-card-view-rooms-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hotel-card-view-rooms-btn:hover {
+  background-color: #1976D2;
+}

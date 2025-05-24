@@ -1,0 +1,172 @@
+/* Main container */
+.combo-search {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Titles */
+.combo-search__main-title {
+  color: #2c3e50;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.combo-search__section-title {
+  color: #34495e;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Filters */
+.combo-search__filters {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.combo-search__filter-group {
+  margin-bottom: 25px;
+}
+
+.combo-search__filter-label {
+  color: #34495e;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.combo-search__filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.combo-search__option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+.combo-search__budget-option {
+  padding: 8px 15px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.combo-search__budget-option:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Divider */
+.combo-search__divider {
+  height: 1px;
+  background-color: #ddd;
+  margin: 20px 0;
+}
+
+/* Recommendations */
+.combo-search__recommend-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.combo-search__recommend-item {
+  padding: 8px 15px;
+  background-color: #e8f4ff;
+  border-radius: 20px;
+  color: #2c3e50;
+}
+
+/* Results */
+.combo-search__results {
+  margin-top: 30px;
+}
+
+.combo-search__result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.combo-search__sort-select {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* Result Card */
+.combo-search__result-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.combo-search__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.combo-search__card-title {
+  color: #2c3e50;
+  font-size: 20px;
+  margin: 0;
+}
+
+.combo-search__card-price {
+  color: #e74c3c;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.combo-search__card-details {
+  margin-bottom: 15px;
+}
+
+.combo-search__card-description {
+  color: #666;
+  line-height: 1.5;
+}
+
+.combo-search__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.combo-search__info-item {
+  color: #666;
+  font-size: 14px;
+}
+
+.combo-search__detail-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.combo-search__detail-btn:hover {
+  background-color: #2980b9;
+}
