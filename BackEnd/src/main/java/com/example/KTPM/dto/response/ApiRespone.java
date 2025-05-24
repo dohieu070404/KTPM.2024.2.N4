@@ -1,4 +1,4 @@
-package com.example.KTPM.dto.request;
+package com.example.KTPM.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

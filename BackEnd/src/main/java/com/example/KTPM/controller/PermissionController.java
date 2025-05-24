@@ -1,7 +1,7 @@
 package com.example.KTPM.controller;
 
-import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.PermissionRequest;
+import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.PermissionRespone;
 import com.example.KTPM.service.PermissionService;
 import jakarta.validation.Valid;

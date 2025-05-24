@@ -15,4 +15,6 @@ public class AuthenticationRespone {
     private String token;
     boolean authenticated;
     private String role;
+    private String name;
+    private String email;
 }

@@ -1,8 +1,8 @@
 package com.example.KTPM.controller;
 
-import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.UserCreationRequest;
 import com.example.KTPM.dto.request.UserUpdateRequest;
+import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.UserRespone;
 import com.example.KTPM.entity.User;
 import com.example.KTPM.service.UserService;

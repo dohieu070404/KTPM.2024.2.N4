@@ -1,7 +1,7 @@
 package com.example.KTPM.controller;
 
-import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoomImagesRequest;
+import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.RoomImagesRespone;
 import com.example.KTPM.service.RoomImagesService;
 import jakarta.validation.Valid;

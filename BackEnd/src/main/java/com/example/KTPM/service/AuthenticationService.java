@@ -63,6 +63,8 @@ public class AuthenticationService {
                 .authenticated(true)
                 .token(generateToken(user))
                 .role(user.getRole().name())
+                .name(user.getName())
+                .email(user.getEmail())
                 .build();
     }
     private String generateToken(User user) {

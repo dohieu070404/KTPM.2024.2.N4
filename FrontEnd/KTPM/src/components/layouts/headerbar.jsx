@@ -39,7 +39,9 @@ const HeaderBar = () => {
   const name = localStorage.getItem("name");
   const email = localStorage.getItem("email");
 
-  if (!token || !name || !email) return alert("Thiếu thông tin người dùng");
+  if (!token || !name || !email || name === "undefined" || email === "undefined") {
+    return alert("Thiếu thông tin người dùng hoặc chưa đăng nhập lại.");
+  }
 
   try {
     const response = await fetch("http://localhost:8080/customer", {
@@ -50,15 +52,17 @@ const HeaderBar = () => {
       },
       body: JSON.stringify({
         name,
-        email,
+        email: email || undefined, // Chỉ gửi email nếu có
       }),
     });
 
     const result = await response.json();
+    console.log("✅ Server response:", result);
+    
     if (result.code === 1000) {
       alert("Gửi yêu cầu thành công!");
     } else {
-      alert("Gửi yêu cầu thất bại.");
+      alert(result.message || "Gửi yêu cầu thất bại.");
     }
   } catch (error) {
     console.error("Lỗi gửi yêu cầu:", error);
@@ -70,8 +74,8 @@ const HeaderBar = () => {
   // Danh sách item hiển thị tuỳ trạng thái login
   const dropdownItems = userName
     ? [
-        `Xin chào, ${userName}`,
-        ...(role === "USER" ? [{ label: "Gửi yêu cầu làm khách hàng", action: handleRequestCustomer }] : []),
+        { label: `Hi, ${userName}`, action: null },
+        ...(role === "USER" ? [{ label: "Request to be Customer", action: handleRequestCustomer }] : []),
         { label: "Logout", action: handleLogout },
       ]
     : [

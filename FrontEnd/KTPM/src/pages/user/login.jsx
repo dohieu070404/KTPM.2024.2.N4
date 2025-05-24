@@ -16,17 +16,18 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("🟡 Bắt đầu xử lý login");
 
+    // Validation đơn giản
     const errors = {};
     if (!formData.username.trim()) errors.username = "Username is required";
     if (!formData.password) errors.password = "Password is required";
-
     setFormErrors(errors);
 
     if (Object.keys(errors).length > 0) return;
 
     try {
-      console.log("Data gửi đi:", formData);
+      console.log("📤 Gửi dữ liệu:", formData);
       const response = await fetch("http://localhost:8080/bookingtravel/auth/log-in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,15 +38,27 @@ const LoginPage = () => {
       });
 
       const result = await response.json();
-      console.log("Kết quả từ backend:", result);
+      console.log("📥 Phản hồi từ backend:", result);
 
       if (result.code === 0 && result.result?.token) {
-        localStorage.setItem("token", result.result.token);
-        localStorage.setItem("role", result.result.role);
-        localStorage.setItem("name", result.result.name);
-        localStorage.setItem("email", result.result.email); 
+        const { token, role, name, email } = result.result;
 
-        switch (result.result.role) {
+        // Kiểm tra kỹ name & email có tồn tại không
+        if (!name || !email) {
+          console.error("❌ Thiếu name hoặc email trong kết quả trả về.");
+          alert("Login thành công nhưng thiếu thông tin người dùng.");
+          return;
+        }
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("name", name);
+        localStorage.setItem("email", email);
+
+        console.log("✅ Lưu localStorage:", { token, role, name, email });
+
+        // Điều hướng theo role
+        switch (role) {
           case "ADMIN":
             window.location.href = "/adminpage";
             break;
@@ -57,12 +70,12 @@ const LoginPage = () => {
             window.location.href = "/";
             break;
         }
-
       } else {
+        console.warn("⚠️ Login thất bại: Sai thông tin đăng nhập");
         setFormErrors({ submit: "Invalid username or password." });
       }
     } catch (error) {
-      console.error("Lỗi khi đăng nhập:", error);
+      console.error("❌ Lỗi khi login:", error);
       setFormErrors({ submit: "System error. Please try again later." });
     }
   };
