@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Customer.css';
+import './CustomerDashboard.css';
 
 const initialServices = [
   { id: 1, type: 'hotel', name: 'Khách sạn Sunflower', location: 'Nha Trang', price: 1200000 },

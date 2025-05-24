@@ -38,7 +38,7 @@ const HotelPage = () => {
           location: filters.location
         });
 
-        const response = await fetch(`http://localhost:8080/api/hotels?${queryParams}`, { signal });
+        const response = await fetch(`http://localhost:8080/bookingtravel/hotel${queryParams}`, { signal });
         if (!response.ok) throw new Error('Không thể kết nối đến máy chủ');
         const data = await response.json();
         setHotels(data);
