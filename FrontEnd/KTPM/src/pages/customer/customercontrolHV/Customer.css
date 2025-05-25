@@ -50,6 +50,7 @@ body {
   padding: 13px 14px;
   border-bottom: 1px solid #d3e4ef;
   text-align: left;
+  vertical-align: top;
 }
 
 .customer-table th {
@@ -61,6 +62,8 @@ body {
 .customer-table td {
   font-size: 1em;
   color: #253858;
+  /* Đảm bảo các dòng chi tiết khách sạn hiển thị đẹp */
+  word-break: break-word;
 }
 
 .customer-edit-btn, .customer-delete-btn {
@@ -92,7 +95,8 @@ body {
 }
 
 .customer-form-container {
-  max-width: 410px;
+  max-width: 520px;
+  width: 100%;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 1px 8px rgba(0,0,0,0.13);
@@ -114,7 +118,8 @@ body {
 }
 
 .customer-form input,
-.customer-form select {
+.customer-form select,
+.customer-form textarea {
   width: 100%;
   padding: 10px 12px;
   border-radius: 8px;
@@ -122,12 +127,41 @@ body {
   margin-bottom: 8px;
   font-size: 1em;
   transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.customer-form textarea {
+  min-height: 60px;
+  resize: vertical;
+  font-family: inherit;
 }
 
 .customer-form input:focus,
-.customer-form select:focus {
+.customer-form select:focus,
+.customer-form textarea:focus {
   border-color: #007bff;
   outline: none;
+}
+
+.customer-amenities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 12px;
+  margin-top: 6px;
+}
+
+.customer-amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  background: #f4f8fb;
+  border-radius: 4px;
+  padding: 3px 10px 3px 3px;
+  border: 1px solid #e2e6ea;
+  cursor: pointer;
+  user-select: none;
 }
 
 .customer-save-btn {
@@ -169,4 +203,48 @@ body {
   .customer-form-container {
     padding: 15px 4vw;
   }
+  .customer-amenities-list {
+    gap: 8px 6px;
+  }
+}
+
+@media (max-width: 600px) {
+  .customer-form-container {
+    padding: 8px 2vw;
+    max-width: 99vw;
+  }
+  .customer-dashboard-container {
+    padding: 6px 1vw;
+  }
+  .customer-table th, .customer-table td {
+    padding: 8px 4px;
+  }
+}
+
+/* Một số chỉnh sửa nhỏ cho hiển thị chi tiết khách sạn */
+.customer-table td > div {
+  margin-bottom: 2px;
+}
+.customer-form-overlay {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Đảm bảo overlay luôn full màn hình và cuộn nếu form lớn */
+  overflow-y: auto;
+}
+
+.customer-form-container {
+  max-width: 520px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.13);
+  padding: 32px 28px 20px 28px;
+  /* Giới hạn chiều cao popup và cho phép cuộn bên trong */
+  max-height: 90vh;
+  overflow-y: auto;
 }

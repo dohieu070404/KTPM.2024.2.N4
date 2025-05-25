@@ -76,10 +76,10 @@ const router = createBrowserRouter([
     path: "/CustomerDashboard",
     element: <CustomerDashboard/>
   },
-  {
-    path: "/HotelManagement",
-    element: <HotelManagement/>
-  },
+  // {
+  //   path: "/HotelManagement",
+  //   element: <HotelManagement/>
+  // },
   {
     path: "/CustomerSP",
     element: <CustomerSupport/>
@@ -99,4 +99,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <RouterProvider router={router} />
   </React.StrictMode>
-);
+)
