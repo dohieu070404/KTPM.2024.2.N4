@@ -78,67 +78,91 @@ function CustomerDashboard() {
   };
 
   return (
-    <div className="customer-dashboard-container">
-      <h1>Quản lý dịch vụ của bạn</h1>
-      <button className="customer-add-btn" onClick={() => setEditing({})}>+ Thêm dịch vụ mới</button>
-      <table className="customer-table">
-        <thead>
-          <tr>
-            <th>Loại</th>
-            <th>Tên dịch vụ</th>
-            <th>Chi tiết</th>
-            <th>Giá (VNĐ)</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services.length === 0 && (
-            <tr>
-              <td colSpan={5} style={{ textAlign: 'center' }}>Chưa có dịch vụ nào!</td>
-            </tr>
-          )}
-          {services.map(service => (
-            <tr key={service.id}>
-              <td>
-                {service.type === 'hotel' && 'Khách sạn'}
-                {service.type === 'flight' && 'Vé máy bay'}
-                {service.type === 'bus' && 'Vé xe khách'}
-              </td>
-              <td>{service.name}</td>
-              <td>
-                {service.type === 'hotel' ? (
-                  <>
-                    {service.image && (
-                      <div style={{ marginBottom: 6 }}>
-                        <img src={service.image} alt={service.name} style={{ width: 120, height: 80, objectFit: 'cover', borderRadius: 4, border: '1px solid #eee' }} />
+    <div className="cds-bg">
+      <div className="cds-main-layout">
+        {/* Bộ lọc (bạn có thể thêm thực tế nếu muốn) */}
+        <div className="cds-filter-box">
+          <h3>BỘ LỌC DỊCH VỤ</h3>
+          <div className="cds-filter-section">
+            <div className="cds-filter-label">Loại dịch vụ:</div>
+            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Khách sạn</label>
+            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Vé máy bay</label>
+            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Vé xe khách</label>
+          </div>
+        </div>
+
+        {/* Danh sách dịch vụ */}
+        <div className="cds-service-list-area">
+          <div className="cds-service-list-header">
+            <h1>Quản lý dịch vụ của bạn</h1>
+            <button className="cds-add-btn" onClick={() => setEditing({})}>+ Thêm dịch vụ mới</button>
+          </div>
+          <div className="cds-service-list">
+            {services.length === 0 ? (
+              <div className="cds-no-service">Chưa có dịch vụ nào!</div>
+            ) : (
+              services.map(service => (
+                <div className="cds-service-card" key={service.id}>
+                  <div className="cds-service-main">
+                    <div>
+                      <div className="cds-service-type">
+                        {service.type === 'hotel' && 'Khách sạn'}
+                        {service.type === 'flight' && 'Vé máy bay'}
+                        {service.type === 'bus' && 'Vé xe khách'}
                       </div>
+                      <div className="cds-service-name">{service.name}</div>
+                    </div>
+                    <div className="cds-service-price">
+                      {service.price ? service.price.toLocaleString() + " đ" : ""}
+                    </div>
+                  </div>
+                  <div className="cds-service-detail">
+                    {service.type === 'hotel' ? (
+                      <>
+                        {service.image &&
+                          <div style={{ marginBottom: 6 }}>
+                            <img src={service.image} alt={service.name} style={{ width: 100, height: 65, objectFit: 'cover', borderRadius: 4, border: '1px solid #eee' }} />
+                          </div>
+                        }
+                        <div><b>Địa chỉ:</b> {service.address}</div>
+                        <div><b>Thành phố:</b> {service.city}</div>
+                        <div><b>Website:</b> <a href={service.website} target="_blank" rel="noopener noreferrer">{service.website}</a></div>
+                        <div><b>SĐT:</b> {service.phone}</div>
+                        <div><b>Mô tả:</b> {service.description}</div>
+                        <div><b>Thời gian hoạt động:</b> {service.openTime}</div>
+                        <div><b>Tiện ích:</b> {service.amenities?.join(', ')}</div>
+                      </>
+                    ) : (
+                      <>
+                        <div><b>Tên hãng:</b> {service.brand}</div>
+                        <div><b>Điểm đi:</b> {service.from}</div>
+                        <div><b>Điểm đến:</b> {service.to}</div>
+                        <div><b>Thời gian:</b> {service.time}</div>
+                      </>
                     )}
-                    <div><b>Địa chỉ:</b> {service.address}</div>
-                    <div><b>Thành phố:</b> {service.city}</div>
-                    <div><b>Website:</b> <a href={service.website} target="_blank" rel="noopener noreferrer">{service.website}</a></div>
-                    <div><b>SĐT:</b> {service.phone}</div>
-                    <div><b>Mô tả:</b> {service.description}</div>
-                    <div><b>Thời gian hoạt động:</b> {service.openTime}</div>
-                    <div><b>Tiện ích:</b> {service.amenities?.join(', ')}</div>
-                  </>
-                ) : (
-                  <>
-                    <div><b>Tên hãng:</b> {service.brand}</div>
-                    <div><b>Điểm đi:</b> {service.from}</div>
-                    <div><b>Điểm đến:</b> {service.to}</div>
-                    <div><b>Thời gian:</b> {service.time}</div>
-                  </>
-                )}
-              </td>
-              <td>{service.price ? service.price.toLocaleString() : ''}</td>
-              <td>
-                <button className="customer-edit-btn" onClick={() => handleEdit(service)}>Sửa</button>
-                <button className="customer-delete-btn" onClick={() => handleDelete(service.id)}>Xóa</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  </div>
+                  <div className="cds-service-actions">
+                    <button className="cds-edit-btn" onClick={() => handleEdit(service)}>Sửa</button>
+                    <button className="cds-delete-btn" onClick={() => handleDelete(service.id)}>Xóa</button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* Tổng hợp đơn (tùy chỉnh theo bạn) */}
+        <div className="cds-order-summary">
+          <h3>Tổng số dịch vụ</h3>
+          <div className="cds-order-total">
+            <span>Tổng dịch vụ:</span>
+            <span className="cds-total-number">{services.length}</span>
+          </div>
+          <button className="cds-btn cds-btn-confirm" disabled>Xác nhận</button>
+        </div>
+      </div>
+
+      {/* Overlay Form */}
       {editing !== null &&
         <CustomerForm
           service={editing}
@@ -159,7 +183,6 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
     name: service.name || '',
     price: service.price || '',
     id: service.id,
-    // Hotel fields
     image: service.image || '',
     description: service.description || '',
     address: service.address || '',
@@ -168,7 +191,6 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
     phone: service.phone || '',
     openTime: service.openTime || '',
     amenities: service.amenities || [],
-    // Vé máy bay, xe khách
     brand: service.brand || '',
     from: service.from || '',
     to: service.to || '',
@@ -207,10 +229,10 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
   };
 
   return (
-    <div className="customer-form-overlay" ref={overlayRef}>
-      <div className="customer-form-container">
+    <div className="cds-form-overlay" ref={overlayRef}>
+      <div className="cds-form-container">
         <h2>{form.id ? "Sửa dịch vụ" : "Thêm dịch vụ mới"}</h2>
-        <form className="customer-form" onSubmit={handleSubmit}>
+        <form className="cds-form" onSubmit={handleSubmit}>
           <label>Loại dịch vụ:</label>
           <select name="type" value={form.type} onChange={handleChange}>
             <option value="hotel">Khách sạn</option>
@@ -246,9 +268,9 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
               <label>Thời gian hoạt động:</label>
               <input name="openTime" value={form.openTime} onChange={handleChange} placeholder="VD: 06:00 - 23:00" required />
               <label>Tiện ích khách sạn:</label>
-              <div className="customer-amenities-list">
+              <div className="cds-amenities-list">
                 {HOTEL_AMENITIES.map(amenity => (
-                  <label key={amenity} className="customer-amenity-item">
+                  <label key={amenity} className="cds-amenity-item">
                     <input
                       type="checkbox"
                       name="amenities"
@@ -277,8 +299,8 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
           )}
           <label>Giá (VNĐ):</label>
           <input name="price" type="number" value={form.price} onChange={handleChange} required min="0" />
-          <button type="submit" className="customer-save-btn">{form.id ? "Cập nhật" : "Lưu dịch vụ"}</button>
-          <button type="button" className="customer-cancel-btn" onClick={onCancel}>Hủy</button>
+          <button type="submit" className="cds-save-btn">{form.id ? "Cập nhật" : "Lưu dịch vụ"}</button>
+          <button type="button" className="cds-cancel-btn" onClick={onCancel}>Hủy</button>
         </form>
       </div>
     </div>

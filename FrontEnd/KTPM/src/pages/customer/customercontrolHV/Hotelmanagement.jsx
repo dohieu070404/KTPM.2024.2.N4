@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Hotelmanagement.css";
+import "./HotelManagement.css";
 
 const initialHotels = [
   { id: 1, name: "Sunflower Hotel", location: "Nha Trang", status: "Hoạt động" },
@@ -22,37 +22,52 @@ function HotelManagement() {
   };
 
   return (
-    <div className="hotelmanagement-container">
-      <h1>Quản lý khách sạn</h1>
-      <button className="hotelmanagement-add-btn" onClick={() => setEditing({})}>+ Thêm khách sạn</button>
-      <table className="hotelmanagement-table">
-        <thead>
-          <tr>
-            <th>Tên khách sạn</th>
-            <th>Địa điểm</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {hotels.length === 0 && (
-            <tr>
-              <td colSpan={4} style={{ textAlign: "center" }}>Chưa có khách sạn nào!</td>
-            </tr>
-          )}
-          {hotels.map(hotel => (
-            <tr key={hotel.id}>
-              <td>{hotel.name}</td>
-              <td>{hotel.location}</td>
-              <td>{hotel.status}</td>
-              <td>
-                <button className="hotelmanagement-edit-btn" onClick={() => handleEdit(hotel)}>Sửa</button>
-                <button className="hotelmanagement-delete-btn" onClick={() => handleDelete(hotel.id)}>Xóa</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="hm-bg">
+      <div className="hm-main-layout">
+        {/* Filter Box */}
+        <div className="hm-filter-box">
+          <h3>BỘ LỌC KHÁCH SẠN</h3>
+          <div className="hm-filter-section">
+            <div className="hm-filter-label">Trạng thái:</div>
+            <label className="hm-checkbox">
+              <input type="checkbox" checked readOnly /> Hoạt động
+            </label>
+            <label className="hm-checkbox">
+              <input type="checkbox" checked readOnly /> Đang bảo trì
+            </label>
+            <label className="hm-checkbox">
+              <input type="checkbox" checked readOnly /> Ngừng hoạt động
+            </label>
+          </div>
+        </div>
+        {/* Hotel List */}
+        <div className="hm-hotel-list-area">
+          <div className="hm-hotel-list-header">
+            <h1>Quản lý khách sạn</h1>
+            <button className="hm-add-btn" onClick={() => setEditing({})}>+ Thêm khách sạn</button>
+          </div>
+          <div className="hm-hotel-list">
+            {hotels.length === 0 && (
+              <div className="hm-no-hotel">Chưa có khách sạn nào!</div>
+            )}
+            {hotels.map(hotel => (
+              <div className="hm-hotel-card" key={hotel.id}>
+                <div className="hm-hotel-main">
+                  <div>
+                    <div className="hm-hotel-name">{hotel.name}</div>
+                    <div className="hm-hotel-location">{hotel.location}</div>
+                  </div>
+                  <div className={`hm-hotel-status status-${hotel.status.replace(/\s/g, "").toLowerCase()}`}>{hotel.status}</div>
+                </div>
+                <div className="hm-hotel-actions">
+                  <button className="hm-edit-btn" onClick={() => handleEdit(hotel)}>Sửa</button>
+                  <button className="hm-delete-btn" onClick={() => handleDelete(hotel.id)}>Xóa</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       {editing !== null &&
         <HotelForm
           hotel={editing}
@@ -83,10 +98,10 @@ function HotelForm({ hotel, onSave, onCancel }) {
   };
 
   return (
-    <div className="hotelmanagement-form-overlay">
-      <div className="hotelmanagement-form-container">
+    <div className="hm-form-overlay">
+      <div className="hm-form-container">
         <h2>{form.id ? "Sửa khách sạn" : "Thêm khách sạn"}</h2>
-        <form className="hotelmanagement-form" onSubmit={handleSubmit}>
+        <form className="hm-form" onSubmit={handleSubmit}>
           <label>Tên khách sạn:</label>
           <input name="name" value={form.name} onChange={handleChange} required />
           <label>Địa điểm:</label>
@@ -97,8 +112,8 @@ function HotelForm({ hotel, onSave, onCancel }) {
             <option>Đang bảo trì</option>
             <option>Ngừng hoạt động</option>
           </select>
-          <button type="submit" className="hotelmanagement-save-btn">{form.id ? "Cập nhật" : "Lưu"}</button>
-          <button type="button" className="hotelmanagement-cancel-btn" onClick={onCancel}>Hủy</button>
+          <button type="submit" className="hm-save-btn">{form.id ? "Cập nhật" : "Lưu"}</button>
+          <button type="button" className="hm-cancel-btn" onClick={onCancel}>Hủy</button>
         </form>
       </div>
     </div>

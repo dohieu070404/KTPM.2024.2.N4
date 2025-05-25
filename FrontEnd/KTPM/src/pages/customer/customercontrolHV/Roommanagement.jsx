@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Roommanagement.css";
+import "./RoomManagement.css";
 
 const initialRooms = [
   {
@@ -33,10 +33,20 @@ const initialRooms = [
   },
 ];
 
+const ROOM_STATUSES = [
+  { label: "Trống", value: "Trống" },
+  { label: "Đang sử dụng", value: "Đang sử dụng" },
+  { label: "Bảo trì", value: "Bảo trì" }
+];
+
 function RoomManagement() {
   const [rooms, setRooms] = useState(initialRooms);
   const [editing, setEditing] = useState(null);
   const formOverlayRef = useRef(null);
+
+  // Bộ lọc trạng thái và loại phòng
+  const [filterStatuses, setFilterStatuses] = useState(ROOM_STATUSES.map(s => s.value));
+  const [filterType, setFilterType] = useState("");
 
   useEffect(() => {
     if (editing !== null && formOverlayRef.current) {
@@ -57,79 +67,117 @@ function RoomManagement() {
     setEditing(null);
   };
 
+  // Lọc phòng theo trạng thái và loại phòng
+  const filteredRooms = rooms.filter(room =>
+    filterStatuses.includes(room.status) &&
+    room.type.toLowerCase().includes(filterType.trim().toLowerCase())
+  );
+
+  // Xử lý chọn/bỏ lọc trạng thái
+  const handleStatusChange = (statusValue) => {
+    setFilterStatuses(prev =>
+      prev.includes(statusValue)
+        ? prev.filter(s => s !== statusValue)
+        : [...prev, statusValue]
+    );
+  };
+
   return (
-    <div className="roommanagement-container">
-      <h1>Quản lý phòng</h1>
-      <button className="roommanagement-add-btn" onClick={() => setEditing({})}>
-        + Thêm phòng
-      </button>
-      <table className="roommanagement-table">
-        <thead>
-          <tr>
-            {/* <th>Số phòng</th> */}
-            <th>Loại phòng</th>
-            <th>Mô tả</th>
-            <th>Giá (VNĐ)</th>
-            <th>Số lượng trống</th>
-            <th>Người lớn</th>
-            <th>Trẻ em</th>
-            <th>Ảnh phòng</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rooms.length === 0 && (
-            <tr>
-              <td colSpan={9} style={{ textAlign: "center" }}>
-                Chưa có phòng nào!
-              </td>
-            </tr>
-          )}
-          {rooms.map((room) => (
-            <tr key={room.id}>
-              {/* <td>{room.number}</td> */}
-              <td>{room.type}</td>
-              <td>{room.description}</td>
-              <td>{room.price ? room.price.toLocaleString() : ""}</td>
-              <td>{room.available}</td>
-              <td>{room.adults}</td>
-              <td>{room.children}</td>
-              <td>
-                {room.images && room.images.length > 0 && (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                    {room.images.map((img, idx) => (
+    <div className="rm-bg">
+      <div className="rm-main-layout">
+        {/* Bộ lọc bên trái */}
+        <div className="rm-filter-box">
+          <h3>BỘ LỌC PHÒNG</h3>
+          <div className="rm-filter-section">
+            <div className="rm-filter-label">Trạng thái:</div>
+            {ROOM_STATUSES.map(s => (
+              <label className="rm-checkbox" key={s.value}>
+                <input
+                  type="checkbox"
+                  checked={filterStatuses.includes(s.value)}
+                  onChange={() => handleStatusChange(s.value)}
+                />{" "}
+                {s.label}
+              </label>
+            ))}
+          </div>
+          <div className="rm-filter-section">
+            <div className="rm-filter-label">Loại phòng:</div>
+            <input
+              className="rm-filter-type"
+              type="text"
+              placeholder="Nhập loại phòng..."
+              value={filterType}
+              onChange={e => setFilterType(e.target.value)}
+              style={{ width: "100%", minWidth: 0, maxWidth: "100%", fontSize: "16px"}}
+            />
+          </div>
+        </div>
+        {/* Danh sách phòng */}
+        <div className="rm-room-list-area">
+          <div className="rm-room-list-header">
+            <h1>Quản lý phòng</h1>
+            <button className="rm-add-btn" onClick={() => setEditing({})}>
+              + Thêm phòng
+            </button>
+          </div>
+          <div className="rm-room-list">
+            {filteredRooms.length === 0 ? (
+              <div className="rm-no-room">Chưa có phòng nào!</div>
+            ) : (
+              filteredRooms.map(room => (
+                <div className="rm-room-card" key={room.id}>
+                  <div className="rm-room-main">
+                    <div>
+                      <div className="rm-room-type">{room.type}</div>
+                      <div className="rm-room-desc">{room.description}</div>
+                    </div>
+                    <div className="rm-room-detail">
+                      <div>
+                        <b>Giá:</b>{" "}
+                        <span className="rm-room-price">
+                          {room.price ? room.price.toLocaleString() + " đ" : ""}
+                        </span>
+                      </div>
+                      <div>
+                        <b>Trống:</b> {room.available}
+                      </div>
+                      <div>
+                        <b>Người lớn:</b> {room.adults} | <b>Trẻ em:</b> {room.children}
+                      </div>
+                    </div>
+                    <div className={`rm-room-status status-${room.status.replace(/\s/g, "").toLowerCase()}`}>
+                      {room.status}
+                    </div>
+                  </div>
+                  <div className="rm-room-imgs">
+                    {room.images && room.images.length > 0 && room.images.map((img, idx) => (
                       <img
                         key={idx}
                         src={img}
                         alt={`room-img${idx + 1}`}
-                        style={{
-                          width: 50,
-                          height: 38,
-                          objectFit: "cover",
-                          borderRadius: 3,
-                          border: "1px solid #eee"
-                        }}
+                        className="rm-room-img"
                       />
                     ))}
                   </div>
-                )}
-              </td>
-              <td>{room.status}</td>
-              <td>
-                <button className="roommanagement-edit-btn" onClick={() => handleEdit(room)}>
-                  Sửa
-                </button>
-                <button className="roommanagement-delete-btn" onClick={() => handleDelete(room.id)}>
-                  Xóa
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <div className="rm-room-actions">
+                    <button className="rm-edit-btn" onClick={() => handleEdit(room)}>Sửa</button>
+                    <button className="rm-delete-btn" onClick={() => handleDelete(room.id)}>Xóa</button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+      {/* Form Overlay */}
       {editing !== null && (
-        <RoomForm room={editing} onCancel={() => setEditing(null)} onSave={handleSave} overlayRef={formOverlayRef} />
+        <RoomForm
+          room={editing}
+          onCancel={() => setEditing(null)}
+          onSave={handleSave}
+          overlayRef={formOverlayRef}
+        />
       )}
     </div>
   );
@@ -138,7 +186,6 @@ function RoomManagement() {
 function RoomForm({ room, onSave, onCancel, overlayRef }) {
   const isEditMode = !!room.id;
   const [form, setForm] = useState({
-    // number: room.number || "", // Remove number
     type: room.type || "",
     status: room.status || "Trống",
     description: room.description || "",
@@ -190,7 +237,6 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      // !form.number ||
       !form.type ||
       !form.description ||
       form.price === "" ||
@@ -209,13 +255,10 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
   };
 
   return (
-    <div className="roommanagement-form-overlay" ref={overlayRef}>
-      <div className="roommanagement-form-container">
+    <div className="rm-form-overlay" ref={overlayRef}>
+      <div className="rm-form-container">
         <h2>{form.id ? "Sửa phòng" : "Thêm phòng"}</h2>
-        <form className="roommanagement-form" onSubmit={handleSubmit}>
-          {/* <label>Số phòng:</label>
-          <input name="number" value={form.number} onChange={handleChange} required /> */}
-
+        <form className="rm-form" onSubmit={handleSubmit}>
           <label>Loại phòng:</label>
           <input name="type" value={form.type} onChange={handleChange} placeholder="Ví dụ: Deluxe, Suite..." required />
 
@@ -234,7 +277,6 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
           <label>Số lượng trẻ em:</label>
           <input name="children" type="number" value={form.children} onChange={handleChange} min="0" required />
 
-          {/* Thêm/xóa ảnh chỉ khi sửa */}
           {isEditMode && (
             <>
               <label>Ảnh phòng (URL):</label>
@@ -309,10 +351,10 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
             <option>Đang sử dụng</option>
             <option>Bảo trì</option>
           </select>
-          <button type="submit" className="roommanagement-save-btn">
+          <button type="submit" className="rm-save-btn">
             {form.id ? "Cập nhật" : "Lưu"}
           </button>
-          <button type="button" className="roommanagement-cancel-btn" onClick={onCancel}>
+          <button type="button" className="rm-cancel-btn" onClick={onCancel}>
             Hủy
           </button>
         </form>
