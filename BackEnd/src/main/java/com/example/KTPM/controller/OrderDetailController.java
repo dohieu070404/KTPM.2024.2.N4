@@ -35,4 +35,22 @@ public class OrderDetailController {
                 .build();
     }
 
+    @PutMapping("/{id}")
+    public ApiRespone<OrderDetailRespone> updateOrderDetail(
+            @PathVariable Integer id,
+            @RequestBody @Valid OrderDetailRequest request) {
+        return ApiRespone.<OrderDetailRespone>builder()
+                .code(1000)
+                .result(orderDetailService.update(id, request))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiRespone<Void> deleteOrderDetail(@PathVariable Integer id) {
+        orderDetailService.delete(id);
+        return ApiRespone.<Void>builder()
+                .code(1000)
+                .build();
+    }
+
 }
