@@ -18,6 +18,11 @@ import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
 import OrderPage from './pages/user/orderpage.jsx';
 import PaymentPage from './pages/user/payment.jsx';
 import TransportBookingPage from './pages/user/TransportBookingPage.jsx';
+import CusHotelManagement from './pages/customer/customercontrol/CusHotelManagement.jsx';
+import CustomerDashboard from './pages/customer/customercontrol/CustomerDashboard.jsx';
+import CustomerSuport from './pages/customer/customercontrol/CustomerSuport.jsx';
+import RevenueManagement from './pages/customer/customercontrol/RevenueManagement.jsx';
+import RoomManagement from './pages/customer/customercontrol/RoomManagement.jsx';
 
 
 
@@ -86,6 +91,31 @@ const router = createBrowserRouter([
   {
     path: "/PaymentPage",
     element: <PaymentPage/>
+
+  },
+  // {
+  //   path: "/CusHotelManagement",
+  //   element: <CusHotelManagement/>
+
+  // },
+  {
+    path: "/CustomerDashboard",
+    element: <CustomerDashboard/>
+
+  },
+  {
+    path: "/CustomerSupport",
+    element: <CustomerSuport/>
+
+  },
+  {
+    path: "/RevenuelManagement",
+    element: <RevenueManagement/>
+
+  },
+  {
+    path: "/RoomManagement",
+    element: <RoomManagement/>
 
   },
  
