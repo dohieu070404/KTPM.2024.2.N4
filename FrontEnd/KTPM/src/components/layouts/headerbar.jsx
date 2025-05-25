@@ -100,7 +100,7 @@ const HeaderBar = () => {
         <Link to="/HoltelPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Khách sạn </Link>
         </li>
         <li>
-            <Link to="/" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Vé máy bay</Link>
+            <Link to="/TransportBookingPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Phương tiện </Link>
         </li>
         <li>
             <Link to="/ComboSearchPage" className='headerbar-btn headerbar-btn-white headerbar-btn-animated'>Combo siu rẻ </Link>
