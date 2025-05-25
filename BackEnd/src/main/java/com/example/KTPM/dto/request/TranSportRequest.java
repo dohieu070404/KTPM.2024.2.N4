@@ -28,5 +28,4 @@ public class TranSportRequest {
     private Instant arrivalTime;
     private BigDecimal price;
     private Integer availableSeats;
-
 }

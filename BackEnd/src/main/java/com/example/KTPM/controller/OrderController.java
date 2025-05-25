@@ -29,7 +29,7 @@ public class OrderController {
                 .result(orderService.createOrder(request))
                 .build();
     }
-    //lấy all order của hotel
+    //lấy all order của nguời dùng hiện tại
     @GetMapping
     public ApiRespone<List<OrderRespone>> getMyOrder() {
         return ApiRespone.<List<OrderRespone>>builder()
@@ -37,7 +37,6 @@ public class OrderController {
                 .result(orderService.getMyOrder())
                 .build();
     }
-
     @GetMapping("/{orderId}")
     public ApiRespone<OrderRespone> getOrder(@PathVariable Integer orderId) {
         return  ApiRespone.<OrderRespone>builder()

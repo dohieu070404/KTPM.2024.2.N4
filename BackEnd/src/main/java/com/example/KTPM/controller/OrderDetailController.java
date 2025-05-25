@@ -29,9 +29,9 @@ public class OrderDetailController {
     }
     //lấy all orderDetail của order
     @GetMapping("/{orderId}")
-    public ApiRespone<List<OrderDetailRespone>> getOrderDetails(@PathVariable Integer orderID) {
+    public ApiRespone<List<OrderDetailRespone>> getOrderDetails(@PathVariable Integer orderId) {
         return ApiRespone.<List<OrderDetailRespone>>builder()
-                .result(orderDetailService.getAllOrderDetails(orderID))
+                .result(orderDetailService.getAllOrderDetails(orderId))
                 .build();
     }
 

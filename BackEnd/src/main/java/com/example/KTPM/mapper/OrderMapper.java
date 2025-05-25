@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel="spring")
 public interface OrderMapper {
     @Mapping(target = "user", ignore = true)
-    @Mapping(target = "status", ignore = true)
+//    @Mapping(target = "status", ignore = true)
     Order toOrder(OrderRequest request);
     OrderRespone toOrderRespone(Order order);
     void updateOrder(@MappingTarget Order order, OrderRequest request);

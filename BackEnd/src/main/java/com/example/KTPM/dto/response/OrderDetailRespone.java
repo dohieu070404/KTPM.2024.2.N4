@@ -20,5 +20,7 @@ import java.util.Set;
 public  class OrderDetailRespone {
     private Integer id;
     private OrderRespone order;
+    private String itemType;
+    private Integer itemId;
     private BigDecimal price;
 }

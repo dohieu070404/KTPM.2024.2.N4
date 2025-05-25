@@ -54,6 +54,5 @@ public class ApplicationInitConfig {
             log.warn("User admin has been added with default password:admin, please change it");
             }
         };
-
     }
 }
