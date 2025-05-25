@@ -152,6 +152,8 @@ function CustomerDashboard() {
 }
 
 function CustomerForm({ service, onSave, onCancel, overlayRef }) {
+  const isEditMode = !!service.id;
+
   const [form, setForm] = useState({
     type: service.type || 'hotel',
     name: service.name || '',
@@ -220,12 +222,16 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
 
           {form.type === "hotel" && (
             <>
-              <label>Ảnh khách sạn (URL):</label>
-              <input name="image" value={form.image} onChange={handleChange} placeholder="Dán link ảnh khách sạn..." />
-              {form.image && (
-                <div style={{ marginBottom: 10 }}>
-                  <img src={form.image} alt="preview" style={{ width: 180, height: 120, objectFit: 'cover', borderRadius: 6, border: '1px solid #eee', marginTop: 6 }} />
-                </div>
+              {isEditMode && (
+                <>
+                  <label>Ảnh khách sạn (URL):</label>
+                  <input name="image" value={form.image} onChange={handleChange} placeholder="Dán link ảnh khách sạn..." />
+                  {form.image && (
+                    <div style={{ marginBottom: 10 }}>
+                      <img src={form.image} alt="preview" style={{ width: 180, height: 120, objectFit: 'cover', borderRadius: 6, border: '1px solid #eee', marginTop: 6 }} />
+                    </div>
+                  )}
+                </>
               )}
               <label>Mô tả khách sạn:</label>
               <textarea name="description" value={form.description} onChange={handleChange} required />

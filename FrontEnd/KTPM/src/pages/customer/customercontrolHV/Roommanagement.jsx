@@ -66,7 +66,7 @@ function RoomManagement() {
       <table className="roommanagement-table">
         <thead>
           <tr>
-            <th>Số phòng</th>
+            {/* <th>Số phòng</th> */}
             <th>Loại phòng</th>
             <th>Mô tả</th>
             <th>Giá (VNĐ)</th>
@@ -81,14 +81,14 @@ function RoomManagement() {
         <tbody>
           {rooms.length === 0 && (
             <tr>
-              <td colSpan={10} style={{ textAlign: "center" }}>
+              <td colSpan={9} style={{ textAlign: "center" }}>
                 Chưa có phòng nào!
               </td>
             </tr>
           )}
           {rooms.map((room) => (
             <tr key={room.id}>
-              <td>{room.number}</td>
+              {/* <td>{room.number}</td> */}
               <td>{room.type}</td>
               <td>{room.description}</td>
               <td>{room.price ? room.price.toLocaleString() : ""}</td>
@@ -102,7 +102,7 @@ function RoomManagement() {
                       <img
                         key={idx}
                         src={img}
-                        alt={`room-${room.number}-img${idx + 1}`}
+                        alt={`room-img${idx + 1}`}
                         style={{
                           width: 50,
                           height: 38,
@@ -136,8 +136,9 @@ function RoomManagement() {
 }
 
 function RoomForm({ room, onSave, onCancel, overlayRef }) {
+  const isEditMode = !!room.id;
   const [form, setForm] = useState({
-    number: room.number || "",
+    // number: room.number || "", // Remove number
     type: room.type || "",
     status: room.status || "Trống",
     description: room.description || "",
@@ -189,7 +190,7 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      !form.number ||
+      // !form.number ||
       !form.type ||
       !form.description ||
       form.price === "" ||
@@ -212,8 +213,8 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
       <div className="roommanagement-form-container">
         <h2>{form.id ? "Sửa phòng" : "Thêm phòng"}</h2>
         <form className="roommanagement-form" onSubmit={handleSubmit}>
-          <label>Số phòng:</label>
-          <input name="number" value={form.number} onChange={handleChange} required />
+          {/* <label>Số phòng:</label>
+          <input name="number" value={form.number} onChange={handleChange} required /> */}
 
           <label>Loại phòng:</label>
           <input name="type" value={form.type} onChange={handleChange} placeholder="Ví dụ: Deluxe, Suite..." required />
@@ -233,70 +234,74 @@ function RoomForm({ room, onSave, onCancel, overlayRef }) {
           <label>Số lượng trẻ em:</label>
           <input name="children" type="number" value={form.children} onChange={handleChange} min="0" required />
 
-          {/* Thêm nhiều ảnh bằng url */}
-          <label>Ảnh phòng (URL):</label>
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
-            {form.images.map((img, idx) => (
-              <div key={idx} style={{ position: "relative" }}>
-                <img
-                  src={img}
-                  alt={`room-img-${idx + 1}`}
-                  style={{ width: 52, height: 40, objectFit: "cover", borderRadius: 4, border: "1px solid #eee" }}
+          {/* Thêm/xóa ảnh chỉ khi sửa */}
+          {isEditMode && (
+            <>
+              <label>Ảnh phòng (URL):</label>
+              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 8 }}>
+                {form.images.map((img, idx) => (
+                  <div key={idx} style={{ position: "relative" }}>
+                    <img
+                      src={img}
+                      alt={`room-img-${idx + 1}`}
+                      style={{ width: 52, height: 40, objectFit: "cover", borderRadius: 4, border: "1px solid #eee" }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(idx)}
+                      style={{
+                        position: "absolute",
+                        top: -8,
+                        right: -8,
+                        background: "#ff5858",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "50%",
+                        width: 18,
+                        height: 18,
+                        fontSize: 12,
+                        cursor: "pointer",
+                        lineHeight: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: 0,
+                      }}
+                      title="Xóa ảnh"
+                      tabIndex={-1}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
+                <input
+                  type="url"
+                  name="newImageUrl"
+                  value={form.newImageUrl}
+                  onChange={handleNewImageUrlChange}
+                  placeholder="Nhập URL ảnh và nhấn Thêm"
+                  style={{ flex: 1 }}
                 />
                 <button
                   type="button"
-                  onClick={() => handleRemoveImage(idx)}
+                  onClick={handleAddImageUrl}
                   style={{
-                    position: "absolute",
-                    top: -8,
-                    right: -8,
-                    background: "#ff5858",
+                    background: "#007bff",
                     color: "#fff",
                     border: "none",
-                    borderRadius: "50%",
-                    width: 18,
-                    height: 18,
-                    fontSize: 12,
+                    borderRadius: 6,
+                    padding: "6px 12px",
+                    fontWeight: 500,
                     cursor: "pointer",
-                    lineHeight: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 0,
                   }}
-                  title="Xóa ảnh"
-                  tabIndex={-1}
                 >
-                  ×
+                  Thêm
                 </button>
               </div>
-            ))}
-          </div>
-          <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
-            <input
-              type="url"
-              name="newImageUrl"
-              value={form.newImageUrl}
-              onChange={handleNewImageUrlChange}
-              placeholder="Nhập URL ảnh và nhấn Thêm"
-              style={{ flex: 1 }}
-            />
-            <button
-              type="button"
-              onClick={handleAddImageUrl}
-              style={{
-                background: "#007bff",
-                color: "#fff",
-                border: "none",
-                borderRadius: 6,
-                padding: "6px 12px",
-                fontWeight: 500,
-                cursor: "pointer",
-              }}
-            >
-              Thêm
-            </button>
-          </div>
+            </>
+          )}
 
           <label>Trạng thái:</label>
           <select name="status" value={form.status} onChange={handleChange}>
