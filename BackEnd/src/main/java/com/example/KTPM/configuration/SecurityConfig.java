@@ -31,10 +31,9 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/auth/log-in", "/auth/log-out", "/auth/refresh").permitAll()
-                .requestMatchers(HttpMethod.POST, "/bookingtravel/users").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/bookingtravel/users").permitAll()
-                .requestMatchers(HttpMethod.POST, "/bookingtravel/customer").authenticated()
-                .requestMatchers("/bookingtravel/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/users").permitAll() // KHÔNG cần /bookingtravel ở đây
+                .requestMatchers(HttpMethod.PUT, "/users").permitAll()
+                .requestMatchers(HttpMethod.POST, "/customer").authenticated()
                 .requestMatchers("/hotel/**").permitAll()
                 .anyRequest().authenticated()
             )
