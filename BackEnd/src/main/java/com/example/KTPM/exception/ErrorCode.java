@@ -28,6 +28,9 @@ public enum ErrorCode {
     TRANSPORT_TYPE_NOT_EXISTED(1021, "Transport type not existed", HttpStatus.NOT_FOUND),
     TRANSPORT_COMPANY_NOT_EXISTED(1022, "Transport company not existed", HttpStatus.NOT_FOUND),
     TRANSPORT_NOT_EXISTED(1023, "Transport not existed", HttpStatus.NOT_FOUND),
+    ORDER_NOT_EXISTED(1024, "Order not existed", HttpStatus.NOT_FOUND),
+    INVALID_BOOKING_TYPE(1025,"Booking type must be room booking or transport booking",HttpStatus.BAD_REQUEST),
+
     //403 xử lý được bằng GlobalExceptionHandler
     //401 thì GlobalExceptionHandler không xử lý được vì 401 xảy ra ở tầng filter trước khi vào service nên phải xử lý trong SecurityConfig
     ;
