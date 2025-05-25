@@ -12,4 +12,6 @@ public class CustomerRequest {
     @NotBlank
     @Email
     private String email;
+
+    private Integer userId;
 }

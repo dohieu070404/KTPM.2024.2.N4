@@ -12,6 +12,7 @@ public class CustomerMapper {
 
     public Customer toEntity(CustomerRequest request) {
         return Customer.builder()
+                .userId(request.getUserId())
                 .name(request.getName())
                 .email(request.getEmail())
                 .status("PENDING")

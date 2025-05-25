@@ -33,4 +33,21 @@ public interface RoomRepository extends JpaRepository<RoomType,Integer> {
     @Transactional
     @Query(value = "UPDATE room_type SET Available_Rooms = Available_Rooms - :quantity WHERE Id = :roomTypeId", nativeQuery = true)
     void updateAvailableRooms(@Param("roomTypeId") Integer roomTypeId, @Param("quantity") Integer quantity);
+
+    @Query(value = """
+        SELECT * FROM room_type 
+        WHERE (:hotelId IS NULL OR Hotels_Id = :hotelId)
+        AND (:maxAdults IS NULL OR Max_Adults >= :maxAdults)
+        AND (:maxChildren IS NULL OR Max_Children >= :maxChildren)
+        AND (:minPrice IS NULL OR Price >= :minPrice)
+        AND (:maxPrice IS NULL OR Price <= :maxPrice)
+    """, nativeQuery = true)
+    List<RoomType> findRoomsByCriteria(
+        @Param("hotelId") Integer hotelId,
+        @Param("maxAdults") Integer maxAdults,
+        @Param("maxChildren") Integer maxChildren,
+        @Param("minPrice") Integer minPrice,
+        @Param("maxPrice") Integer maxPrice
+    );
+
 }

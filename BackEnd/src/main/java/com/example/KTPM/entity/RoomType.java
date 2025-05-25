@@ -55,14 +55,27 @@ public class RoomType {
     @Column(name = "Max_Children", nullable = false)
     private Integer maxChildren;
 
-    @ColumnDefault("1")
     @Column(name = "Is_Active")
     private Boolean isActive;
 
-    @Column(name = "Created_At", updatable = false, insertable = false)
+    @Column(name = "Created_At")
     private Instant createdAt;
 
     @Column(name = "Updated_At")
     private Instant updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+        this.updatedAt = Instant.now();
+        if (this.isActive == null) {
+            this.isActive = true;
+        }
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 
 }

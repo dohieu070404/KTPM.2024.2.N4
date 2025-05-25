@@ -39,6 +39,8 @@ const HeaderBar = () => {
   const name = localStorage.getItem("name");
   const email = localStorage.getItem("email");
 
+  console.log("🔐 Token hiện tại:", token);
+
   if (!token || !name || !email || name === "undefined" || email === "undefined") {
     return alert("Thiếu thông tin người dùng hoặc chưa đăng nhập lại.");
   }
