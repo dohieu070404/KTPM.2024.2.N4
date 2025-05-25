@@ -44,7 +44,8 @@ const HeaderBar = () => {
   }
 
   try {
-    const response = await fetch("http://localhost:8080/customer", {
+    console.log("Gửi yêu cầu Customer với:", { name, email });
+    const response = await fetch("http://localhost:8080/bookingtravel/customer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +53,7 @@ const HeaderBar = () => {
       },
       body: JSON.stringify({
         name,
-        email: email || undefined, // Chỉ gửi email nếu có
+        email
       }),
     });
 

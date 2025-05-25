@@ -42,11 +42,20 @@ public class HotelController {
     // Các endpoint còn lại giữ nguyên
     @PostMapping
     public ApiRespone<HotelRespone> createHotel(@RequestBody @Valid HotelRequest request) {
-        return ApiRespone.<HotelRespone>builder()
-                .code(1000)
-                .result(hotelService.createHotel(request))
-                .build();
+        try {
+            return ApiRespone.<HotelRespone>builder()
+                    .code(1000)
+                    .result(hotelService.createHotel(request))
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ApiRespone.<HotelRespone>builder()
+                    .code(9999)
+                    .message(e.getMessage())
+                    .build();
+        }
     }
+
 
     @GetMapping("/filter")
     public ApiRespone<List<HotelRespone>> getFilterByRating() {

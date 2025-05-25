@@ -27,13 +27,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-            .securityMatcher("/bookingtravel/**")
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.POST, "/auth/log-in", "/auth/log-out", "/auth/refresh").permitAll()
                 .requestMatchers(HttpMethod.POST, "/bookingtravel/users").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/bookingtravel/users").permitAll()
+                .requestMatchers(HttpMethod.POST, "/bookingtravel/customer").authenticated()
                 .requestMatchers("/bookingtravel/**").permitAll()
                 .requestMatchers("/hotel/**").permitAll()
                 .anyRequest().authenticated()

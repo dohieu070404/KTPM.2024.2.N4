@@ -114,12 +114,20 @@
   }
   
   .error-text {
-    color: red;
-    font-size: 1rem;
-    margin-top: 4px;
+    color: #b30000;
+    background-color: #ffe2e2;
+    border: 1px solid #ffb3b3;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 6px;
     text-align: left;
-    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.1);
   }
+
 
 
   .submit-error {

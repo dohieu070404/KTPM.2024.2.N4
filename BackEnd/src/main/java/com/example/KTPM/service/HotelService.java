@@ -45,7 +45,8 @@ public class HotelService {
         User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         Integer id=user.getId();
         hotel.setCreateUserId(id);
-        var hotelAmenity=hotelAmenityRepository.findAllById(request.getHotelAmenities());
+        var hotelAmenity = hotelAmenityRepository.findAllByNameIn(request.getHotelAmenities());
+
         hotel.setHotelAmenities(new HashSet<>(hotelAmenity));
         return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
     }

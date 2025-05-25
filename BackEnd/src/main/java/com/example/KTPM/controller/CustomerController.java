@@ -4,12 +4,14 @@ import com.example.KTPM.dto.request.CustomerRequest;
 import com.example.KTPM.dto.response.CustomerResponse;
 import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.service.CustomerService;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
@@ -19,12 +21,21 @@ public class CustomerController {
 
     // Gửi yêu cầu trở thành customer
     @PostMapping
-    public ApiRespone<CustomerResponse> create(@RequestBody CustomerRequest request) {
-        CustomerResponse response = customerService.create(request);
-        return ApiRespone.<CustomerResponse>builder()
-                .code(1000)
-                .result(response)
-                .build();
+    public ApiRespone<CustomerResponse> create(@Valid @RequestBody CustomerRequest request) {
+        System.out.println("📩 Nhận CustomerRequest: " + request);
+        try {
+            CustomerResponse response = customerService.create(request);
+            return ApiRespone.<CustomerResponse>builder()
+                    .code(1000)
+                    .result(response)
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace(); // hoặc log.error(...)
+            return ApiRespone.<CustomerResponse>builder()
+                    .code(9999)
+                    .message("Server error: " + e.getMessage())
+                    .build();
+        }
     }
 
     // Admin: lấy toàn bộ danh sách yêu cầu customer
