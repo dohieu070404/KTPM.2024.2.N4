@@ -18,6 +18,72 @@ const initialPartners = [
     services: 28,
     status: "Cảnh báo"
   },
+  { 
+  id: 3, 
+  name: "Phú Quốc Express", 
+  type: "Nhà xe", 
+  address: "789 Đường Trần Hưng Đạo, Phú Quốc", 
+  services: 28, 
+  status: "Cảnh báo" 
+},
+{ 
+  id: 4, 
+  name: "Mai Linh Limousine", 
+  type: "Nhà xe", 
+  address: "12 Lê Duẩn, TP. Hồ Chí Minh", 
+  services: 35, 
+  status: "Cảnh báo" 
+},
+{ 
+  id: 5, 
+  name: "Golden Bay Hotel", 
+  type: "Khách sạn", 
+  address: "99 Nguyễn Tất Thành, Nha Trang", 
+  services: 60, 
+  status: "Hoạt động" 
+},
+{ 
+  id: 6, 
+  name: "Mekong Riverside Hotel", 
+  type: "Khách sạn", 
+  address: "55 Trần Hưng Đạo, Cần Thơ", 
+  services: 33, 
+  status: "Hoạt động" 
+},
+{ 
+  id: 7, 
+  name: "Hà Nội Travel Bus", 
+  type: "Nhà xe", 
+  address: "21 Nguyễn Trãi, Hà Nội", 
+  services: 22, 
+  status: "Cảnh báo" 
+},
+{ 
+  id: 8, 
+  name: "Ocean View Resort", 
+  type: "Khách sạn", 
+  address: "456 Trần Phú, Vũng Tàu", 
+  services: 38, 
+  status: "Hoạt động" 
+},
+{ 
+  id: 9, 
+  name: "Green Bamboo Hotel", 
+  type: "Khách sạn", 
+  address: "789 Phạm Văn Đồng, Đà Nẵng", 
+  services: 50, 
+  status: "Hoạt động" 
+},
+{ 
+  id: 10, 
+  name: "Lotus Central Hotel", 
+  type: "Khách sạn", 
+  address: "12 Hàng Bông, Hà Nội", 
+  services: 41, 
+  status: "Hoạt động" 
+},
+
+
 ];
 
 function CustomerManagement() {

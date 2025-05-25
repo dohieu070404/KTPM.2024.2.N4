@@ -107,8 +107,8 @@ const HomePage = () => {
               />
             </div>
 
-             <button type="submit" className="tab-conent-search-submit">
-              Tìm kiếm
+             <button  type="submit" className="tab-conent-search-submit">
+              <a href="http://localhost:3000/HoltelPage">Tìm Kiếm</a>
             </button>
           </form>
         

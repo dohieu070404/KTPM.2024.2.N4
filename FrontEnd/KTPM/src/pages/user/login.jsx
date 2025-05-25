@@ -78,7 +78,7 @@ const LoginPage = () => {
             <label htmlFor="rememberMeSwitch">Remember me</label>
           </div>
 
-          <button type="submit" className="btn">Sign in</button>
+          <button  type="submit" className="btn"> <a href="/">Sign in</a></button>
         </form>
 
         <p className="copyright">&copy; 2025 by VIVUGO</p>

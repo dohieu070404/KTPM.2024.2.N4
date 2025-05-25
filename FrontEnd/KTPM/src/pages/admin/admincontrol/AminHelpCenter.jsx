@@ -23,6 +23,96 @@ const initialComplaints = [
     status: "Đang xử lý",
     notes: "Đã liên hệ ngân hàng"
   },
+ {
+    id: 3,
+    user: "Nguyễn Văn C",
+    email: "c.nguyen@example.com",
+    type: "Báo lỗi",
+    content: "Ứng dụng bị treo khi đặt vé",
+    date: "2024-05-15",
+    status: "Đang xử lý",
+    notes: "Chuyển bộ phận kỹ thuật"
+  },
+  {
+    id: 4,
+    user: "Lê Thị D",
+    email: "d.le@example.com",
+    type: "Dịch vụ",
+    content: "Không tìm thấy khách sạn đã đặt",
+    date: "2024-05-16",
+    status: "Đang xử lý",
+    notes: "Kiểm tra với đối tác"
+  },
+  {
+    id: 5,
+    user: "Phạm Văn E",
+    email: "e.pham@example.com",
+    type: "Báo cáo khách sạn",
+    content: "Phòng không giống mô tả",
+    date: "2024-05-17",
+    status: "Đang xử lý",
+    notes: "Cần xác minh hình ảnh"
+  },
+  {
+    id: 6,
+    user: "Đặng Thị F",
+    email: "f.dang@example.com",
+    type: "Dịch vụ",
+    content: "Tài khoản bị khóa không rõ lý do",
+    date: "2024-05-18",
+    status: "Đang xử lý",
+    notes: "Đã gửi thông tin xác minh"
+  },
+  {
+    id: 7,
+    user: "Võ Minh G",
+    email: "g.vo@example.com",
+    type: "Thanh toán",
+    content: "Thanh toán thành công nhưng không có vé",
+    date: "2024-05-18",
+    status: "Đang xử lý",
+    notes: "Đã báo kỹ thuật kiểm tra"
+  },
+  {
+    id: 8,
+    user: "Lý Thị H",
+    email: "h.ly@example.com",
+    type: "Báo lỗi",
+    content: "Không nhận được mã xác nhận",
+    date: "2024-05-18",
+    status: "Đang xử lý",
+    notes: "Đã gửi lại mã xác nhận"
+  },
+  {
+    id: 9,
+    user: "Trương Văn I",
+    email: "i.truong@example.com",
+    type: "Báo cáo khách sạn",
+    content: "Nhân viên khách sạn cư xử không đúng mực",
+    date: "2024-05-18",
+    status: "Đang xử lý",
+    notes: "Đang chờ phản hồi từ khách sạn"
+  },
+  {
+    id: 10,
+    user: "Ngô Thị J",
+    email: "j.ngo@example.com",
+    type: "Dịch vụ",
+    content: "Không thể đăng nhập tài khoản",
+    date: "2024-05-19",
+    status: "Đang xử lý",
+    notes: "Đã reset mật khẩu"
+  },
+  {
+    id: 11,
+    user: "Huỳnh Văn K",
+    email: "k.huynh@example.com",
+    type: "Thanh toán",
+    content: "Hoàn tiền chậm trễ",
+    date: "2024-05-20",
+    status: "Đang xử lý",
+    notes: "Chờ ngân hàng xác nhận"
+  },  
 ];
 
 function AminHelpCenter() {

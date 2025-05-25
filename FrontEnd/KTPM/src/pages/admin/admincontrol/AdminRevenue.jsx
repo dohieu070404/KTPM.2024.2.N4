@@ -6,31 +6,138 @@ import React, { useState } from "react";
 const initialRevenue = [
   { 
     id: 1, 
-    date: "2024-05-01", 
+    date: "2025-05-01", 
     source: "Phí quản lý", 
     amount: 15000000,
     type: "monthly" 
   },
   { 
     id: 2, 
-    date: "2024-05-03", 
+    date: "2025-05-03", 
     source: "Phí đối tác", 
     amount: 4500000,
     type: "monthly" 
   },
   { 
     id: 3, 
-    date: "2024-01-15", 
+    date: "2025-01-15", 
     source: "Hoa hồng", 
     amount: 7500000,
     type: "annual" 
   },
+  { 
+    id: 4, 
+    date: "2025-01-28", 
+    source: "Hoa hồng", 
+    amount: 6800000, 
+    type: "annual" 
+  },
+  { 
+    id: 5, 
+    date: "2025-02-12", 
+    source: "Hoa hồng", 
+    amount: 8100000, 
+    type: "annual" 
+  },
+  { 
+    id: 6, 
+    date: "2025-02-27", 
+    source: "Hoa hồng", 
+    amount: 7200000, 
+    type: "annual" 
+  },
+  { 
+    id: 7, 
+    date: "2025-03-05", 
+    source: "Hoa hồng", 
+    amount: 7900000, 
+    type: "annual" 
+  },
+  { 
+    id: 8, 
+    date: "2025-03-20", 
+    source: "Hoa hồng", 
+    amount: 7650000, 
+    type: "annual" 
+  },
+  { 
+    id: 9, 
+    date: "2025-04-10", 
+    source: "Hoa hồng", 
+    amount: 8000000, 
+    type: "annual" 
+  },
+  { 
+    id: 10, 
+    date: "2025-04-25", 
+    source: "Hoa hồng", 
+    amount: 8300000, 
+    type: "annual" 
+  },
+  { 
+    id: 11, 
+    date: "2025-05-02", 
+    source: "Hoa hồng", 
+    amount: 8700000, 
+    type: "annual" 
+  },
+  { 
+    id: 12, 
+    date: "2025-05-18", 
+    source: "Hoa hồng", 
+    amount: 8500000, 
+    type: "annual" 
+  },
+  { 
+    id: 13, 
+    date: "2025-03-05", 
+    source: "Phí quản lý", 
+    amount: 7900000, 
+    type: "annual" 
+  },
+  { 
+    id: 14, 
+    date: "2025-03-20", 
+    source: "Phí quản lý", 
+    amount: 7650000, 
+    type: "annual" 
+  },
+  { 
+    id: 15, 
+    date: "2025-04-10", 
+    source: "Phí quản lý", 
+    amount: 8000000, 
+    type: "annual" 
+  },
+  { 
+    id: 16, 
+    date: "2025-04-25", 
+    source: "Phí quản lý", 
+    amount: 8300000, 
+    type: "annual" 
+  },
+  { 
+    id: 17, 
+    date: "2025-05-02", 
+    source: "Phí quản lý", 
+    amount: 8700000, 
+    type: "annual" 
+  },
+  { 
+    id: 18, 
+    date: "2025-05-18", 
+    source: "Phí quản lý", 
+    amount: 8500000, 
+    type: "annual" 
+  }
+  
+  
 ];
 
 function AdminRevenue() {
   const [revenue] = useState(initialRevenue);
   const [filterType, setFilterType] = useState("month");
-  const [selectedDate, setSelectedDate] = useState("2024-05");
+  const [selectedDate, setSelectedDate] = useState("2025-05");
 
   const filteredRevenue = revenue.filter(item => {
     const date = new Date(item.date);

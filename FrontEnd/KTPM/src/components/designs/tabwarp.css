@@ -1,4 +1,4 @@
-
+*{text-decoration: none;}
 .tab-wrap {
     transition: 0.3s box-shadow ease;
     border-radius: 6px;
@@ -138,6 +138,7 @@
 
 
         .tab-conent-search-submit {
+          text-decoration: none;
         background: #007bff;
         color: white;
         padding: 12px 30px;
