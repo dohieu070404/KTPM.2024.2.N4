@@ -56,6 +56,13 @@ const RegisterPage = () => {
         }),
       });
 
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("Server response error:", response.status, text);
+        setFormErrors({ submit: `Đăng ký thất bại: ${response.status}` });
+        return;
+      }
+
       const result = await response.json();
 
       if (result.code === 1000) {
