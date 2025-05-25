@@ -23,7 +23,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoomRequest {
-//    private Hotel hotels;
     private String name;
     private String description;
     private BigDecimal price;
