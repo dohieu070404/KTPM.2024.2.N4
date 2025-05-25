@@ -49,9 +49,16 @@ const initialServices = [
   }
 ];
 
+const SERVICE_TYPES = [
+  { label: "Khách sạn", value: "hotel" },
+  { label: "Vé máy bay", value: "flight" },
+  { label: "Vé xe khách", value: "bus" }
+];
+
 function CustomerDashboard() {
   const [services, setServices] = useState(initialServices);
   const [editing, setEditing] = useState(null);
+  const [selectedTypes, setSelectedTypes] = useState(SERVICE_TYPES.map(x => x.value));
   const formOverlayRef = useRef(null);
 
   useEffect(() => {
@@ -77,17 +84,34 @@ function CustomerDashboard() {
     setEditing(null);
   };
 
+  const handleTypeFilterChange = (typeValue) => {
+    setSelectedTypes(prev =>
+      prev.includes(typeValue)
+        ? prev.filter(t => t !== typeValue)
+        : [...prev, typeValue]
+    );
+  };
+
+  // Lọc dịch vụ dựa theo selectedTypes
+  const filteredServices = services.filter(service => selectedTypes.includes(service.type));
+
   return (
     <div className="cds-bg">
       <div className="cds-main-layout">
-        {/* Bộ lọc (bạn có thể thêm thực tế nếu muốn) */}
+        {/* Bộ lọc */}
         <div className="cds-filter-box">
           <h3>BỘ LỌC DỊCH VỤ</h3>
           <div className="cds-filter-section">
             <div className="cds-filter-label">Loại dịch vụ:</div>
-            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Khách sạn</label>
-            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Vé máy bay</label>
-            <label className="cds-checkbox"><input type="checkbox" checked readOnly /> Vé xe khách</label>
+            {SERVICE_TYPES.map(type => (
+              <label key={type.value} className="cds-checkbox">
+                <input
+                  type="checkbox"
+                  checked={selectedTypes.includes(type.value)}
+                  onChange={() => handleTypeFilterChange(type.value)}
+                /> {type.label}
+              </label>
+            ))}
           </div>
         </div>
 
@@ -98,10 +122,10 @@ function CustomerDashboard() {
             <button className="cds-add-btn" onClick={() => setEditing({})}>+ Thêm dịch vụ mới</button>
           </div>
           <div className="cds-service-list">
-            {services.length === 0 ? (
+            {filteredServices.length === 0 ? (
               <div className="cds-no-service">Chưa có dịch vụ nào!</div>
             ) : (
-              services.map(service => (
+              filteredServices.map(service => (
                 <div className="cds-service-card" key={service.id}>
                   <div className="cds-service-main">
                     <div>
@@ -151,12 +175,12 @@ function CustomerDashboard() {
           </div>
         </div>
 
-        {/* Tổng hợp đơn (tùy chỉnh theo bạn) */}
+        {/* Tổng hợp đơn */}
         <div className="cds-order-summary">
           <h3>Tổng số dịch vụ</h3>
           <div className="cds-order-total">
             <span>Tổng dịch vụ:</span>
-            <span className="cds-total-number">{services.length}</span>
+            <span className="cds-total-number">{filteredServices.length}</span>
           </div>
           <button className="cds-btn cds-btn-confirm" disabled>Xác nhận</button>
         </div>
@@ -196,6 +220,17 @@ function CustomerForm({ service, onSave, onCancel, overlayRef }) {
     to: service.to || '',
     time: service.time || '',
   });
+
+  useEffect(() => {
+    // Khi chuyển sang thêm dịch vụ mới thì reset form về loại đang filter đầu tiên (nếu đang bỏ tích hết thì mặc định là hotel)
+    if (!isEditMode) {
+      setForm(f => ({
+        ...f,
+        type: service.type || 'hotel'
+      }));
+    }
+    // eslint-disable-next-line
+  }, [service]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
