@@ -29,6 +29,10 @@ public class User {
     private String name;
 
     @Lob
+    @Column(name = "Customer")
+    private String customer;
+
+    @Lob
     @Column(name = "gender")
     private String gender;
 

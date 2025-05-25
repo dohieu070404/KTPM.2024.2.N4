@@ -1,6 +1,7 @@
 package com.example.KTPM.controller;
 
 import com.example.KTPM.dto.request.ApiRespone;
+import com.example.KTPM.dto.request.UpdateRoleRequest;
 import com.example.KTPM.dto.request.UserCreationRequest;
 import com.example.KTPM.dto.request.UserUpdateRequest;
 import com.example.KTPM.dto.response.UserRespone;
@@ -34,10 +35,15 @@ public class UserController {
     //admin lấy thông tin của all user
     @GetMapping
     public ApiRespone<List<UserRespone>> getAllUsers(){
-        //SecurityContextHolder chứa thông tin đăng nhập của USER hiện tại
-         var securityContext = SecurityContextHolder.getContext().getAuthentication();
         return ApiRespone.<List<UserRespone>>builder()
                 .result(userService.getUsers())
+                .build();
+    }
+    //lấy thông tin  của user đang yêu cầu cấp quyền customer
+    @GetMapping("/updateRoleUser")
+    public ApiRespone<List<UserRespone>> getAllRequests(){
+        return ApiRespone.<List<UserRespone>>builder()
+                .result(userService.getRoleRequest())
                 .build();
     }
     //lấy thông tin của user hiện tại
@@ -52,6 +58,17 @@ public class UserController {
     UserRespone updateUser(@PathVariable Integer userId, @RequestBody UserUpdateRequest request){
         return userService.updateUser(userId,request);
     }
+    //yêu cầu nâng role
+    @PutMapping("/requestRole")
+    UserRespone requestUserRole(){
+        return userService.requestRole();
+    }
+    //phản hồi nâng role
+    @PutMapping("/reRole")
+    UserRespone responeUserRole(@RequestBody UpdateRoleRequest request){
+        return userService.responeRole(request);
+    }
+
 
     //xóa user
     @DeleteMapping("/{userId}")

@@ -1,5 +1,6 @@
 package com.example.KTPM.service;
 
+import com.example.KTPM.dto.request.UpdateRoleRequest;
 import com.example.KTPM.dto.request.UserCreationRequest;
 import com.example.KTPM.dto.request.UserUpdateRequest;
 import com.example.KTPM.dto.response.UserRespone;
@@ -47,6 +48,7 @@ public class UserService {
         roleRepository.findById(Roles.USER.name()).ifPresent(roles::add);
         user.setRole(roles);
         user.setStatus("active");
+        user.setCustomer("non");
         return userRepository.save(user);
     }
     public UserRespone getMyInfor(){
@@ -58,6 +60,27 @@ public class UserService {
     @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     public List<UserRespone> getUsers() {
         return userRepository.findAll().stream().map(userMapper::toUserRespone).toList();
+    }
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+    public List<UserRespone> getRoleRequest() {
+        return userRepository.findAllRequest().stream().map(userMapper::toUserRespone).toList();
+    }
+    public UserRespone requestRole(){
+        var context=SecurityContextHolder.getContext();
+        String name=context.getAuthentication().getName();
+        User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        user.setCustomer("pending");
+        return userMapper.toUserRespone(userRepository.save(user));
+    }
+    public UserRespone responeRole(UpdateRoleRequest request){
+        User user=userRepository.findByName(request.getName()).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
+        if(request.getRespone().equals("accept")){
+            HashSet<Role> roles=new HashSet<>();
+            roleRepository.findById(Roles.CUSTOMER.name()).ifPresent(roles::add);
+            user.setRole(roles);
+        }
+        user.setCustomer(request.getRespone());
+        return userMapper.toUserRespone(userRepository.save(user));
     }
 //    @PostAuthorize("returnObject.username==authentication.name||hasAuthority('SCOPE_ADMIN')")
 //    public UserRespone getUser(String id) {
