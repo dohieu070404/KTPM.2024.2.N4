@@ -17,6 +17,7 @@ import TourPage from './pages/user/Tourpage.jsx';
 import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
 import OrderPage from './pages/user/orderpage.jsx';
 import PaymentPage from './pages/user/payment.jsx';
+import TransportBookingPage from './pages/user/TransportBookingPage.jsx';
 
 
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
     path: "/HoltelPage",
     element: <HotelPage/>
+      },
+       {
+    path: "/TransportBookingPage",
+    element: <TransportBookingPage/>
       },
       {
     path: "/TourPage",

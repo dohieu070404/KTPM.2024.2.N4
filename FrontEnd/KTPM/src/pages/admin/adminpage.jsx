@@ -4,9 +4,10 @@ import './adminpage.css';
 import AdminDashboard from './admincontrol/adminDashboard';
 import AccountManagement from './admincontrol/AccountManagement';
 import CustomerManagement from './admincontrol/CustomerManagement';
-import UserManagement from './admincontrol/UserManagement';
+import UserManagement from './admincontrol/AdminRevenue';
 import AminHelpCenter from './admincontrol/AminHelpCenter';
 import '../../styles/icondesigns.css'
+import AdminRevenue from './admincontrol/AdminRevenue';
 
 // Các component đại diện cho từng tab
 // const Dashboard = () => <div>Dashboard Content</div>;
@@ -58,18 +59,18 @@ const AdminPage = () => {
             <i className="fas fa-wallet"></i>
             <span>Quản lý khách hàng</span>
           </a>
-          <a 
+          {/* <a 
             href="#" 
             className={`admin-nav-item ${activeTab === "user" ? "admin-active" : ""}`}
             onClick={() => handleTabClick("user")}
           >
             <i className="fas fa-sliders-h"></i>
             <span>Quản lý người dùng</span>
-          </a>
+          </a> */}
           <a 
             href="#" 
-            className={`admin-nav-item ${activeTab === "revenue" ? "admin-active" : ""}`}
-            onClick={() => handleTabClick("revenue")}
+            className={`admin-nav-item ${activeTab === "AdminRevenue" ? "admin-active" : ""}`}
+            onClick={() => handleTabClick("AdminRevenue")}
           >
             <i className="fas fa-comment-dots"></i>
             <span>Doanh Thu</span>
@@ -93,7 +94,7 @@ const AdminPage = () => {
         {activeTab === "dashboard" && <AdminDashboard />}
         {activeTab === "account" && <AccountManagement />}
         {activeTab === "customer" && <CustomerManagement />}
-        {activeTab === "user" && <UserManagement />}
+        {activeTab === "AdminRevenue" && <AdminRevenue/>}
         
         {activeTab === "help" && <AminHelpCenter />}
       </div>
