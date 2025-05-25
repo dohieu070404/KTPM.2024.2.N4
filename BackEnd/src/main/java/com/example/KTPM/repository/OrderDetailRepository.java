@@ -15,6 +15,6 @@ import java.util.Optional;
 public interface OrderDetailRepository extends JpaRepository<OrderDetail,Integer> {
     Optional<OrderDetail> findById(Integer s);
     @Query(value = "SELECT * FROM order_details WHERE Order_Id = :id", nativeQuery = true)
-    List<OrderDetail> findAllByOrderId(@Param("username") Integer id);
+    List<OrderDetail> findAllByOrderId(@Param("id") Integer id);
 }
 

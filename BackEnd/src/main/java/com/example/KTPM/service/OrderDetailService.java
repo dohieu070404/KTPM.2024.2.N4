@@ -3,20 +3,16 @@ package com.example.KTPM.service;
 import com.example.KTPM.dto.request.OrderDetailRequest;
 import com.example.KTPM.dto.response.OrderDetailRespone;
 import com.example.KTPM.entity.Order;
-import com.example.KTPM.entity.OrderDetail;
-import com.example.KTPM.entity.User;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 import com.example.KTPM.mapper.OrderDetailMapper;
 import com.example.KTPM.repository.OrderRepository;
-import com.example.KTPM.repository.PermissionRepository;
 import com.example.KTPM.repository.OrderDetailRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 
 @Service

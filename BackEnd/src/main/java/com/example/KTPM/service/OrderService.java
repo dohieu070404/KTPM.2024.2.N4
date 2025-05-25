@@ -50,6 +50,7 @@ public class OrderService {
             .map(orderMapper::toOrderRespone)
             .toList();
     }
+
     public OrderRespone getOrder(Integer id) {
         return orderMapper.toOrderRespone(orderRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ROOM_NOT_EXISTED)));
     }
