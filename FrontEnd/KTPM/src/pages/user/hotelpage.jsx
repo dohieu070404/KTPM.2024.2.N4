@@ -27,29 +27,28 @@ const HotelPage = () => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    const fetchHotels = async () => {
+    const fetchRooms = async () => {
       try {
         setLoading(true);
-        const queryParams = new URLSearchParams();
-        
-        queryParams.append('minPrice', filters.priceRange[0]);
-        queryParams.append('maxPrice', filters.priceRange[1]);
-        queryParams.append('sortBy', filters.sortBy);
-        queryParams.append('location', filters.location);
 
-        if (filters.rating != null) {
-          queryParams.append('rating', filters.rating);
-        }
-
-
-        const token = localStorage.getItem("token");
-
-        const response = await fetch(`http://localhost:8080/bookingtravel/hotel?${queryParams.toString()}`, {
-          method: "GET",
+        const response = await fetch("http://localhost:8080/room/search", {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
-          }
+          },
+          signal,
+          body: JSON.stringify({
+            location: filters.location,
+            checkInDate: filters.checkIn,
+            checkOutDate: filters.checkOut,
+            maxAdults: filters.guests.adults,
+            maxChildren: filters.guests.children,
+            minPrice: filters.priceRange[0],
+            maxPrice: filters.priceRange[1],
+            rating: filters.rating,
+            sortBy: filters.sortBy,
+          }),
         });
 
         if (!response.ok) {
@@ -64,8 +63,8 @@ const HotelPage = () => {
         setHotels(data.result);
         setError(null);
       } catch (err) {
-        if (err.name !== 'AbortError') {
-          console.error("Lỗi khi fetch hotel:", err);
+        if (err.name !== "AbortError") {
+          console.error("Lỗi khi fetch room:", err);
           setError(err.message);
           setHotels([]);
         }
@@ -74,7 +73,7 @@ const HotelPage = () => {
       }
     };
 
-    fetchHotels();
+    fetchRooms();
     return () => controller.abort();
   }, [filters]);
 
