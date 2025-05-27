@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
-
+import { jwtDecode } from "jwt-decode"
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -31,7 +31,25 @@ const LoginPage = () => {
       if (result.code === 0 && result.result?.token) {
         localStorage.setItem("token", result.result.token);
         alert("Đăng nhập thành công!");
-        // window.location.href = "/dashboard";
+        try {
+        const decodedToken = jwtDecode(localStorage.getItem("token"));
+        // Lấy role từ trường 'scope'
+        const userRole = decodedToken.scope; // userRole sẽ có giá trị là "ROLE_ADMIN"
+        const roleName=decodedToken.scope;
+        localStorage.setItem("role",roleName);
+        console.log("Vai trò người dùng:", userRole);
+        if(roleName === "ROLE_ADMIN"){
+          window.location.href = "/adminpage";
+        }else if(roleName === "ROLE_USER"){
+          window.location.href = "/"
+        }else {
+          window.location.href = "/customerpage"
+        }
+        // Sử dụng userRole cho các mục đích khác (lưu trữ, điều hướng, ...)
+        localStorage.setItem("userRole", userRole);
+        } catch (error) {
+          console.error("Lỗi giải mã token:", error);
+        }
       } else {
         alert("Đăng nhập thất bại: Đăng nhập sai hoặc hệ thống lỗi");
       }
