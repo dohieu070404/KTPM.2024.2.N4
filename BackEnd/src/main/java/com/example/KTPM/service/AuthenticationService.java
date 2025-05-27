@@ -12,7 +12,6 @@ import com.example.KTPM.dto.response.AuthenticationRespone;
 import com.example.KTPM.dto.response.IntrospectRespone;
 import com.example.KTPM.entity.InvalidatedToken;
 import com.example.KTPM.entity.User;
-import com.example.KTPM.enums.Roles;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 //import com.example.KTPM.repository.InvalidateTokenRepository;
@@ -62,9 +61,6 @@ public class AuthenticationService {
         return AuthenticationRespone.builder()
                 .authenticated(true)
                 .token(generateToken(user))
-                .role(user.getRole().name())
-                .name(user.getName())
-                .email(user.getEmail())
                 .build();
     }
     private String generateToken(User user) {
@@ -91,15 +87,20 @@ public class AuthenticationService {
 
     //Chuyển list các role của user thành dạng string với các role cách nhau bởi dấu cách vd:USER ADMIN
     private String buildScope(User user) {
-        StringJoiner scope = new StringJoiner(" ");
-        Roles role = user.getRole();
+        StringJoiner scope=new StringJoiner(" ");
+        if(!user.getRole().isEmpty()){
+            user.getRole().forEach(role->{
+                scope.add("ROLE_"+role.getName());//role thi co tien to ROLE,permission ko co
+                if(!role.getPermission().isEmpty()){
+                    role.getPermission().forEach(permission->{
+                        scope.add(permission.getName());
+                    });
+                }
 
-        if (role != null) {
-            scope.add("ROLE_" + role.name()); // Chuyển enum thành chuỗi
+            });
         }
         return scope.toString();
     }
-
     //xac dinh token hop le
     public IntrospectRespone introspect(IntrospectRequest request) throws ParseException, JOSEException {
         var token=request.getToken();

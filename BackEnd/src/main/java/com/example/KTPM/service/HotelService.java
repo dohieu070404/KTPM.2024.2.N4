@@ -45,8 +45,7 @@ public class HotelService {
         User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         Integer id=user.getId();
         hotel.setCreateUserId(id);
-        var hotelAmenity = hotelAmenityRepository.findAllByNameIn(request.getHotelAmenities());
-
+        var hotelAmenity=hotelAmenityRepository.findAllById(request.getHotelAmenities());
         hotel.setHotelAmenities(new HashSet<>(hotelAmenity));
         return hotelMapper.toHotelRespone(hotelRepository.save(hotel));
     }
@@ -97,11 +96,6 @@ public class HotelService {
         return hotelMapper.toHotelRespone(hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED)));
     }
 
-    public List<HotelRespone> getFilteredHotels(Integer minPrice, Integer maxPrice, String sortBy, Integer rating, String location) {
-        return hotelRepository.findAll().stream()
-                .map(hotelMapper::toHotelRespone)
-                .toList();
-    }
 
 
 

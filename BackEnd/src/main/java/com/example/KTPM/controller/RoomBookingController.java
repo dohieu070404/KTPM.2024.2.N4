@@ -1,7 +1,6 @@
 package com.example.KTPM.controller;
 
 import com.example.KTPM.dto.request.*;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.RoomBookingRespone;
 import com.example.KTPM.dto.response.RoomRespone;
 import com.example.KTPM.dto.response.UserRespone;
@@ -39,19 +38,5 @@ public class RoomBookingController {
                 .result(roomBookingService.updateBookingStatus(bookingId, request))
                 .build();
     }
-
-    @GetMapping("/my")
-    public ApiRespone<List<RoomBookingRespone>> getMyBookings() {
-        return ApiRespone.<List<RoomBookingRespone>>builder()
-                .code(1000)
-                .result(roomBookingService.getMyBookings())
-                .build();
-    }
-
-    @DeleteMapping("/{bookingId}")
-    public ApiRespone<Void> deleteRoomBooking(@PathVariable Integer bookingId) {
-        roomBookingService.deleteRoomBooking(bookingId);
-        return ApiRespone.<Void>builder().code(1000).build();
-    }
-
+    
 }

@@ -1,7 +1,7 @@
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.TranSportCompanyRequest;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.TranSportCompanyRespone;
 import com.example.KTPM.service.TranSportCompanyService;
 import jakarta.validation.Valid;

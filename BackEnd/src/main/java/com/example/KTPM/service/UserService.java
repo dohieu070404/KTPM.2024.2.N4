@@ -14,8 +14,6 @@ import com.example.KTPM.repository.RoleRepository;
 import com.example.KTPM.repository.UserRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         HashSet<Role> roles=new HashSet<>();
         roleRepository.findById(Roles.USER.name()).ifPresent(roles::add);
-        user.setRole(Roles.USER);
+        user.setRole(roles);
         user.setStatus("active");
         user.setCustomer("non");
         return userRepository.save(user);
@@ -77,7 +75,9 @@ public class UserService {
     public UserRespone responeRole(UpdateRoleRequest request){
         User user=userRepository.findByName(request.getName()).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         if(request.getRespone().equals("accept")){
-            user.setRole(Roles.CUSTOMER);
+            HashSet<Role> roles=new HashSet<>();
+            roleRepository.findById(Roles.CUSTOMER.name()).ifPresent(roles::add);
+            user.setRole(roles);
         }
         user.setCustomer(request.getRespone());
         return userMapper.toUserRespone(userRepository.save(user));
@@ -87,15 +87,15 @@ public class UserService {
 //        return userMapper.toUserRespone(userRepository.findById(id)
 //                .orElseThrow(()->new RuntimeException("User not found")));
 //    }
-    public UserRespone updateUser(Integer id,UserUpdateRequest request){
-        User tmp=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
-        PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
-        userMapper.updateUser(tmp,request);
-        tmp.setPassword(passwordEncoder.encode(request.getPassword()));
-        tmp.setRole(request.getRole());
-        return userMapper.toUserRespone(userRepository.save(tmp));
-    }
-
+public UserRespone updateUser(Integer id,UserUpdateRequest request){
+    User tmp=userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found"));
+    PasswordEncoder passwordEncoder=new BCryptPasswordEncoder(10);
+    userMapper.updateUser(tmp,request);
+    tmp.setPassword(passwordEncoder.encode(request.getPassword()));
+    var role=roleRepository.findAllById(request.getRoles());
+    tmp.setRole(new HashSet<>(role));
+    return userMapper.toUserRespone(userRepository.save(tmp));
+}
     public void deleteUser(Integer id){
         User user=userRepository.findById(id)
                 .orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
@@ -106,19 +106,5 @@ public class UserService {
         user.setIsDelete(true);
         userRepository.save(user);
     }
-
-    public void upgradeToCustomer(String name) {
-        User user = userRepository.findByName(name)
-            .orElseThrow(() -> new UsernameNotFoundException("Không tìm thấy người dùng"));
-
-        if (user.getRole() == Roles.CUSTOMER) {
-            throw new IllegalStateException("Người dùng đã là CUSTOMER");
-        }
-
-        user.setRole(Roles.CUSTOMER); // 💡 Cập nhật role
-        userRepository.save(user);
-    }
-    
-
 
 }

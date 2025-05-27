@@ -1,8 +1,8 @@
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.HotelImagesRequest;
 import com.example.KTPM.dto.request.HotelRequest;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.HotelImagesRespone;
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.service.HotelImagesService;

@@ -4,7 +4,6 @@ import com.example.KTPM.entity.RoomBooking;
 import com.example.KTPM.entity.RoomType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -15,8 +14,4 @@ import java.util.Optional;
 public interface RoomBookingRepository extends JpaRepository<RoomBooking,Integer> {
     boolean existsById(Integer s);
     Optional<RoomBooking> findById(Integer id);
-
-    @Query("SELECT rb FROM RoomBooking rb WHERE rb.user.name = :username AND rb.isDeleted = false")
-    List<RoomBooking> findAllByUsername(@Param("username") String username);
 }
-

@@ -99,29 +99,4 @@ public class RoomBookingService {
         // Lưu thay đổi và trả về kết quả
         return roomBookingMapper.toRoomBookingRespone(roomBookingRepository.save(roomBooking));
     }
-
-    public List<RoomBookingRespone> getMyBookings() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        List<RoomBooking> bookings = roomBookingRepository.findAllByUsername(username);
-        return bookings.stream().map(roomBookingMapper::toRoomBookingRespone).toList();
-    }
-
-    public void deleteRoomBooking(Integer id) {
-        RoomBooking booking = roomBookingRepository.findById(id)
-            .orElseThrow(() -> new AppException(ErrorCode.BOOKING_NOT_EXISTED));
-
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User currentUser = userRepository.findByName(username)
-            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-
-        if (!booking.getUser().getId().equals(currentUser.getId())) {
-            throw new AppException(ErrorCode.USER_NOT_OWNER);
-        }
-
-        booking.setIsDeleted(true);
-        booking.setDeletedAt(Instant.now());
-        roomBookingRepository.save(booking);
-    }
-
-
 }

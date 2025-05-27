@@ -1,4 +1,4 @@
-package com.example.KTPM.dto.response;
+package com.example.KTPM.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -6,12 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data//tu dong tao getter setter va ...
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AuthenticationRespone {
-    private String token;
-    boolean authenticated;
+public class ApiRespone<T> {
+    private int code;
+    private String message;
+    private T result;
 }

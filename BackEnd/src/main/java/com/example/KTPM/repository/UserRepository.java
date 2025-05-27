@@ -15,7 +15,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Integer> {
     boolean existsByName(String s);
     Optional<User> findByName(String name);
-    Optional<User> findByEmailIgnoreCase(String email);
     Optional<User> findByEmail(String email);
     @Query(value = "SELECT * FROM user WHERE Customer ='pending'", nativeQuery = true)
     List<User> findAllRequest();

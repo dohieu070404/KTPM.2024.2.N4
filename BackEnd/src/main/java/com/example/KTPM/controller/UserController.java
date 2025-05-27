@@ -1,9 +1,9 @@
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.UpdateRoleRequest;
 import com.example.KTPM.dto.request.UserCreationRequest;
 import com.example.KTPM.dto.request.UserUpdateRequest;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.UserRespone;
 import com.example.KTPM.entity.User;
 import com.example.KTPM.service.UserService;
@@ -11,10 +11,7 @@ import jakarta.validation.Valid;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -79,12 +76,4 @@ public class UserController {
         userService.deleteUser(userId);
         return "Deleted Successfully";
     }
-
-    // Yêu cầu trở thành CUSTOMER
-    @PatchMapping("/request-customer")
-    public ResponseEntity<?> requestBecomeCustomer(@AuthenticationPrincipal UserDetails userDetails) {
-        userService.upgradeToCustomer(userDetails.getUsername());
-        return ResponseEntity.ok("Request thành công. Bạn đã trở thành CUSTOMER.");
-    }
-
 }

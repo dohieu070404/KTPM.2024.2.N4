@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
-import com.example.KTPM.enums.OrderStatus;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -29,10 +27,8 @@ public class Order {
     @Column(name = "Order_Date",updatable = false, insertable = false)
     private Instant orderDate;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "Status")
-    private OrderStatus status;
-
+    private String status;
 
     @Size(max = 100)
     @ColumnDefault("''")
@@ -61,12 +57,5 @@ public class Order {
 
     @Column(name = "Final_Price", precision = 15, scale = 2,updatable = false, insertable = false)
     private BigDecimal finalPrice;
-
-    @Column(name = "Is_Deleted")
-    private Boolean isDeleted = false;
-
-    @Column(name = "Deleted_At")
-    private Instant deletedAt;
-
 
 }

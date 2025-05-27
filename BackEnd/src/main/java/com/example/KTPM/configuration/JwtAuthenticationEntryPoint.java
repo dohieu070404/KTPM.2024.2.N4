@@ -1,6 +1,6 @@
 package com.example.KTPM.configuration;
 
-import com.example.KTPM.dto.response.ApiRespone;
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.exception.ErrorCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;

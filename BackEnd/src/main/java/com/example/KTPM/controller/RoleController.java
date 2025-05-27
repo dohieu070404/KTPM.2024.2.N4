@@ -1,7 +1,7 @@
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoleRequest;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.RoleRespone;
 import com.example.KTPM.service.RoleService;
 import jakarta.validation.Valid;

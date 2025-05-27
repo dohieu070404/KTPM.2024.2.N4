@@ -1,6 +1,6 @@
 package com.example.KTPM.controller;
 
-import com.example.KTPM.dto.response.ApiRespone;
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.OrderDetailRequest;
 import com.example.KTPM.dto.response.OrderDetailRespone;
 import com.example.KTPM.service.OrderDetailService;
@@ -32,24 +32,6 @@ public class OrderDetailController {
     public ApiRespone<List<OrderDetailRespone>> getOrderDetails(@PathVariable Integer orderId) {
         return ApiRespone.<List<OrderDetailRespone>>builder()
                 .result(orderDetailService.getAllOrderDetails(orderId))
-                .build();
-    }
-
-    @PutMapping("/{id}")
-    public ApiRespone<OrderDetailRespone> updateOrderDetail(
-            @PathVariable Integer id,
-            @RequestBody @Valid OrderDetailRequest request) {
-        return ApiRespone.<OrderDetailRespone>builder()
-                .code(1000)
-                .result(orderDetailService.update(id, request))
-                .build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ApiRespone<Void> deleteOrderDetail(@PathVariable Integer id) {
-        orderDetailService.delete(id);
-        return ApiRespone.<Void>builder()
-                .code(1000)
                 .build();
     }
 

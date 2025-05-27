@@ -66,29 +66,15 @@ public class Hotel {
     @Column(name = "Check_Out_Time")
     private LocalTime checkOutTime;
 
+    @ColumnDefault("1")
     @Column(name = "Is_Active")
     private Boolean isActive;
 
-    @Column(name = "Created_At")
+    @Column(name = "Created_At", updatable = false, insertable = false)
     private Instant createdAt;
 
     @Column(name = "Edited_At")
     private Instant editedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = Instant.now();
-        this.editedAt = Instant.now();
-        if (this.isActive == null) {
-            this.isActive = true;
-        }
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.editedAt = Instant.now();
-    }
-
     @ManyToMany
     @JoinTable(
             name = "hotels_hotel_amenities", // tên bảng trung gian

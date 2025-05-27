@@ -1,9 +1,7 @@
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoomRequest;
-import com.example.KTPM.dto.request.SearchRequest;
-import com.example.KTPM.dto.response.ApiRespone;
-
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
 import com.example.KTPM.service.RoomService;
@@ -75,15 +73,11 @@ public class RoomController {
                 .build();
     }
 
-    @PostMapping("/search")
-    public ApiRespone<List<RoomRespone>> searchRooms(@RequestBody SearchRequest request) {
-        return ApiRespone.<List<RoomRespone>>builder()
-                .code(1000)
-                .result(roomService.searchRooms(request))
-                .build();
-    }
 
-    
+
+
+
+
 //    @GetMapping("/filter")
 //    public ApiRespone<List<HotelRespone>> getFilterByRating() {
 //        var securityContext = SecurityContextHolder.getContext().getAuthentication();

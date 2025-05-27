@@ -1,9 +1,9 @@
 
 package com.example.KTPM.controller;
 
+import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.BookingStatusRequest;
 import com.example.KTPM.dto.request.TransportBookingRequest;
-import com.example.KTPM.dto.response.ApiRespone;
 import com.example.KTPM.dto.response.TransportBookingRespone;
 import com.example.KTPM.service.TransportBookingService;
 import jakarta.validation.Valid;
