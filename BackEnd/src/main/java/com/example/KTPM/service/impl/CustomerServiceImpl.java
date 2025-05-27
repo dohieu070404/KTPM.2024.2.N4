@@ -1,8 +1,5 @@
 package com.example.KTPM.service.impl;
 
-import com.example.KTPM.dto.request.CustomerRequest;
-import com.example.KTPM.dto.response.CustomerResponse;
-import com.example.KTPM.entity.Customer;
 import com.example.KTPM.mapper.CustomerMapper;
 import com.example.KTPM.repository.CustomerRepository;
 import com.example.KTPM.service.CustomerService;

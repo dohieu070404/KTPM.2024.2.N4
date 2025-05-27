@@ -1,8 +1,5 @@
 package com.example.KTPM.service;
 
-import com.example.KTPM.dto.request.CustomerRequest;
-import com.example.KTPM.dto.response.CustomerResponse;
-
 import java.util.List;
 
 public interface CustomerService {

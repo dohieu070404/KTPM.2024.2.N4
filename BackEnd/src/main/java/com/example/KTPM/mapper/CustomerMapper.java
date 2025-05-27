@@ -1,8 +1,5 @@
 package com.example.KTPM.mapper;
 
-import com.example.KTPM.dto.request.CustomerRequest;
-import com.example.KTPM.dto.response.CustomerResponse;
-import com.example.KTPM.entity.Customer;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
