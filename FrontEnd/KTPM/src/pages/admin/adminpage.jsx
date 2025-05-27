@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './adminpage.css';
 
 import AdminDashboard from './admincontrol/adminDashboard';
@@ -20,9 +21,15 @@ import AdminRevenue from './admincontrol/AdminRevenue';
 
 const AdminPage = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const navigate = useNavigate();
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
   };
 
   return (
@@ -31,9 +38,11 @@ const AdminPage = () => {
     <div className="admin-page-container">
       <div className="admin-sidebar">
         {/* <div className="admin-logo">logo</div> */}
-        <div  className='admin-logo'>
-      <img src="/assets/logopage.jpg" alt="" />
-      </div>
+        <div  className='admin-logo' style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px'}}>
+          <img src="/assets/logopage.jpg" alt="" />
+          <span style={{ fontSize: '18px', color: 'white', fontWeight: 'bold' }}>VIVUGO ADMIN</span>
+        </div>
+
         <div className="admin-nav-menu">
           <a 
             href="#" 
@@ -86,7 +95,7 @@ const AdminPage = () => {
           </a>
         </div>
         <div className='Admin-page-control-logout'>
-        <a>logout</a>
+          <a onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</a>
         </div>
       </div>
       <div className="admin-page-content-box">

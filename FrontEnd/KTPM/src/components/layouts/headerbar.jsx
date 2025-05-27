@@ -73,7 +73,6 @@ const HeaderBar = () => {
   }
 };
 
-
   // Danh sách item hiển thị tuỳ trạng thái login
   const dropdownItems = userName
     ? [
