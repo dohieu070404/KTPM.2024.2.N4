@@ -1,5 +1,7 @@
 package com.example.KTPM.dto.response;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,4 +16,7 @@ import lombok.NoArgsConstructor;
 public class AuthenticationRespone {
     private String token;
     boolean authenticated;
+    private String name;
+    private String email;
+    private List<String> role; // List of roles and permissions
 }

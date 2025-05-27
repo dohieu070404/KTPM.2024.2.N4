@@ -10,8 +10,9 @@ const ComboSearchPage = () => {
 
   const [filters, setFilters] = useState({
     transport: [],
-    priceRange: [0, 5000000],
-    sortBy: 'priceAsc'
+    priceRange: [],
+    sortBy: 'priceAsc',
+    destination: '',
   });
 
   const LoadingSpinner = () => (
@@ -41,93 +42,103 @@ const ComboSearchPage = () => {
     const fakeData = [
       {
         id: 1,
-        imageUrl: '/images/combo1.jpg',
+        imageUrl: 'public/assets/PhuQuoc.webp',
         title: 'Phú Quốc 3N2Đ - Vé máy bay + 2 đêm khách sạn 3*',
         price: 3590000,
         location: 'Phú Quốc',
         rating: 4.5,
-        amenities: ['Wifi', 'Ăn sáng miễn phí']
+        amenities: ['Wifi', 'Ăn sáng miễn phí'],
+        transportType: 'Máy bay'
       },
       {
         id: 2,
-        imageUrl: '/images/combo2.jpg',
+        imageUrl: 'public/assets/NhaTrang.avif',
         title: 'Nha Trang 3N2Đ - Xe giường nằm + 2 đêm khách sạn 4*',
         price: 1290000,
         location: 'Nha Trang',
         rating: 4.2,
-        amenities: ['Gần biển', 'Hồ bơi']
+        amenities: ['Gần biển', 'Hồ bơi'],
+        transportType: 'Xe'
       },
       {
         id: 3,
-        imageUrl: '/images/combo3.jpg',
+        imageUrl: 'public/assets/DaLat.jpg',
         title: 'Đà Lạt 3N2Đ - Xe khứ hồi + 2 đêm homestay xinh xắn',
         price: 990000,
         location: 'Đà Lạt',
         rating: 4.0,
-        amenities: ['Check-in đẹp', 'BBQ ngoài trời']
+        amenities: ['Check-in đẹp', 'BBQ ngoài trời'],
+        transportType: 'Xe'
       },
       {
         id: 4,
-        imageUrl: '/images/combo4.jpg',
+        imageUrl: 'public/assets/HoiAn.jpg',
         title: 'Hội An 3N2Đ - Vé máy bay + resort 4 sao gần phố cổ',
         price: 2290000,
         location: 'Hội An',
         rating: 4.3,
-        amenities: ['Xe đưa đón', 'Buffet sáng']
+        amenities: ['Xe đưa đón', 'Buffet sáng'],
+        transportType: 'Máy bay'
       },
       {
         id: 5,
-        imageUrl: '/images/combo5.jpg',
+        imageUrl: 'public/assets/ConDao.webp',
         title: 'Côn Đảo 2N1Đ - Máy bay khứ hồi + khách sạn gần biển',
         price: 4790000,
         location: 'Côn Đảo',
         rating: 4.6,
-        amenities: ['Gần bãi tắm', 'Xe đạp miễn phí']
+        amenities: ['Gần bãi tắm', 'Xe đạp miễn phí'],
+        transportType: 'Máy bay'
       },
       {
         id: 6,
-        imageUrl: '/images/combo6.jpg',
+        imageUrl: 'public/assets/HaLong.avif',
         title: 'Hạ Long 3N2Đ - Du thuyền 5 sao + bữa tối trên vịnh',
         price: 5190000,
         location: 'Hạ Long',
         rating: 4.7,
-        amenities: ['Du thuyền cao cấp', 'Bữa tối BBQ']
+        amenities: ['Du thuyền cao cấp', 'Bữa tối BBQ'],
+        transportType: 'Du thuyền'
       },
       {
         id: 7,
-        imageUrl: '/images/combo7.jpg',
+        imageUrl: 'public/assets/QuyNhon.webp',
         title: 'Quy Nhơn 4N3Đ - Xe limousine + khách sạn trung tâm',
         price: 2090000,
         location: 'Quy Nhơn',
         rating: 4.1,
-        amenities: ['Gần biển', 'Hồ bơi vô cực']
+        amenities: ['Gần biển', 'Hồ bơi vô cực'],
+        transportType: 'Xe'
       },
       {
         id: 8,
-        imageUrl: '/images/combo8.jpg',
+        imageUrl: 'public/assets/Sapa.png',
         title: 'Sapa 3N2Đ - Tàu hỏa giường nằm + homestay view núi',
         price: 1790000,
         location: 'Sapa',
         rating: 4.4,
-        amenities: ['View núi đẹp', 'Chợ đêm']
+        amenities: ['View núi đẹp', 'Chợ đêm'],
+        transportType: 'Tàu hoả'
       },
       {
         id: 9,
-        imageUrl: '/images/combo9.jpg',
+        imageUrl: 'public/assets/VungTau.jpg',
         title: 'Vũng Tàu 2N1Đ - Xe đưa đón + khách sạn 3* gần biển',
         price: 890000,
         location: 'Vũng Tàu',
         rating: 3.9,
-        amenities: ['Bãi biển riêng', 'Ăn sáng miễn phí']
+        amenities: ['Bãi biển riêng', 'Ăn sáng miễn phí'],
+        transportType: 'Xe'
       },
       {
         id: 10,
-        imageUrl: '/images/combo10.jpg',
+        imageUrl: 'public/assets/MuiNe.jpeg',
         title: 'Mũi Né 3N2Đ - Xe khứ hồi + resort 4 sao ven biển',
         price: 2590000,
         location: 'Mũi Né',
         rating: 4.2,
-        amenities: ['Hồ bơi', 'Spa thư giãn']
+        amenities: ['Hồ bơi', 'Spa thư giãn'],
+        transportType: 'Xe'
       }
     ];
 
@@ -248,7 +259,10 @@ const ComboSearchPage = () => {
 
         <div className="combo-search__filter-group">
           <h3 className="combo-search__filter-label">Điểm đến</h3>
-          <select className="combo-search__dropdown">
+          <select className="combo-search__dropdown"
+            value={filters.destination}
+            onChange={(e) => setFilters(prev => ({ ...prev, destination: e.target.value }))}
+          > 
             <option value="">Tất cả</option>
             <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
             <option value="Hà Nội">Hà Nội</option>
@@ -369,8 +383,6 @@ const ComboSearchPage = () => {
 
           </div>
         </div>
-
-        <button className="combo-search__apply-button">Áp dụng</button>
       </aside>
 
       <main className="combo-search__results">
@@ -378,16 +390,25 @@ const ComboSearchPage = () => {
           <div className="combo-search__result-info">
             <span className="combo-search__result-count">
               {[...comboDeals]
-              .filter((combo) => {
-                const [min, max] = filters.priceRange;
-                return combo.price >= min && combo.price <= max;
-              }).length > 0 
-                ? `Tìm thấy ${[...comboDeals].filter((combo) => {
-                    const [min, max] = filters.priceRange;
-                    return combo.price >= min && combo.price <= max;
-                  }).length} combo phù hợp`
+                .filter((combo) => {
+                  const [min, max] = filters.priceRange;
+                  const matchPrice = combo.price >= min && combo.price <= max;
+                  const matchDestination = !filters.destination || combo.location === filters.destination;
+                  const matchTransport = filters.transport.length === 0 || filters.transport.includes(combo.transportType);
+                  return matchPrice && matchDestination && matchTransport;
+                }).length > 0
+                ? `Tìm thấy ${
+                    [...comboDeals].filter((combo) => {
+                      const [min, max] = filters.priceRange;
+                      const matchPrice = combo.price >= min && combo.price <= max;
+                      const matchDestination = !filters.destination || combo.location === filters.destination;
+                      const matchTransport = filters.transport.length === 0 || filters.transport.includes(combo.transportType);
+                      return matchPrice && matchDestination && matchTransport;
+                    }).length
+                  } combo phù hợp`
                 : 'Không tìm thấy kết quả nào'}
             </span>
+
           </div>
 
           <div className="combo-search__sort">
@@ -421,7 +442,10 @@ const ComboSearchPage = () => {
             [...comboDeals]
             .filter((combo) => {
               const [min, max] = filters.priceRange;
-              return combo.price >= min && combo.price <= max;
+              const matchPrice = combo.price >= min && combo.price <= max;
+              const matchDestination = filters.destination === '' || combo.location === filters.destination;
+              const matchTransport = filters.transport.length === 0 || filters.transport.includes(combo.transportType);
+              return matchPrice && matchDestination && matchTransport;
             })
             .sort((a, b) => {
               switch (filters.sortBy) {

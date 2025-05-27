@@ -11,6 +11,7 @@ import com.example.KTPM.dto.response.AuthenticationRespone;
 //import com.example.KTPM.entity.InvalidatedToken;
 import com.example.KTPM.dto.response.IntrospectRespone;
 import com.example.KTPM.entity.InvalidatedToken;
+import com.example.KTPM.entity.Role;
 import com.example.KTPM.entity.User;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
@@ -61,6 +62,9 @@ public class AuthenticationService {
         return AuthenticationRespone.builder()
                 .authenticated(true)
                 .token(generateToken(user))
+                .name(user.getName())
+                .email(user.getEmail())
+                .role(user.getRole().stream().map(Role::getName).toList())
                 .build();
     }
     private String generateToken(User user) {

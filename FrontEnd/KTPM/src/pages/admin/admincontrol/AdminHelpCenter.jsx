@@ -1,5 +1,5 @@
 
-import './AminHelpCenter.css';
+import './AdminHelpCenter.css';
 import React, { useState } from "react";
 
 const initialComplaints = [

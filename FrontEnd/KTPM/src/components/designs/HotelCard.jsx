@@ -12,7 +12,11 @@ const HotelCard = ({
 }) => {
   return (
     <div className="hotel-card">
-      <img src={imageSrc} alt="Combo" className="hotel-card__image" />
+      <img 
+        src={imageSrc} 
+        alt="Combo" 
+        className="hotel-card__image" 
+      />
 
       <div className="hotel-card__content">
         <h3 className="hotel-card__title">{title}</h3>

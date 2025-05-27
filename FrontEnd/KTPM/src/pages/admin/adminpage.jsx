@@ -5,7 +5,7 @@ import AdminDashboard from './admincontrol/adminDashboard';
 import AccountManagement from './admincontrol/AccountManagement';
 import CustomerManagement from './admincontrol/CustomerManagement';
 import UserManagement from './admincontrol/AdminRevenue';
-import AminHelpCenter from './admincontrol/AminHelpCenter';
+import AminHelpCenter from './admincontrol/AdminHelpCenter';
 import '../../styles/icondesigns.css'
 import AdminRevenue from './admincontrol/AdminRevenue';
 
