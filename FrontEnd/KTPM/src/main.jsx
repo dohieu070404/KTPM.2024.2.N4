@@ -5,11 +5,27 @@ import { createBrowserRouter,
 }from "react-router-dom";
 
 import App from './App.jsx'
-import LoginPage from './pages/login.jsx';
+import LoginPage from './pages/user/login.jsx';
 import HomePage from './pages/home.jsx';
-import RegisterPage from './pages/register.jsx';
+import RegisterPage from './pages/user/register.jsx';
 import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
+import HotelPage from './pages/user/hotelpage.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
+
+import TourPage from './pages/user/Tourpage.jsx';
+import ComboSearchPage from './pages/user/ComboSearchPage.jsx';
+import OrderPage from './pages/user/orderpage.jsx';
+import PaymentPage from './pages/user/payment.jsx';
+import TransportBookingPage from './pages/user/TransportBookingPage.jsx';
+import CusHotelManagement from './pages/customer/customercontrol/CusHotelManagement.jsx';
+import CustomerDashboard from './pages/customer/customercontrol/CustomerDashboard.jsx';
+import CustomerSuport from './pages/customer/customercontrol/CustomerSuport.jsx';
+import RevenueManagement from './pages/customer/customercontrol/RevenueManagement.jsx';
+import RoomManagement from './pages/customer/customercontrol/RoomManagement.jsx';
+
+
+
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -20,8 +36,37 @@ import CustomerPage from './pages/customer/customerpage.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>
-  },
+    element: <App/>,
+    errorElement:<ErrorPage/>,
+    children:[
+      {
+        index: true,
+        element: <HomePage/>
+      },
+      {
+    path: "/HoltelPage",
+    element: <HotelPage/>
+      },
+       {
+    path: "/TransportBookingPage",
+    element: <TransportBookingPage/>
+      },
+      {
+    path: "/TourPage",
+    element: <TourPage/>
+      },
+       {
+    path: "/ComboSearchPage",
+    element: <ComboSearchPage/>
+      },
+      
+    //   {
+    // path: "/home",
+    // element: <HomePage/>
+    //   },
+    ]
+  }
+  ,
   {
     path: "/login",
     element: <LoginPage/>
@@ -30,10 +75,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterPage/>
   },
-  {
-    path: "/home",
-    element: <HomePage/>
-  },
+  
   {
     path: "/adminpage",
     element: <AdminPage/>
@@ -42,6 +84,41 @@ const router = createBrowserRouter([
     path: "/CustomerPage",
     element: <CustomerPage/>
   },
+  {
+    path: "/OrderPage",
+    element: <OrderPage/>
+  },
+  {
+    path: "/PaymentPage",
+    element: <PaymentPage/>
+
+  },
+  // {
+  //   path: "/CusHotelManagement",
+  //   element: <CusHotelManagement/>
+
+  // },
+  {
+    path: "/CustomerDashboard",
+    element: <CustomerDashboard/>
+
+  },
+  {
+    path: "/CustomerSupport",
+    element: <CustomerSuport/>
+
+  },
+  {
+    path: "/RevenuelManagement",
+    element: <RevenueManagement/>
+
+  },
+  {
+    path: "/RoomManagement",
+    element: <RoomManagement/>
+
+  },
+ 
   
 ]);
 

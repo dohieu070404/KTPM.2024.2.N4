@@ -1,0 +1,141 @@
+/* RevenueManagement.css */
+
+.revenue-management-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+.AdminRevenue-value-listlist{
+    color: #000000;
+}
+.revenue-management-container h1 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.revenue-filter {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.filter-select, 
+.date-input,
+.year-select {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.filter-select {
+  width: 200px;
+}
+
+.date-input {
+  width: 200px;
+}
+
+.year-select {
+  width: 120px;
+}
+
+.revenue-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.summary-card h3 {
+  color: #3498db;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.total-revenue p {
+  font-size: 1.8rem;
+  color: #27ae60;
+  font-weight: 700;
+}
+
+.revenue-sources ul {
+  list-style: none;
+  padding: 0;
+}
+
+.revenue-sources li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.revenue-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.revenue-table th,
+.revenue-table td {
+  padding: 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.revenue-table th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.revenue-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.no-data {
+  text-align: center;
+  color: #95a5a6;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .revenue-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .revenue-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .revenue-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .revenue-table td {
+    min-width: 150px;
+  }
+}
