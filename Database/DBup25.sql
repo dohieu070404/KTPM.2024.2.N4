@@ -3,6 +3,7 @@ USE bookingtravel;
 CREATE TABLE user (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(100) NOT NULL,
+    Customer ENUM('pending','deny','accept','non') DEFAULT 'non',
     Gender ENUM('male', 'female', 'other') DEFAULT 'other',
     Password TEXT NOT NULL,
     Phone VARCHAR(20),
@@ -30,6 +31,10 @@ CREATE TABLE role (
     Edited_At TIMESTAMP NULL,
     Edit_User_ID INT
 );
+INSERT INTO role (Name, Description) VALUES
+('ADMIN', 'Quyền quản trị hệ thống'),
+('USER', 'Người dùng đặt phòng khách sạn'),
+('CUSTOMER', 'Người cung cấp dịch vụ');
 CREATE TABLE user_role (
     User_Id INT NOT NULL,
     Role_Name VARCHAR(50) NOT NULL,  -- Sửa tên cột cho phù hợp với cột khóa chính trong bảng role
@@ -221,10 +226,28 @@ CREATE TABLE transport_booking (
     FOREIGN KEY (User_Id) REFERENCES user(Id),
     FOREIGN KEY (Transport_Id) REFERENCES transport(Id)
 );
--- Phần 4: Tạo các chỉ mục (indexes) để tối ưu truy vấn
-CREATE INDEX idx_hotel_city ON hotels (City);
-CREATE INDEX idx_hotel_name ON hotels (Name(255));
-CREATE INDEX idx_room_booking_dates ON room_booking (Check_In, Check_Out);
-CREATE INDEX idx_room_booking_status ON room_booking (Status);
-CREATE INDEX idx_room_type_hotel ON room_type (Hotels_Id);
-CREATE INDEX idx_room_type_price ON room_type (Price);
+-- 1. Bảng orders (đơn hàng tổng)
+use bookingtravel;
+CREATE TABLE orders (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    User_Id INT ,
+    Order_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Status ENUM('pending', 'confirmed', 'cancelled', 'completed', 'partial_completed') DEFAULT 'pending',
+    Full_Name VARCHAR(100) default '',
+    Email varchar(100) default '',
+    Phone_Number varchar(100) not null,
+    Total_Price DECIMAL(15, 2) NOT NULL DEFAULT 0,
+    Discount_Amount DECIMAL(15, 2) not null DEFAULT 20000,
+    Final_Price DECIMAL(15, 2) AS (Total_Price - Discount_Amount) STORED,
+    FOREIGN KEY (User_Id) REFERENCES user(Id)
+);
+
+-- 2. Bảng order_items (chi tiết dịch vụ trong đơn)
+CREATE TABLE order_details (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Order_Id INT NOT NULL,
+    Item_Type ENUM('room_booking', 'transport_booking') NOT NULL,
+    Item_Id INT NOT NULL,
+    Price DECIMAL(15, 2) NOT NULL,
+    FOREIGN KEY (Order_Id) REFERENCES orders(Id) ON DELETE CASCADE
+);
