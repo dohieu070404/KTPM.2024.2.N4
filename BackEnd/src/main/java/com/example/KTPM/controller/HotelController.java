@@ -21,23 +21,23 @@ public class HotelController {
     
     private final HotelService hotelService;
 
-    // Endpoint mới để filter hotels
-    @GetMapping
-    public ApiRespone<List<HotelRespone>> getHotels(
-        @RequestParam(required = false) Integer minPrice,
-        @RequestParam(required = false) Integer maxPrice,
-        @RequestParam(defaultValue = "newest") String sortBy,
-        @RequestParam(required = false) Integer rating,
-        @RequestParam(required = false) String location
-    ) {
-        log.info("Filter hotels with params - minPrice: {}, maxPrice: {}, sortBy: {}, rating: {}, location: {}",
-                minPrice, maxPrice, sortBy, rating, location);
-                
-        return ApiRespone.<List<HotelRespone>>builder()
-                .code(1000)
-                .result(hotelService.getFilteredHotels(minPrice, maxPrice, sortBy, rating, location))
-                .build();
-    }
+//    // Endpoint mới để filter hotels
+//    @GetMapping
+//    public ApiRespone<List<HotelRespone>> getHotels(
+//        @RequestParam(required = false) Integer minPrice,
+//        @RequestParam(required = false) Integer maxPrice,
+//        @RequestParam(defaultValue = "newest") String sortBy,
+//        @RequestParam(required = false) Integer rating,
+//        @RequestParam(required = false) String location
+//    ) {
+//        log.info("Filter hotels with params - minPrice: {}, maxPrice: {}, sortBy: {}, rating: {}, location: {}",
+//                minPrice, maxPrice, sortBy, rating, location);
+//
+//        return ApiRespone.<List<HotelRespone>>builder()
+//                .code(1000)
+//                .result(hotelService.getFilteredHotels(minPrice, maxPrice, sortBy, rating, location))
+//                .build();
+//    }
 
     // Các endpoint còn lại giữ nguyên
     @PostMapping
@@ -53,7 +53,7 @@ public class HotelController {
         var securityContext = SecurityContextHolder.getContext().getAuthentication();
         return ApiRespone.<List<HotelRespone>>builder()
                 .code(1000)
-                .result(hotelService.getFilterByRating()))
+                .result(hotelService.getFilterByRating())
                 .build();
     }
 
@@ -62,7 +62,7 @@ public class HotelController {
         var securityContext = SecurityContextHolder.getContext().getAuthentication();
         return ApiRespone.<List<HotelRespone>>builder()
                 .code(1000)
-                .result(hotelService.getMyHotel()))
+                .result(hotelService.getMyHotel())
                 .build();
     }
 
@@ -70,7 +70,7 @@ public class HotelController {
     public ApiRespone<HotelRespone> getHotel(@PathVariable Integer hotelId) {
         return ApiRespone.<HotelRespone>builder()
                 .code(1000)
-                .result(hotelService.getHotel(hotelId)))
+                .result(hotelService.getHotel(hotelId))
                 .build();
     }
 
@@ -80,7 +80,7 @@ public class HotelController {
             @RequestBody @Valid HotelRequest request) {
         return ApiRespone.<HotelRespone>builder()
                 .code(1000)
-                .result(hotelService.updateHotel(id, request)))
+                .result(hotelService.updateHotel(id, request))
                 .build();
     }
 
