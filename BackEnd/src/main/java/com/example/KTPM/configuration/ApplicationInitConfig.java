@@ -51,7 +51,21 @@ public class ApplicationInitConfig {
                         .role(roles)
                         .build();
             userRepository.save(user);
-            log.warn("User admin has been added with default password:admin,please change it");
+            log.warn("User admin has been added with default password:admin, please change it");
+            }
+
+            if(userRepository.findByName("customer").isEmpty()) {
+                PasswordEncoder pwdEncoder=new BCryptPasswordEncoder(10);
+                HashSet<Role> roles=new HashSet<>();
+                roleRepository.findById(Roles.CUSTOMER.name()).ifPresent(roles::add);
+                User user=User.builder()
+                        .name("customer")
+                        .password(pwdEncoder.encode("customer"))
+                        .email("customer@customer.com")
+                        .role(roles)
+                        .build();
+            userRepository.save(user);
+            log.warn("User customer has been added with default password:customer, please change it");
             }
         };
     }
