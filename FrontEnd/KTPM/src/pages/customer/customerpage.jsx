@@ -36,10 +36,9 @@ const CustomerPage = () => {
     <div className="customer-page-container">
       <div className="customer-sidebar">
         {/* <div className="customer-logo">logo</div> */}
-        <div  className='customer-logo' style={{cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px'}}>
-          <img src="/assets/logopage.jpg" alt="" />
-          <span style={{ fontSize: '18px', color: 'white', fontWeight: 'bold' }}>CUSTOMER</span>
-        </div>
+        <div  className='customer-logo'>
+      <img src="/assets/logopage.jpg" alt="" />
+      </div>
         <div className="customer-nav-menu">
           <a 
             href="#" 

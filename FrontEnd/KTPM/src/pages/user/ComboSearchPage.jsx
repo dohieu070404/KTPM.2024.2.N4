@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ComboSearchPage.css';
 import HotelCard from '../../components/designs/HotelCard';
+// import LoadingSpinner from '../../components/designs/LoadingSpinner';
+// import ErrorMessage from '../../components/designs/ErrorMessage';
 
 const ComboSearchPage = () => {
   const [comboDeals, setComboDeals] = useState([]);
@@ -22,6 +24,7 @@ const ComboSearchPage = () => {
     </div>
   );
 
+  // Tạo error message trực tiếp
   const ErrorMessage = ({ message, onRetry }) => (
     <div className="error-message">
       <div className="error-icon">⚠️</div>
@@ -380,7 +383,6 @@ const ComboSearchPage = () => {
                 </button>
               );
             })}
-
           </div>
         </div>
       </aside>
@@ -471,7 +473,7 @@ const ComboSearchPage = () => {
                 address={combo.location}
                 rating={combo.rating}
                 amenities={combo.amenities}
-                badgeText="COMBO GIÁ TỐT"
+                badgeText="COMBO ƯU ĐÃI"
                 onViewDetails={() => window.open(`/combos/${combo.id}`, '_blank')}
               />
             ))

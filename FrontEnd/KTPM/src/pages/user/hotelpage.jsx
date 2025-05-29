@@ -74,6 +74,7 @@ const HotelPage = () => {
     };
 
     fetchRooms();
+    fetchHotels();
     return () => controller.abort();
   }, [filters]);
 
@@ -146,7 +147,7 @@ const HotelPage = () => {
                 <label>Trả phòng</label>
                 <input 
                   type="date" 
-                   className="HotelPage-tab-conent-date-input"  
+                   className="HotelPage-tab-conent-date-input"
                   name="checkOut"
                   value={filters.checkOut}
                   onChange={(e) => handleFilterChange('checkOut', e.target.value)}

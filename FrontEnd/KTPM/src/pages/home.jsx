@@ -26,11 +26,10 @@ const HomePage = () => {
   groupName="tabGroup1"
   tabs={[
     {
-      key: "tour",
-      label: [<span key="label-tour" className='App-homepage-box-item' ><span className='icon-travel'></span><span>Tour trọn gói</span></span>],
+      label: [<span className='App-homepage-box-item' ><span className='icon-travel'></span><span>Tour trọn gói</span></span>],
       title: [
         
-          <form key="form-tour" className="tab-conent-search-form">
+          <form className="tab-conent-search-form">
             <div className="tab-conent-search-group">
               <label>Bạn muốn đi đâu? <span>*</span></label>
               <input 
@@ -68,11 +67,10 @@ const HomePage = () => {
       content: []
     },
     {
-      key: "hotel",
-      label: [<span key="label-hotel" className='App-homepage-box-item' ><span id='icon-hotel-bed'></span><span >Khách sạn</span></span>],
+      label: [<span className='App-homepage-box-item' ><span id='icon-hotel-bed'></span><span >Khách sạn</span></span>],
       title: [
         
-          <form key="form-hotel" className="tab-conent-search-form">
+          <form className="tab-conent-search-form">
             <div className="tab-conent-search-group">
               <label>Địa điểm ? <span>*</span></label>
               <input 
@@ -118,18 +116,16 @@ const HomePage = () => {
       content: []
     },
     {
-      key: "transport",
-      label: [<span key="label-transport" className='App-homepage-box-item'> <span className='icon-airplane-ticket'></span><span>Phương tiện </span></span>],
+      label: [<span className='App-homepage-box-item'> <span className='icon-airplane-ticket'></span><span>Phương tiện </span></span>],
       title: [
         
       ],
       content: []
     },
     {
-      key: "combo",
-      label: [ <span key="label-combo" className='App-homepage-box-item'><span className='icon-travel'></span>+<span id='icon-hotel-bed'></span>+<span className='icon-airplane-ticket'></span> Combo</span>],
+      label: [ <span className='App-homepage-box-item'><span className='icon-travel'></span>+<span id='icon-hotel-bed'></span>+<span className='icon-airplane-ticket'></span> Combo</span>],
       title: [
-        <form key="form-combo" className="tab-conent-search-form">
+        <form className="tab-conent-search-form">
             <div className="tab-conent-search-group">
               <label>Từ <span>*</span></label>
               <input 
@@ -173,8 +169,7 @@ const HomePage = () => {
       content: []
     },
     {
-      key: "other",
-      label: [<span key="label-other" className='App-homepage-box-item'>Dịch vụ khac<span className='mdi-menu-up'></span></span>],
+      label: [<span className='App-homepage-box-item'>Dịch vụ khac<span className='mdi-menu-up'></span></span>],
       title: "Long Section",
       content: [
         "Dòng 1 dài...",
