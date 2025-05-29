@@ -1,5 +1,6 @@
 package com.example.KTPM.repository;//class repository de tuong tac voi dpms o day la JPA
 
+import com.example.KTPM.entity.Hotel;
 import com.example.KTPM.entity.RoomType;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,12 @@ public interface RoomRepository extends JpaRepository<RoomType,Integer> {
     @Transactional
     @Query(value = "UPDATE room_type SET Available_Rooms = Available_Rooms - :quantity WHERE Id = :roomTypeId", nativeQuery = true)
     void updateAvailableRooms(@Param("roomTypeId") Integer roomTypeId, @Param("quantity") Integer quantity);
+    @Query(value = """
+    SELECT rt.* FROM room_type rt
+    JOIN hotels h ON rt.Hotels_Id = h.Id
+    WHERE h.City = :location
+    AND rt.Is_Active = TRUE
+    AND h.Is_Active = TRUE
+""", nativeQuery = true)
+    List<RoomType> findBySearch(@Param("location") String location);
 }

@@ -2,8 +2,10 @@ package com.example.KTPM.controller;
 
 import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoomRequest;
+import com.example.KTPM.dto.request.RoomSearchRequest;
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
+import com.example.KTPM.dto.response.RoomSearchRespone;
 import com.example.KTPM.service.RoomService;
 import jakarta.validation.Valid;
 import lombok.Builder;
@@ -72,7 +74,12 @@ public class RoomController {
                 .result(roomService.getRoom(roomId))
                 .build();
     }
-
+    @GetMapping("/search")
+    public ApiRespone<List<RoomSearchRespone>> getSearchHotel(@RequestBody RoomSearchRequest request) {
+        return ApiRespone.<List<RoomSearchRespone>>builder()
+                .result(roomService.getSearchRoom(request))
+                .build();
+    }
 
 
 

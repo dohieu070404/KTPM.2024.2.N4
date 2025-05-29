@@ -1,8 +1,10 @@
 package com.example.KTPM.service;
 
 import com.example.KTPM.dto.request.RoomRequest;
+import com.example.KTPM.dto.request.RoomSearchRequest;
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
+import com.example.KTPM.dto.response.RoomSearchRespone;
 import com.example.KTPM.entity.Hotel;
 import com.example.KTPM.entity.RoomType;
 import com.example.KTPM.exception.AppException;
@@ -90,6 +92,16 @@ public class RoomService {
     }
     public RoomRespone getRoom(Integer id) {
         return roomMapper.toRoomRespone(roomRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ROOM_NOT_EXISTED)));
+    }
+    public List<RoomSearchRespone> getSearchRoom(RoomSearchRequest request) {
+        return roomRepository.findBySearch(request.getLocation()).stream().map(
+                roomType -> {
+                    RoomSearchRespone respone = new RoomSearchRespone();
+                    respone.setName(roomType.getName());
+                    respone.setPrice(roomType.getPrice());
+                    return respone;
+                }
+        ).toList();
     }
 
 
