@@ -5,9 +5,9 @@ import { createBrowserRouter,
 }from "react-router-dom";
 
 import App from './App.jsx'
-import LoginPage from './pages/user/login.jsx';
+import LoginPage from './pages/login.jsx';
 import HomePage from './pages/home.jsx';
-import RegisterPage from './pages/user/register.jsx';
+import RegisterPage from './pages/register.jsx';
 import AdminPage from './pages/admin/adminpage.jsx';
 import CustomerPage from './pages/customer/customerpage.jsx';
 import HotelPage from './pages/user/hotelpage.jsx';

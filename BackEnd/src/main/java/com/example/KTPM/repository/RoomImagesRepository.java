@@ -16,4 +16,6 @@ public interface RoomImagesRepository extends JpaRepository<RoomImage,Integer> {
 
     @Query(value = "SELECT * FROM room_images WHERE  Room_Type_Id  = :roomId;",nativeQuery = true)
     List<RoomImage> findAllByRoomId(@Param("roomId") Integer roomId);
+    @Query(value = "SELECT * FROM room_images WHERE Room_Type_Id = :roomId AND Is_Primary = 1", nativeQuery = true)
+    RoomImage findPrimary(@Param("roomId") Integer roomId);
 }

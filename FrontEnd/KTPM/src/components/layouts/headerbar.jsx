@@ -21,8 +21,8 @@ const HeaderBar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const name = localStorage.getItem("name");
-    const role = localStorage.getItem("role");
+    const name = localStorage.getItem("username");
+    const role = localStorage.getItem("userrole");
     if (token) {
       setUserName(name || "User");
       setRole(role);
@@ -36,11 +36,9 @@ const HeaderBar = () => {
 
   const handleRequestCustomer = async () => {
   const token = localStorage.getItem("token");
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("username");
   const email = localStorage.getItem("email");
-
   console.log("🔐 Token hiện tại:", token);
-
   if (!token || !name || !email || name === "undefined" || email === "undefined") {
     return alert("Thiếu thông tin người dùng hoặc chưa đăng nhập lại.");
   }
@@ -78,7 +76,7 @@ const HeaderBar = () => {
   const dropdownItems = userName
     ? [
         { label: `Hi, ${userName}`, action: null },
-        ...(role === "USER" ? [{ label: "Request to be Customer", action: handleRequestCustomer }] : []),
+        ...(role === "ROLE_USER" ? [{ label: "Request to be Customer", action: handleRequestCustomer }] : []),
         { label: "Logout", action: handleLogout },
       ]
     : [

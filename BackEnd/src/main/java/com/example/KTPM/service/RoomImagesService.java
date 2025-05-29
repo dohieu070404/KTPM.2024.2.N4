@@ -40,6 +40,9 @@ public class RoomImagesService {
     public List<RoomImagesRespone> getRoomImage(Integer roomId){
         return roomImagesRepository.findAllByRoomId(roomId).stream().map(roomImagesMapper::toRoomImagesRespone).toList();
     }
+//    public RoomImagesRespone getRoomPrimaryImage(Integer roomId){
+//        return roomImagesMapper.toRoomImagesRespone(roomImagesRepository.findPrimary(roomId));
+//    }
 
     public RoomImagesRespone updateRoomImage(Integer id, RoomImagesRequest request) {
         RoomImage image = roomImagesRepository.findById(id)

@@ -4,6 +4,7 @@ import com.example.KTPM.dto.request.ApiRespone;
 import com.example.KTPM.dto.request.RoomRequest;
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
+import com.example.KTPM.dto.response.RoomSearchRespone;
 import com.example.KTPM.service.RoomService;
 import jakarta.validation.Valid;
 import lombok.Builder;
@@ -39,7 +40,14 @@ public class RoomController {
                 .result(roomService.getHotelRoom(hotelId))
                 .build();
     }
-
+    //lấy all room
+    @GetMapping()
+    public ApiRespone<List<RoomSearchRespone>> getAllRoom() {
+        return ApiRespone.<List<RoomSearchRespone>>builder()
+                .code(1000)
+                .result(roomService.getAllRoom())
+                .build();
+    }
     @PutMapping("/{hotelId}/{roomId}")
     public ApiRespone<RoomRespone> updateRoom(
             @PathVariable Integer hotelId,

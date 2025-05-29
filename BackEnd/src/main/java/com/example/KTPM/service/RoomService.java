@@ -3,12 +3,14 @@ package com.example.KTPM.service;
 import com.example.KTPM.dto.request.RoomRequest;
 import com.example.KTPM.dto.response.HotelRespone;
 import com.example.KTPM.dto.response.RoomRespone;
+import com.example.KTPM.dto.response.RoomSearchRespone;
 import com.example.KTPM.entity.Hotel;
 import com.example.KTPM.entity.RoomType;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 import com.example.KTPM.mapper.RoomMapper;
 import com.example.KTPM.repository.HotelRepository;
+import com.example.KTPM.repository.RoomImagesRepository;
 import com.example.KTPM.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,8 @@ public class RoomService {
     private RoomMapper roomMapper;
     @Autowired
     private RoomRepository roomRepository;
+    @Autowired
+    private RoomImagesRepository roomImagesRepository;
 
     public RoomRespone createRoom(Integer id,RoomRequest request) {
         log.info("Service: Create Room");
@@ -92,12 +96,24 @@ public class RoomService {
         return roomMapper.toRoomRespone(roomRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.ROOM_NOT_EXISTED)));
     }
 
-
-
-
-
-
-
+    public List<RoomSearchRespone> getAllRoom() {
+        return roomRepository.findAll()
+                .stream()
+                .map(roomType ->{
+                    RoomSearchRespone roomSearchRespone = new RoomSearchRespone();
+                    roomSearchRespone.setId(roomType.getId());
+                    roomSearchRespone.setName(roomType.getName());
+                    roomSearchRespone.setPrice(roomType.getPrice());
+                    roomSearchRespone.setAvailableRooms(roomType.getAvailableRooms());
+                    roomSearchRespone.setDescription(roomType.getDescription());
+                    roomSearchRespone.setMaxAdults(roomType.getMaxAdults());
+                    roomSearchRespone.setMaxChildren(roomType.getMaxChildren());
+                    String images=roomImagesRepository.findPrimary(roomType.getId()).getImageUrl();
+                    roomSearchRespone.setImageUrl(images);
+                    return roomSearchRespone;
+                })
+                .toList();
+    }
 
 
 //    public UserRespone getMyInfor(){

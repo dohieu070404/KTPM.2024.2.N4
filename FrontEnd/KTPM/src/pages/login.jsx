@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
-
+import { jwtDecode } from "jwt-decode";
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -27,11 +27,21 @@ const LoginPage = () => {
 
       const result = await response.json();
       console.log("Kết quả từ backend:", result);
-
+  
       if (result.code === 0 && result.result?.token) {
-        localStorage.setItem("token", result.result.token);
+        const token = result.result.token;
+        localStorage.setItem("token",token);
+        const decodedToken = jwtDecode(token);
+        const userrole=decodedToken.scope;
+        localStorage.setItem("userrole",userrole);
+        localStorage.setItem("username",decodedToken.sub);
         alert("Đăng nhập thành công!");
-        // window.location.href = "/dashboard";
+        // alert("Vai trò người dùng:", userrole);
+        if(userrole==="ROLE_USER"){
+          window.location.href = "/";
+        }else if(userrole==="ROLE_ADMIN"){
+          window.location.href = "/adminpage";
+        }
       } else {
         alert("Đăng nhập thất bại: Đăng nhập sai hoặc hệ thống lỗi");
       }
