@@ -14,9 +14,8 @@
 }
 
 .Hotel-page-container-card{
-   display: flex;
-  gap: 20px;          /* khoảng cách giữa các item */
-   
+  display: flex;
+  gap: px;          /* khoảng cách giữa các item */   
   flex-wrap: wrap;
 }
 .HotelPage-search-header {

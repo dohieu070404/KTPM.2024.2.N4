@@ -23,11 +23,11 @@ public class RoomBookingController {
     @Autowired
     private RoomBookingService roomBookingService;
     //tạo room
-    @PostMapping("/{roomId}")//dat ten api
-    public ApiRespone<RoomBookingRespone> createRoomBooking(@PathVariable Integer roomId, @RequestBody @Valid RoomBookingRequest request){
+    @PostMapping()//dat ten api
+    public ApiRespone<RoomBookingRespone> createRoomBooking(@RequestBody @Valid RoomBookingRequest request){
         return ApiRespone.<RoomBookingRespone>builder()
                 .code(1000)
-                .result(roomBookingService.createRoomBooking(roomId,request))
+                .result(roomBookingService.createRoomBooking(request))
                 .build();
     }
     //cập nhật trạng thái booking

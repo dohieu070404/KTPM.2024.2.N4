@@ -51,6 +51,12 @@ public class HotelController {
                 .result(hotelService.getHotel(hotelId))
                 .build();
     }
+    @GetMapping()
+    public ApiRespone<List<HotelRespone>> getAllHotel() {
+        return  ApiRespone.<List<HotelRespone>>builder()
+                .result(hotelService.getAllHotel())
+                .build();
+    }
 
 
 

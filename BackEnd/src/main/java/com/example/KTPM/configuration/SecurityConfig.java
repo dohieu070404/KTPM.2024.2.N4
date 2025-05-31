@@ -25,6 +25,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/log-in","/auth/log-out","/auth/refresh").permitAll()
                 .requestMatchers(HttpMethod.POST,"/users").permitAll()
                 .requestMatchers(HttpMethod.PUT,"/users").permitAll()
+                .requestMatchers(HttpMethod.GET,"/room").permitAll()
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2

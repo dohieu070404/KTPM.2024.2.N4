@@ -11,6 +11,7 @@ public interface HotelMapper {
     @Mapping(target = "hotelAmenities",ignore = true)
     Hotel toHotel(HotelRequest request);
     @Mapping(source = "hotelAmenities", target = "hotelAmenities")
+    @Mapping(target = "imageUrl", ignore = true)
     HotelRespone toHotelRespone(Hotel hotel);
     @Mapping(target = "hotelAmenities", ignore = true)
     void updateHotel(@MappingTarget Hotel hotel, HotelRequest request);

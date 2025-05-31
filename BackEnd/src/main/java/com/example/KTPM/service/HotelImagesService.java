@@ -51,4 +51,8 @@ public class HotelImagesService {
         hotelImagesRepository.findById(id).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         hotelImagesRepository.deleteById(id);
     }
+
+    public HotelImagesRespone getHotelPrimaryImage(Integer hotelId) {
+        return hotelImagesMapper.toHotelImagesRespone(hotelImagesRepository.findPrimary(hotelId));
+    }
 }

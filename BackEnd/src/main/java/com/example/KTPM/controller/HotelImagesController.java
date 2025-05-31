@@ -38,6 +38,13 @@ public class HotelImagesController {
                 .result(hotelImagesService.getMyHotelImage(hotel_id))
                 .build();
     }
+    //xem primary image cua hotel
+    @GetMapping("/primary/{hotel_id}")
+    public ApiRespone<HotelImagesRespone> getAllHotelPrimaryImages(@PathVariable Integer hotel_id) {
+        return ApiRespone.<HotelImagesRespone>builder()
+                .result(hotelImagesService.getHotelPrimaryImage(hotel_id))
+                .build();
+    }
 
     //cập nhật hotel image
     @PutMapping("/update/{image_id}")

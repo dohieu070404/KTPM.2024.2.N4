@@ -35,4 +35,5 @@ public class HotelRespone {
     private Instant createdAt;
     private Instant editedAt;
     private Set<HotelAmenityRespone> hotelAmenities;
+    private String imageUrl;
 }

@@ -18,6 +18,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RoomBookingRequest {
+    private Integer roomId;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private Integer numberOfRooms;

@@ -85,6 +85,13 @@
 // };
 
 // export default HotelCard;
+
+
+
+
+
+
+
 import React from 'react';
 import './HotelCard.css'; // Đảm bảo bạn có file CSS này và cập nhật nếu cần
 
@@ -94,6 +101,9 @@ const HotelCard = ({
   name, // Tên phòng (thay cho title)
   description, // Mô tả phòng
   price, // Giá phòng
+  rating,
+  city,
+  phoneNum,
   availableRooms, // Số phòng trống (thay cho roomsLeft)
   maxAdults, // Số người lớn tối đa
   maxChildren, // Số trẻ em tối đa
@@ -101,7 +111,8 @@ const HotelCard = ({
   // address, rating, reviews, roomType, bedDetails, amenities, nights, guests
   imageSrc, // Sử dụng ảnh mặc định nếu không có
   imageAlt = 'Room image',
-  onViewDetails // Đổi tên prop xử lý click
+  buttonTitle,
+  onViewDetails
 }) => {
 
   // Format giá tiền
@@ -132,34 +143,36 @@ const HotelCard = ({
         {/* Phần chi tiết phòng: Hiển thị mô tả và thông tin cơ bản */} 
         <div className="hotel-card-room-details">
           {description && <p className="hotel-card-description">{description}</p>}
+          {city && <p className="hotel-card-description">{city}</p>}
           {/* Hiển thị thông tin số người */} 
-          <p className="hotel-card-capacity-info">
-            Sức chứa: {maxAdults} người lớn{maxChildren > 0 ? `, ${maxChildren} trẻ em` : ''}
+          <p className="hotel-card-rooms-left-alert">
+            {rating}
+          </p>
+          <p className="hotel-card-rooms-left-alert">
+            {availableRooms}
           </p>
           {/* Bỏ phần amenities vì không có trong dữ liệu */} 
           {/* <div className="hotel-card-amenities-list"> ... </div> */} 
         </div>
 
         {/* Thông báo số phòng còn lại */} 
-        {availableRooms > 0 && (
-          <div className="hotel-card-rooms-left-alert">
-            Chỉ còn {availableRooms} phòng!
-          </div>
-        )}
 
+          <div className="hotel-card-rooms-left-alert">
+            {price}
+          </div>
         {/* Phần giá */} 
         <div className="hotel-card-price-section">
            {/* Bỏ thông tin số đêm/khách vì không áp dụng cho từng phòng */} 
           {/* <div className="hotel-card-stay-info"> ... </div> */} 
           <div className="hotel-card-price-container">
-            <span className="hotel-card-price">{formattedPrice}</span>
-            <span className="hotel-card-tax-info">/ đêm (Đã bao gồm thuế và phí)</span>
+            <span className="hotel-card-price">{phoneNum}</span>
+            <span className="hotel-card-tax-info"></span>
           </div>
         </div>
 
         {/* Nút xem chi tiết */} 
         <button className="hotel-card-view-rooms-btn" onClick={onViewDetails}>
-          Xem chi tiết
+          {buttonTitle}
         </button>
       </div>
     </div>

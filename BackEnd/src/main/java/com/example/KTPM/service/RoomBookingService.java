@@ -36,17 +36,17 @@ public class RoomBookingService {
     @Autowired
     private RoomBookingRepository roomBookingRepository;
 
-    public RoomBookingRespone createRoomBooking(Integer room_id,RoomBookingRequest request) {
+    public RoomBookingRespone createRoomBooking(RoomBookingRequest request) {
         log.info("Service: Create RoomBooking");
         RoomBooking roomBooking = roomBookingMapper.toRoomBooking(request);
         var context= SecurityContextHolder.getContext();
         String name=context.getAuthentication().getName();
         User user=userRepository.findByName(name).orElseThrow(()->new AppException(ErrorCode.USER_NOT_EXISTED));
         roomBooking.setUser(user);
-        RoomType room=roomRepository.findById(room_id).orElseThrow(()->new AppException(ErrorCode.ROOM_NOT_EXISTED));
+        RoomType room=roomRepository.findById(request.getRoomId()).orElseThrow(()->new AppException(ErrorCode.ROOM_NOT_EXISTED));
         roomBooking.setRoomType(room);
-        BigDecimal price=roomRepository.totalRoomPrice(room_id,request.getNumberOfRooms());
-        roomRepository.updateAvailableRooms(room_id,request.getNumberOfRooms());
+        BigDecimal price=roomRepository.totalRoomPrice(request.getRoomId(),request.getNumberOfRooms());
+        roomRepository.updateAvailableRooms(request.getRoomId(),request.getNumberOfRooms());
         roomBooking.setTotalPrice(price);
         roomBooking.setStatus("pending");
         return roomBookingMapper.toRoomBookingRespone(roomBookingRepository.save(roomBooking));

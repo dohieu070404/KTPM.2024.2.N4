@@ -6,10 +6,7 @@ import com.example.KTPM.entity.*;
 import com.example.KTPM.exception.AppException;
 import com.example.KTPM.exception.ErrorCode;
 import com.example.KTPM.mapper.HotelMapper;
-import com.example.KTPM.repository.HotelAmenityRepository;
-import com.example.KTPM.repository.HotelRepository;
-import com.example.KTPM.repository.RoomRepository;
-import com.example.KTPM.repository.UserRepository;
+import com.example.KTPM.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +30,8 @@ public class HotelService {
     private HotelRepository hotelRepository;
     @Autowired
     private HotelAmenityRepository hotelAmenityRepository;
+    @Autowired
+    private HotelImagesRepository hotelImagesRepository;
 
     public HotelRespone createHotel(HotelRequest request){
         log.info("Service: Create hotel");
@@ -96,8 +95,15 @@ public class HotelService {
         return hotelMapper.toHotelRespone(hotelRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED)));
     }
 
-
-
+    public List<HotelRespone> getAllHotel() {
+        return hotelRepository.findAll().stream().map(hotel->{
+                HotelRespone hotelRespone = hotelMapper.toHotelRespone(hotel);
+                String url=hotelImagesRepository.findPrimary(hotel.getId()).getImageUrl();
+                hotelRespone.setImageUrl(url);
+                return hotelRespone;
+            }
+        ).toList();
+    }
 
 
 //    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")

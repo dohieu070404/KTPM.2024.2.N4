@@ -110,6 +110,11 @@ public class RoomService {
                     roomSearchRespone.setMaxChildren(roomType.getMaxChildren());
                     String images=roomImagesRepository.findPrimary(roomType.getId()).getImageUrl();
                     roomSearchRespone.setImageUrl(images);
+                    Hotel hotel=hotelRepository.findById(roomType.getHotels().getId()).orElseThrow(() -> new AppException(ErrorCode.HOTEL_NOT_EXISTED));
+                    roomSearchRespone.setCity(hotel.getCity());
+                    roomSearchRespone.setRating(hotel.getRating());
+                    roomSearchRespone.setPhoneNum(hotel.getPhoneNum());
+                    roomSearchRespone.setHotelName(hotel.getName());
                     return roomSearchRespone;
                 })
                 .toList();

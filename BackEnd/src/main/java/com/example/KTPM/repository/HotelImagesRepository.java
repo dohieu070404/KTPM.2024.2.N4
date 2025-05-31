@@ -18,4 +18,6 @@ public interface HotelImagesRepository extends JpaRepository<HotelImage,Integer>
 
     @Query(value = "SELECT * FROM hotel_images WHERE Hotels_Id = :hotelId;",nativeQuery = true)
     List<HotelImage> findAllByHotelId(@Param("hotelId") Integer hotelId);
+    @Query(value = "SELECT * FROM hotel_images WHERE Hotels_Id = :hotelId AND Is_Primary = 1", nativeQuery = true)
+    HotelImage findPrimary(@Param("hotelId") Integer hotelId);
 }
